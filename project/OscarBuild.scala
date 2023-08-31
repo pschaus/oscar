@@ -9,10 +9,12 @@ object OscarBuild {
 
   lazy val buildSettings = Seq(
     organization := "oscar",
-    version := "4.1.0-SNAPSHOT",
+    version := "5.0.0",
     scalaVersion := "2.13.11",
     sbtVersion := "1.6.2"
   )
+
+
 
   lazy val commonSettings = buildSettings ++ Defaults.coreDefaultSettings ++ Seq(
     Compile / scalacOptions ++= Seq("-encoding", "UTF-8", "-deprecation", "-feature",
@@ -24,6 +26,7 @@ object OscarBuild {
     Test / parallelExecution := false,
     Test / fork := true,
     javacOptions ++= Seq("-encoding", "UTF-8"),
+    javacOptions ++= Seq("-source", "1.8", "-target", "1.8"),
     Test / unmanagedSourceDirectories += baseDirectory.value / "src" / "main" / "examples",
     PerfTest / testOptions += ((PerfTest / target) map {
       t => Tests.Argument(TestFrameworks.ScalaTest, "-u", "<%s>" format (t / "streams/test"))

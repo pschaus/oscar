@@ -16,11 +16,8 @@
 package oscar.cp.examples.scheduling
 
 import oscar.cp._
-import oscar.visual._
 
 import scala.io.Source
-import oscar.cp.scheduling.visual.VisualGanttChart
-import oscar.util.RandomGenerator
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -90,23 +87,7 @@ object JobShop extends App {
 
   val bestSolutionStarts = Array.ofDim[Int](nActivities)
 
-  // Visualization  
-  // -----------------------------------------------------------------------
 
-  val frame = new VisualFrame("JobShop Problem", 2, 1)
-  val colors = VisualUtil.getRandomColors(nResources, true)
-  val gantt1 = new VisualGanttChart(startsVar, durationsVar, endsVar, i => jobs(i), colors = i => colors(resources(i)))
-  val gantt2 = new VisualGanttChart(startsVar, durationsVar, endsVar, i => resources(i), colors = i => colors(resources(i)))
-  onSolution {
-    for (a <- 0 until nActivities) {
-      bestSolutionStarts(a) = startsVar(a).min
-    }
-    gantt1.update(1, 20)
-    gantt2.update(1, 20)
-  }
-  frame.createFrame("Gantt chart").add(gantt1)
-  frame.createFrame("Gantt chart").add(gantt2)
-  frame.pack()
 
   // Constraints & Search
   // -----------------------------------------------------------------------
@@ -140,7 +121,7 @@ object JobShop extends App {
     constraintBuffer.clear()
     val stats = startSubjectTo(failureLimit = maxFails) {
       for (a <- 0 until nActivities) {
-        if (RandomGenerator.nextInt(100) > relaxProba) {
+        if (scala.util.Random.nextInt(100) > relaxProba) {
           constraintBuffer += startsVar(a) === bestSolutionStarts(a)
         }
       }

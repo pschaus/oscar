@@ -1,7 +1,7 @@
 package oscar.cp.examples.userguide
 
 import oscar.cp._
-import oscar.util._
+import oscar.algo.selectMin
 
 object FirstFailSearch extends CPModel with App {
 

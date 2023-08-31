@@ -17,8 +17,7 @@ package oscar.cp.examples.scheduling
 
 import oscar.cp.constraints.UnaryResourceVilim
 import oscar.cp._
-import oscar.cp.scheduling.visual.{VisualStateResource, VisualGanttChart}
-import oscar.visual.{VisualUtil, VisualFrame}
+
 
 /**
  * Created on 08/12/14.
@@ -135,30 +134,6 @@ object TrolleyProblem extends CPModel with App {
 
   //State resource constraints
   stateResource(stateStartVars, stateDurVars, stateEndVars, stateNeeded.flatten.filter(s => s >= 0), tt)
-
-  // ----------------    VISUALISATION     ----------------------
-
-  val frame = new VisualFrame("Trolley Problem", 2, 1)
-  val stateColors = VisualUtil.getRandomColors(locations.length + 1, pastel=true)
-  val gantt = new VisualGanttChart(startVarsFlat, durationVarsFlat, endVarsFlat, i => i / tasks.length, colors = i => {
-    if (i % tasks.length == process1Index || i % tasks.length == process2Index) {
-      stateColors(locations.length)
-    }
-    else {
-      stateColors(locations.indexOf(locationFlat(i)))
-    }
-  })
-
-  val states = new VisualStateResource(startVarsFlat, durationVarsFlat, endVarsFlat, stateNeeded.flatten, stateNeeded.flatten.map(e => e >= 0), colors = i => stateColors(i))
-
-  onSolution {
-    gantt.update(1, 20)
-    states.update(1, 20)
-  }
-
-  frame.createFrame("Gantt Chart").add(gantt)
-  frame.createFrame("Trolley Location").add(states)
-  frame.pack()
 
   // ----------------    SEARCH     ----------------------
 

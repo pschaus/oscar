@@ -1,7 +1,7 @@
 package oscar.cp.examples
 
 import oscar.cp.{CPIntVar, CPModel, Strong, add, allDifferent, branch, minimize, noAlternative, onSolution, post, start, startSubjectTo, sum}
-import oscar.util.selectMin
+import oscar.algo.selectMin
 
 import scala.io.Source
 

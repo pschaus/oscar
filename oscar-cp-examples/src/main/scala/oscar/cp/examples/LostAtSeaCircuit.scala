@@ -1,8 +1,6 @@
 package oscar.cp.examples
 
 import oscar.cp.{CPIntVar, CPModel, Strong, add, binaryFirstFail, circuit, element, elementVar, maximize, onSolution, start, sum}
-import oscar.visual.shapes.{VisualLine, VisualRectangle, VisualText}
-import oscar.visual.{VisualDrawing, VisualFrame}
 
 /**
  * Searching for a lost ship at sea is a time sensitive task that requires skill and urgency.
@@ -67,24 +65,5 @@ object LostAtSeaCircuit extends CPModel with App {
   val stats = start()
   println(stats)
 
-  // ---------------- make a small visu ---------------
 
-  val f = new VisualFrame("Lost At Sea", 1, 2)
-  val drawing = VisualDrawing(flipped = false)
-  f.createFrame("Solution").add(drawing)
-  val scale = 60
-
-  // draw the 8x8 board and the proba in each cell
-  for (i <- 0 until 8; j <- 0 until 8) {
-    val rect = new VisualRectangle(drawing, i * scale, j * scale, scale, scale)
-    val text = new VisualText(drawing, scale / 2 + i * scale, scale / 2 + j * scale, proba(i)(j).toString + " id:" + (i * 8 + j))
-  }
-  // draw the solution
-  for (i <- 0 until 9) {
-    val (li, ci) = getLineCol(sol(i))
-    val (li1, ci1) = getLineCol(sol(i + 1))
-    VisualLine(drawing, li * scale + scale / 2, ci * scale + scale / 2, li1 * scale + scale / 2, ci1 * scale + scale / 2)
-  }
-
-  f.pack()
 }

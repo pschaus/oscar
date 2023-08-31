@@ -1,6 +1,6 @@
 package oscar.cp.examples.util.reader
 
-import oscar.util.OutFile
+import oscar.cp.examples.util._
 
 import scala.io.Source
 

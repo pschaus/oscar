@@ -1,7 +1,6 @@
 package oscar.cp.examples.userguide
 
 import oscar.cp._
-import oscar.util._
 
 object PredefinedSearches extends CPModel with App {
 

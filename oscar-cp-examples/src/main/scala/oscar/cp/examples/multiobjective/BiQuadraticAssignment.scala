@@ -17,11 +17,7 @@
 package oscar.cp.examples.multiobjective
 
 import oscar.cp._
-import oscar.visual.VisualFrame
-import oscar.cp.multiobjective.visual._
-import java.awt.Color
 import oscar.cp.examples.util.reader.QAPReader._
-import oscar.util.time
 
 /**
  * Quadratic Assignment Problem:
@@ -52,14 +48,6 @@ object BiQuadraticAssignment extends App {
   val obj1init = (for (i <- N; j <- N) yield d(xinit(i))(xinit(j)) * w1(i)(j)).sum
   val obj2init = (for (i <- N; j <- N) yield d(xinit(i))(xinit(j)) * w2(i)(j)).sum
 
-  // Visualization
-  // -------------
-  val f = new VisualFrame("Knapsack MO", 1, 2)
-  val paretoPlot = new PlotPareto(nbPareto = 2, objMax1 = false, objMax2 = false)
-  val sols = readSolutions(solutionFile, n)
-  for ((_, sol) <- sols) paretoPlot.insert(sol(0), sol(1), 1)
-  f.add(paretoPlot)
-  f.pack()
 
   // Model
   // -----
@@ -91,9 +79,6 @@ object BiQuadraticAssignment extends App {
       val (i, v) = heuristic(if (rand.nextBoolean) w1 else w2)
       branch(cp.add(x(i) === v))(cp.add(x(i) !== v))
     }
-  } 
-  onSolution {
-     paretoPlot.insert(obj1.value, obj2.value)
   }
 
   println("search...")

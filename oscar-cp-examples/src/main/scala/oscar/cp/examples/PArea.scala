@@ -1,7 +1,6 @@
 package oscar.cp.examples
 
 import oscar.cp.{CPIntVar, CPModel, Weak, add, binPacking, binaryFirstFail, minimize, onSolution, start, startSubjectTo, sum}
-import oscar.util.rand
 
 import scala.io.Source
 
@@ -19,6 +18,8 @@ import scala.io.Source
  * @author Pierre Schaus pschaus@gmail.com
  */
 object PArea extends CPModel with App {
+
+  val rand = new scala.util.Random(0)
 
   val lines = Source.fromFile("data/Parea/PArea_100_9.txt").getLines.reduceLeft(_ + " " + _)
   val vals = lines.split("[ ,\t]").toList.filterNot(_ == "").map(_.toInt)

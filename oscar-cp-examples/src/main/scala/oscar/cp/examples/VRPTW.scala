@@ -88,40 +88,15 @@ object VRPTW extends CPModel with App {
   // Conflict set / max regret search
   search(binaryLastConflict(pred, i => -pred(i).maxRegret(distances(i)), i => pred(i).minBy(distances(i))))
 
-  val visu = new VisualVRPTW(coordinates, succ, vehicles)
 
   onSolution {
     println(totalDistance)
-    visu.updateTour()
   }
 
   val stats = start()
   println(stats)
 }
 
-class VisualVRPTW(coordinates: Array[(Int, Int)], succ: Array[CPIntVar], vehicles: Array[CPIntVar]) {
-
-  import oscar.visual._
-
-  val Customers = 0 until coordinates.size
-  val colors = VisualUtil.getRandomColors(vehicles.length, true)
-  val frame = VisualFrame("Visualization")
-
-  val tour = VisualTour(coordinates)
-  frame.createFrame("VRPTW").add(tour)
-  frame.pack()
-
-  Customers.foreach(c => tour.nodeRadius(c, 1))
-
-  // Updates the visualization  
-  def updateTour(): Unit = {
-    Customers.foreach(i => {
-      tour.edgeDest(i, succ(i).value)
-      tour.edgeColor(i, colors(vehicles(i).value))
-    })
-    tour.repaint()
-  }
-}
 
 class VRPTWInstance(
   val nCustomers: Int,

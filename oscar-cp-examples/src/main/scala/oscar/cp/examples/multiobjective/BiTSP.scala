@@ -20,7 +20,6 @@ import oscar.cp.multiobjective.Pareto
 import scala.collection.mutable.Queue
 import oscar.cp.constraints.MinAssignment
 import oscar.cp.multiobjective.ListPareto
-import oscar.cp.multiobjective.visual._
 import oscar.cp.examples.util.reader.TSPUtils
 
 object BiTSP extends App {
@@ -35,8 +34,7 @@ object BiTSP extends App {
   val distMatrices = Array(distMatrix1, distMatrix2)
   val nCities = distMatrix1.size
   val Cities = 0 until nCities
-  
-  val visu = new PlotPareto()
+
   
   // Model
   // -----

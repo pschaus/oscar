@@ -17,7 +17,6 @@ package oscar.cp.examples.scheduling
 
 import oscar.cp._
 import oscar.cp.preprocessing.ShavingUtils
-import oscar.util.RandomGenerator
 
 import scala.collection.mutable.ArrayBuffer
 import scala.io.Source
@@ -132,7 +131,7 @@ object JobShopWithLNSAndShaving extends CPModel with App {
     constraintBuffer.clear()
     val stats = startSubjectTo(failureLimit = maxFails) {
       for (a <- 0 until nActivities) {
-        if (RandomGenerator.nextInt(100) > relaxProba) {
+        if (scala.util.Random.nextInt(100) > relaxProba) {
           constraintBuffer += startVars(a) === bestSolutionStarts(a)
         }
       }

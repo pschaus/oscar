@@ -2,7 +2,7 @@ package oscar.cp.examples
 
 import scala.io.Source
 import oscar.cp._
-import oscar.util._
+import oscar.algo._
 
 /**
  * Balanced Academic Curriculum Problem

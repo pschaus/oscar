@@ -2,7 +2,7 @@ package oscar.cp.examples
 
 
 import oscar.cp._
-import oscar.util._
+import oscar.cp.examples.util.InFile
 
 /**
  * Eternity Problem = Edge Matching Puzzle

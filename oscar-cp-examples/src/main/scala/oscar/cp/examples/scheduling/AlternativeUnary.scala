@@ -2,8 +2,6 @@ package oscar.cp.examples.scheduling
 
 import oscar.cp._
 import scala.util.Random
-import oscar.visual._
-import oscar.cp.scheduling.visual._
 import oscar.cp.scheduling.constraints._
 
 
@@ -39,31 +37,6 @@ object AlternativeUnary extends CPModel with App {
     splitLastConflict(starts ++ resources, i => i)
   }
 
-  // Visualization  
-  // -------------
-
-  val frame = new VisualFrame("Cumulative JobShop Problem", nResources + 1, 1)
-  val colors = VisualUtil.getRandomColors(nTasks, true)
-  val gantt = new VisualGanttChart(starts, durations, ends, i => i, colors = i => colors(i))
-
-  val profiles = Array.tabulate(nResources)(r => new VisualProfile(starts, durations, ends, demands, resources, 1, r, color = colors(r)))
-  
-  onSolution { 
-    gantt.update(20, 20) 
-    profiles.foreach(_.update(20, 20))
-    
-    println("Makespan of " + makespan.value)
-    for (t <- 0 until nTasks) {
-      print("Task " + t)
-      print(" of duration " + durations(t).value)
-      print(" is executed on resource " + resources(t).value)
-      println(" at time " + starts(t).value)
-    }
-    println()
-  }
-  frame.createFrame("Gantt chart").add(gantt)
-  for (r <- 0 until nResources) frame.createFrame("profile resource "+r).add(profiles(r))
-  frame.pack
 
   println(start())
 }

@@ -1,8 +1,7 @@
 package oscar.cp.examples
 
 import oscar.cp._
-import oscar.visual._
-import java.awt.Color
+
 
 /**
  * Try to maximize the number of children receiving a gifts given the number of gifts they asked

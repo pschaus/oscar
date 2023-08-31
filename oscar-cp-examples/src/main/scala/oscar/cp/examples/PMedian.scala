@@ -3,8 +3,6 @@ package oscar.cp.examples
 import java.awt.Color
 
 import oscar.cp.{CPIntVar, CPModel, add, binPacking, binaryFirstFail, minimize, onSolution, start, sum}
-import oscar.visual.shapes.{VisualCircle, VisualLine}
-import oscar.visual.{VisualDrawing, VisualFrame}
 
 import scala.io.Source
 
@@ -52,31 +50,7 @@ object PMedian extends CPModel with App {
   val xsol = Array.fill(nbCust)(0)
   val load = Array.fill(nbCust)(CPIntVar(0 until capa))
 
-  // ----------- visu ----------
-  val f = new VisualFrame("P-Median Problem", 1, 2)
-  val w = f.createFrame("Layout")
-  val scale = 5
-  val offsetx = 100
-  val offsety = 100
-  val drawing = VisualDrawing(true)
-  w.add(drawing)
-  val vcircles = for (i <- 0 until nbCust) yield {
-    new VisualCircle(drawing, cust(i)._1 * scale + offsetx, cust(i)._2 * scale + offsety, demand(i))
-  }
-  val vlines = for (i <- 0 until nbCust) yield {
-    VisualLine(drawing, cust(i)._1 * scale + offsetx, cust(i)._2 * scale + offsety, 0, 0)
-  }
-  f.pack()
 
-  def updateVisu(): Unit = {
-    for (i <- 0 until nbCust) {
-      val j = x(i).value
-      vcircles(i).innerCol = Color.WHITE;
-      vcircles(j).innerCol = Color.RED
-      vlines(i).dest = (cust(j)._1 * scale + offsetx, cust(j)._2 * scale + offsety)
-    }
-  }
-  // ---------------------------
 
   val rnd = new scala.util.Random(0)
 
@@ -85,7 +59,6 @@ object PMedian extends CPModel with App {
 
   onSolution {
     for (i <- 0 until nbCust) xsol(i) = x(i).value
-    updateVisu()
     println("\n" + totCost)
   }
 

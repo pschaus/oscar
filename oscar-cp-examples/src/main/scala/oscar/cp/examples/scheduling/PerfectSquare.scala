@@ -16,12 +16,10 @@
 package oscar.cp.examples.scheduling
 
 import oscar.cp._
+import oscar.algo.selectMin
 
-import oscar.visual._
 import scala.math
-import java.awt.Color
 import oscar.cp.constraints._
-import oscar.visual.shapes.VisualRectangle
 
 /**
  * Perfect Square Problem
@@ -52,21 +50,6 @@ object PerfectSquare extends CPModel with App {
   val demandsY = Array.tabulate(nSquare)(t => CPIntVar(side(t)))
   val resourcesY = Array.fill(nSquare)(CPIntVar(1))
 
-  onSolution {
-    // Visualization
-    val f = VisualFrame("Pefect Square")
-    val ff = f.createFrame("Square")
-    val d = VisualDrawing(false)
-    ff.add(d)
-    def scale = 5
-    val bg = new VisualRectangle(d, 0, 0, s * scale, s * scale)
-    bg.innerCol = Color.black
-    (Square).foreach { i =>
-      val r = new VisualRectangle(d, startsX(i).value * scale, startsY(i).value * scale, side(i) * scale, side(i) * scale)
-      r.innerCol = VisualUtil.getRandomColor
-    }
-  }
-
   // Consistency
   for (t <- Square) {
     add(endsX(t) === startsX(t) + durationsX(t))
@@ -84,10 +67,9 @@ object PerfectSquare extends CPModel with App {
     add((endsX(i) ?<= startsX(j)) || (endsX(j) ?<= startsX(i)) || (endsY(i) ?<= startsY(j)) || (endsY(j) ?<= startsY(i)))
   }
 
-  import oscar.util._
-  import oscar.algo.search._
 
-  def myCustomBranching(w: Array[CPIntVar]) = Branching {
+
+  def myCustomBranching(w: Array[CPIntVar]) = oscar.algo.search.Branching {
     // Minimum x position
     selectMin(w)(x => !x.isBound)(_.min) match {
       case None => noAlternative

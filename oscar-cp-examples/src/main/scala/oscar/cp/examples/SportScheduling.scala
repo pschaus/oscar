@@ -1,7 +1,6 @@
 package oscar.cp.examples
 
 import oscar.cp.{CPIntVar, CPModel, Strong, add, allDifferent, binary, gcc, onSolution, search, start, table}
-import oscar.util.time
 
 /**
   * The problem is to schedule an even number n of teams over n/2 periods and n - 1 weeks,
@@ -68,13 +67,12 @@ object SportScheduling extends CPModel with App {
 
   // use restarts to break heavy tails phenomena
   var restart = 0
-  val t = time {
-    do {
-      start(nSols = 1, failureLimit = 5000)
-      restart += 1
-    } while (!solFound)
-  }
 
-  println("time:" + t)
+  do {
+    start(nSols = 1, failureLimit = 5000)
+    restart += 1
+  } while (!solFound)
+
+
   println("#restart:" + restart)
 }

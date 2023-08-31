@@ -1,10 +1,7 @@
 package oscar.cp.examples
 
-import oscar.algo.search.VisualSearchTree
 import oscar.cp._
-import oscar.util.selectMin
-import oscar.util.tree.Tree
-import oscar.visual.VisualFrame
+import oscar.algo.selectMin
 
 /**
  * Parcel Shipment Problem (found in the examples of Jacop).
@@ -48,7 +45,6 @@ object ParcelShipment extends CPModel with App {
   add(circuit(succ), Strong)
 
   var currNode = 0
-  val tree = new Tree()
 
   minimize(totDist) search {
     selectMin(succ)(!_.isBound)(_.size) match {
@@ -60,31 +56,20 @@ object ParcelShipment extends CPModel with App {
           post(x === v)
           currNode += 1
           val nodeId = currNode
-          tree.createBranch(parent, currNode, currNode.toString, "left") {
-            println("left in node" + nodeId)
-          }
         } {
           post(x !== v)
           currNode += 1
           val nodeId = currNode
-          tree.createBranch(parent, currNode, currNode.toString, "right") {
-            println("right in node" + nodeId)
-          }
         }
       }
     }
 
   }
 
-  onSolution { tree.addSuccess(currNode) }
 
   val stats = solver.start()
   println(stats)
 
-  val f = new VisualFrame("ParcelShipment", 1, 1)
-  val w = f.createFrame("Tree")
-  val vt = new VisualSearchTree(tree)
-  w.add(vt)
-  w.pack()
+
 
 }

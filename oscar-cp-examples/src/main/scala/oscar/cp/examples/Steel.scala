@@ -1,13 +1,8 @@
 package oscar.cp.examples
 
-import java.awt.Color
 
 import oscar.cp.{CPIntVar, CPModel, Strong, add, binPacking, branchAll, element, isOr, minimize, noAlternative, onSolution, post, start, startSubjectTo, sum}
-import oscar.util.selectMin
-import oscar.visual.plot.PlotLine
-import oscar.visual.shapes.VisualLine
-import oscar.visual.{VisualBinPacking, VisualFrame, VisualUtil}
-
+import oscar.algo.selectMin
 import scala.io.Source
 import scala.util.Random
 
@@ -66,20 +61,6 @@ object Steel extends CPModel with App {
   val l = for (s <- Slabs) yield CPIntVar(0 to capa.max)
   val xsol = Array.fill(nbSlab)(0) //current best solution
 
-  // -------------visual components ------------
-  val colors = VisualUtil.getRandomColors(nbCol, true)
-  val scale = 7
-  val f = VisualFrame("Steel Mill Slab")
-  // creates the plot and place it into the frame
-  val plot = new PlotLine("", "Solution number", "Loss")
-  f.createFrame("Objective").add(plot)
-  // creates the tour visu and place it into the frame
-  val drawing: VisualBinPacking = VisualBinPacking(binWidth = 12)
-  val items = Slabs.map(i => drawing.addItem(i, scale * weight(i))).toArray
-  Slabs.foreach(o => items(o).innerCol = colors(col(o)))
-  f.createFrame("Steel Mill Slab").add(drawing)
-  capa.foreach(c => VisualLine(drawing, 0, c * scale, nbSlab * 12, c * scale).outerCol = Color.red)
-  f.pack()
   // ------------------------------------------
 
   val rnd = new Random(0)
@@ -88,11 +69,9 @@ object Steel extends CPModel with App {
   val obj = sum(Slabs)(s => element(loss, l(s)))
 
   onSolution {
-    plot.addPoint(nbSol, obj.value)
     nbSol += 1
     Slabs.foreach(o => {
       xsol(o) = x(o).value
-      items(o).bin = xsol(o)
     })
 
   }

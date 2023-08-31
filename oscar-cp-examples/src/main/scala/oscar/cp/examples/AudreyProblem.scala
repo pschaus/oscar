@@ -2,7 +2,6 @@ package oscar.cp.examples
 
 import scala.io.Source
 import oscar.cp._
-import oscar.util._
 
 /**
  * Little Problem given by my n-Side colleague Audrey Timmermans:

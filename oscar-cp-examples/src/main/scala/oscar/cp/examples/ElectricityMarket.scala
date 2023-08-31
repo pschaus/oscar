@@ -4,8 +4,6 @@ package oscar.cp.examples
 import oscar.cp._
 
 import scala.io.Source
-import oscar.visual._
-import oscar.visual.plot.PlotLine
 import scala.collection.mutable.Map
 
 /**
@@ -37,16 +35,6 @@ object ElectricityMarket extends CPModel with App {
   val tmin = orders.map(_.start).min
   val tmax = orders.map(_.end).max
 
-  // -------------visual components ------------
-  val f = VisualFrame("Electricity Market")
-  // creates the plot and place it into the frame
-  val plot = new PlotLine("", "Solution number", "Qty")
-  f.createFrame("Objective").add(plot)
-  val barPlot = BarChart("", "Time", "Qty", tmax - tmin + 1)
-  f.createFrame("Qty Exchange").add(barPlot)
-  f.pack()
-  // ------------------------------------------
-
   // one var for each time slot = the quantity exchanged on that slot
   val varMapQty = Map[Int, CPIntVar]()
   for (t <- tmin to tmax) {
@@ -76,11 +64,6 @@ object ElectricityMarket extends CPModel with App {
       branch { post(order.selected === 1) } { post(order.selected === 0) }
     }
   } onSolution {
-    // update visualization
-    for (t <- tmin to tmax) {
-      barPlot.setValue(t - tmin, varMapQty(t).value)
-    }
-    plot.addPoint(nbSol, obj.value)
     nbSol += 1
   }
 

@@ -3,8 +3,6 @@ package oscar.cp.examples.scheduling
 import java.awt.Color
 
 import oscar.cp._
-import oscar.cp.scheduling.visual.{VisualGanttChart, VisualReservoirProfile}
-import oscar.visual.VisualFrame
 
 import scala.reflect.ClassTag
 
@@ -68,27 +66,6 @@ object DoubleReservoirShop extends App {
     binaryFirstFail(startVars)
   }
 
-  /*********************************   VISUALISATION   *********************************/
-  val frame = new VisualFrame("Test Reservoir Profile", 3, 1)
-  val colors = Array(Color.GREEN, Color.RED)
-  val gantt = new VisualGanttChart(startVars, durationVars, endVars, i => i, colors = i => if (productionVars(i).max > 0) colors(0) else colors(1))
-  val gf = frame.createFrame("Gantt Chart").add(gantt)
-  val vps = Array.tabulate(nReservoirs)(r =>
-    VisualReservoirProfile(filterByReservoir(r, startVars), filterByReservoir(r, durationVars),
-      filterByReservoir(r, endVars), filterByReservoir(r, productionVars),
-      filterByReservoir(r, consumptionVars), filterByReservoir(r, temporary),
-      minCapas(r), maxCapas(r), initialAmounts(r), Color.CYAN)
-  )
-
-  val fs = Array.tabulate(nReservoirs)(i => frame.createFrame("Profile of Reservoir " + (i + 1)).add(vps(i)))
-  frame.pack()
-  onSolution{
-    gantt.update(20, 10)
-    for (r <- 0 until nReservoirs) {
-      vps(r).update(20, 10)
-    }
-
-  }
 
   println(start())
 }

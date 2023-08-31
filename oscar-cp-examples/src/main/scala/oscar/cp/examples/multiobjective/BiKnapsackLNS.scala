@@ -17,11 +17,7 @@
 package oscar.cp.examples.multiobjective
 
 import oscar.cp._
-import oscar.visual.VisualFrame
-import oscar.cp.multiobjective.visual._
-import java.awt.Color
-import oscar.util.selectMin
-import oscar.util.time
+import oscar.algo.selectMin
 import oscar.cp.examples.util.reader.KnapsackReader._
 import oscar.cp.multiobjective.SolSelect._
 
@@ -46,17 +42,6 @@ object BiKnapsackLNS extends App {
   val profit = Array(items1.map(_._2), items2.map(_._2))
   val ratio = for (o <- Objs) yield (Items.map(i => profit(o)(i).toDouble / weight(o)(i)).toArray)
 
-  // Visualization
-  // -------------
-  val f = new VisualFrame("Knapsack MO", 1, 2)
-  val paretoPlot = new PlotPareto(nbPareto = 2, objMax1 = true, objMax2 = true)
-  val sol = readSolution(solutionFile)
-  for (i <- 0 until sol.size) {
-    val (o1, o2) = sol(i)
-    paretoPlot.insert(o1, o2, 1)
-  }
-  f.add(paretoPlot)
-  f.pack()
 
   // Model
   // -----
@@ -86,10 +71,7 @@ object BiKnapsackLNS extends App {
       case Some(i) => branch(cp.post(x(i) === 1))(cp.post(x(i) === 0))
     }
   }
-  
-  onSolution {
-    paretoPlot.insert(profitVar1.value, profitVar2.value)
-  } 
+
   
   start(1)
 

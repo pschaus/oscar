@@ -1,8 +1,7 @@
 package oscar.cp.examples
 
 import oscar.cp.{CPIntVar, CPSolver, add, binPacking, branchAll, gcc, minimize, noAlternative, onSolution, post, spread, start}
-import oscar.util.selectMin
-import oscar.visual.{VisualBinPacking, VisualFrame, VisualUtil}
+import oscar.algo.selectMin
 
 import scala.io.Source
 
@@ -94,19 +93,11 @@ object Nurses extends App {
 
   // --- model ---
 
-  val f = VisualFrame("Steel Mill Slab")
-  val colors = VisualUtil.getRandomColors(nbZones, true)
-  colors(0) = java.awt.Color.GREEN
-  colors(1) = java.awt.Color.RED
-  val drawing: VisualBinPacking = VisualBinPacking(binWidth = 10)
-  f.createFrame("Nurses").add(drawing)
 
-  val scale = 3
   var totSpread = 0
   for (i <- 0 until nbZones) {
 
-    val items = Array.tabulate(nbPatientsInZone(i))(j => drawing.addItem(i, scale * acuityByZone(i)(j)))
-    items.foreach(_.innerCol = colors(i))
+
 
     // actual cp model solving zone i
     implicit val cp = CPSolver()
@@ -118,8 +109,6 @@ object Nurses extends App {
     var best = Int.MaxValue
 
     onSolution {
-      // update the visualization
-      nurseOfPatient.zipWithIndex.foreach { case (n, j) => items(j).bin = (n.value + nbNursesInZone.take(i).sum) }
       // store the best objective
       best = spreadAcuity.value
     }
