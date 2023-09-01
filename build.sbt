@@ -1,6 +1,9 @@
 import oscar.OscarBuild
 import oscar.OscarBuild._
 
+
+resolvers += Resolver.typesafeRepo("releases")
+
 lazy val aggregatedProjects: Seq[ProjectReference] = Seq(oscarAlgo,oscarCp)
 
 lazy val root = (project in file(".")) // has to be named root.

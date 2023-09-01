@@ -12,6 +12,7 @@ object OscarBuild {
     version := "5.0.0",
     scalaVersion := "2.13.11",
     sbtVersion := "1.6.2"
+    //sbtVersion := "1.9.3"
   )
 
 
@@ -39,9 +40,9 @@ object OscarBuild {
 
 
 
-
   object Resolvers {
-
+    val typesafeIvyRelease = Resolver.typesafeIvyRepo("releases")
+    val allResolvers = Seq(typesafeIvyRelease)
   }
 
   object Dependencies {
