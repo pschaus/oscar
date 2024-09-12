@@ -1,39 +1,27 @@
-import oscar.OscarBuild
-import oscar.OscarBuild._
+// Basic project information
+organization := "com.yourcompany"
+name := "oscar"
+version := "1.0.0-SNAPSHOT"
+scalaVersion := "2.13.11"
+
+// Compiler settings
+javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
+
+// Dependencies
+libraryDependencies ++= Seq(
+  "org.scala-lang" % "scala-library" % scalaVersion.value
+)
+
+// Repository to deploy artifacts (e.g., GitHub Packages)
+publishTo := Some("GitHub Packages" at "https://maven.pkg.github.com/pschaus/oscar")
+
+// Add credentials for GitHub (make sure you have a valid credentials file)
+credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
 
 
-resolvers += Resolver.typesafeRepo("releases")
+// Javadoc jar generation
+autoAPIMappings := true
+packageDoc in Compile := target.value / "api-docs" / "javadoc.jar"
 
-lazy val aggregatedProjects: Seq[ProjectReference] = Seq(oscarAlgo,oscarCp)
-
-lazy val root = (project in file(".")) // has to be named root.
-  .settings(commonSettings: _*)
-  .aggregate(aggregatedProjects: _*)
-  .settings(name := "oscar")
-  .settings(libraryDependencies ++= Dependencies.testDeps)
-  .enablePlugins(ScalaUnidocPlugin)
-  .settings(ScalaUnidocPlugin.globalSettings)
-  .settings(unidocProjectFilter in(ScalaUnidoc, unidoc) := inAnyProject)
-
-
-
-lazy val oscarAlgo = (project in file("oscar-algo"))
-  .settings(commonSettings: _*)
-  .settings(name := "oscar-algo")
-  .settings(libraryDependencies ++= Dependencies.testDeps)
-
-
-
-lazy val oscarCp = (project in file("oscar-cp")) // TODO pack : pack auto settings?
-  .settings(commonSettings: _*)
-  .settings(name := "oscar-cp")
-  .settings(libraryDependencies ++= Dependencies.testDeps)
-  .dependsOn(oscarAlgo)
-
-lazy val oscarCpExample = (project in file("oscar-cp-examples")) // TODO pack : pack auto settings?
-  .settings(commonSettings: _*)
-  .settings(name := "oscar-cp-examples")
-  .settings(libraryDependencies ++= Dependencies.testDeps)
-  .dependsOn(oscarCp)
-
-
+// Repository resolver for additional libraries
+resolvers += "GitHub" at "https://maven.pkg.github.com/pschaus/oscar"
