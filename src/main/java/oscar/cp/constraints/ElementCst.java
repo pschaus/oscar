@@ -59,7 +59,6 @@ public class ElementCst extends Constraint {
 			sortedPerm[i] = i;	
 		}
 		Arrays.sort(sortedPerm, new Comparator<Integer>(){
-	
 			public int compare(Integer i1, Integer i2) {
 				return (y[i1]-y[i2]);
 			}});
@@ -67,7 +66,7 @@ public class ElementCst extends Constraint {
 		minIndSupp.setValue(0);
 		maxIndSupp = new ReversibleInt(s(), 0);
 		maxIndSupp.setValue(y.length-1);
-		
+
 	}
 
 	@Override
