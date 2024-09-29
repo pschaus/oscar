@@ -14,16 +14,16 @@
  ******************************************************************************/
 package oscar.algo.graph.test
 
-cp.src.test.scala.oscar.algo.graph.test
 
 import oscar.algo.graph.{GraphUtils, NegativeWeightCycleException}
+import oscar.algo.testUtils.TestSuite
 
 /**
  * Created on 06/03/15.
  * @author Cyrille Dejemeppe (cyrille.dejemeppe@gmail.com)
  */
 
-class GraphUtilsTest extends FunSuite with Matchers {
+class GraphUtilsTest extends TestSuite {
 
   test("Test of Dijkstra's shortest path algorithm for Int") {
     // The example was found at http://i.stack.imgur.com/YC8LA.gif

@@ -14,7 +14,7 @@
  ******************************************************************************/
 package oscar.cp.test
 
-import org.scalatest.FunSuite
+
 import oscar.cp.testUtils._
 import oscar.cp.constraints._
 import oscar.cp._

@@ -14,12 +14,12 @@
  ******************************************************************************/
 package oscar.algo.test
 
-cp.src.test.scala.oscar.algo.test
-
 import oscar.algo.reversible.SparseSet
 
-
-class TestSparseSet extends FunSuite {
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.Assertions
+class TestSparseSet extends AnyFunSuite {
 
   test("test ds1") {
     val set = new SparseSet(5,10,true) // empty sparse-set

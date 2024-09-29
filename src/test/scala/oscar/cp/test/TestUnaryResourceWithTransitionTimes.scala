@@ -1,6 +1,6 @@
 package oscar.cp.test
 
-import org.scalatest.{Assertions, Matchers, FunSuite}
+import oscar.algo.testUtils.TestSuite
 import oscar.cp._
 import oscar.cp.constraints.UnaryResourceWithTransitionTimes
 import oscar.cp.core.variables.CPIntVar
@@ -12,7 +12,7 @@ import scala.util.Random
  * @author Cyrille Dejemeppe (cyrille.dejemeppe@gmail.com)
  * @author Sascha Van Cauwelaert (sascha.vancauwelaert@gmail.com)
  */
-class TestUnaryResourceWithTransitionTimes extends FunSuite with Matchers with Assertions {
+class TestUnaryResourceWithTransitionTimes extends TestSuite {
   val seed = 42
   val randGen = new scala.util.Random(seed)
 

@@ -14,12 +14,14 @@
  ******************************************************************************/
 package oscar.algo.test
 
-cp.src.test.scala.oscar.algo.test
 
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.Assertions
 import oscar.algo.DisjointSets
 
 
-class DisjointSetsTest extends FunSuite with Matchers  {
+class DisjointSetsTest extends AnyFunSuite with Matchers {
 
   test("test ds1") {
     val sets = new DisjointSets(1,4)

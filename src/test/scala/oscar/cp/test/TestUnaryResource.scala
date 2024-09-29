@@ -14,14 +14,14 @@
   * *****************************************************************************/
 package oscar.cp.test
 
-import org.scalatest.{FunSuite, Matchers}
+import oscar.algo.testUtils.TestSuite
 import oscar.cp._
 import oscar.cp.core.CPPropagStrength
 
 /**
   * @author Pierre Schaus pschaus@gmail.com
   */
-class TestUnaryResource extends FunSuite with Matchers {
+class TestUnaryResource extends TestSuite {
 
   // decomp without resource variables
   def decomp(cp: CPSolver, starts: Array[CPIntVar], durations: Array[CPIntVar], ends: Array[CPIntVar]): Unit = {

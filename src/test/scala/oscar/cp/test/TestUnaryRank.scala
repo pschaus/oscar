@@ -14,17 +14,16 @@
  ******************************************************************************/
 package oscar.cp.test
 
-import org.scalatest.FunSuite
 import oscar.cp.constraints._
 import oscar.cp._
+
 import collection.immutable.SortedSet
-import org.scalatest.Matchers
-import oscar.util._
+import oscar.algo.testUtils.TestSuite
 import oscar.cp.scheduling.search.Ranker
 import oscar.cp.scheduling.search.RankBranching
 import oscar.cp.scheduling.search.RankBranching
 
-class TestUnaryRank extends FunSuite with Matchers  {
+class TestUnaryRank extends TestSuite  {
 
 
   

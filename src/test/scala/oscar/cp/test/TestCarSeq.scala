@@ -14,13 +14,15 @@
  ******************************************************************************/
 package oscar.cp.test
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.Assertions
 import oscar.cp._
 import collection.immutable.SortedSet
 import oscar.algo.reversible.SparseSet
-import org.scalatest.Matchers
 
-class TestCarSeq extends FunSuite with Matchers {
+
+class TestCarSeq extends AnyFunSuite with Matchers {
 
   test("Car Sequencing") {
 

@@ -1,10 +1,14 @@
 package oscar.cp.scheduling.precedencegraph
 
-import org.scalatest.{Assertions, FunSuite, Matchers}
+
 import oscar.cp._
 import oscar.cp.scheduling.precedencegraph.branching.StaticPrecedenceGraphBranching
 import oscar.util.instanceGenerators.RandomFamilyInstanceGenerator
 import oscar.util.instanceGenerators.utils.Utils
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.Assertions
+import oscar.algo.testUtils.TestSuite
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -12,7 +16,7 @@ import scala.collection.mutable.ArrayBuffer
   * Created by saschavancauwelaert on 17/05/16.
   */
 
-class PrecedenceGraphPropagatorTest extends FunSuite with Matchers with Assertions {
+class PrecedenceGraphPropagatorTest extends TestSuite {
 
   val seed = 30
   val randGen = new scala.util.Random(seed)

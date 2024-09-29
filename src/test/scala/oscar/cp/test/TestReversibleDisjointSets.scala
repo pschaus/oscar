@@ -1,7 +1,6 @@
 package oscar.cp.test
 
 import oscar.cp.testUtils.TestSuite
-import org.scalatest.FunSuite
 import oscar.algo.reversible.ReversibleDisjointSets
 import oscar.cp.core.CPSolver
 

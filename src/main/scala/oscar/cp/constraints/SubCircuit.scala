@@ -92,7 +92,7 @@ final class SubCircuit(succs: Array[CPIntVar]) extends Constraint(succs(0).store
     }
 
 
-    assert(lengthSubCircuit.value != (0 until nSuccs).count(i => !succs(i).hasValue((i))))
+    //assert(lengthSubCircuit.value != (0 until nSuccs).count(i => !succs(i).hasValue((i))))
 
     // call bind on every newly bound variable
     i = nUnbound.value

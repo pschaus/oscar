@@ -12,7 +12,7 @@
  * You should have received a copy of the GNU Lesser General Public License along with OscaR.
  * If not, see http://www.gnu.org/licenses/lgpl-3.0.en.html
  ******************************************************************************/
-package oscar.cp.test;
+package oscar.algo.reversible;
 
 
 import junit.framework.TestCase;
@@ -24,7 +24,7 @@ import java.util.Arrays;
 /**
  * @author Pierre Schaus pschaus@gmail.com
  */
-public class TestSetIndexArray extends TestCase {
+public class TestSparseSet extends TestCase {
 
 	private CPStore s;
 
@@ -33,7 +33,7 @@ public class TestSetIndexArray extends TestCase {
      * Constructor for TestTrailInt.
      * @param name
      */
-    public TestSetIndexArray(String name) {
+    public TestSparseSet(String name) {
         super(name);
         
     }

@@ -14,7 +14,7 @@
  ******************************************************************************/
 package oscar.cp.test
 
-import org.scalatest.FunSuite
+
 import oscar.cp.testUtils.TestSuite
 import oscar.cp._
 import oscar.cp.core.CPPropagStrength
@@ -75,26 +75,26 @@ class TestGCCVariableBounds extends TestSuite {
       var (nSol1, nSol2, nSol3) = (0, 0, 0)
       var (bkt1, bkt2, bkt3) = (0, 0, 0)
       var (nNode1, nNode2, nNode3) = (0, 0, 0)
-      val t1 = oscar.util.time {
+
+      {
         val (a, b, c) = nbSol(domVars, min to max, cardMin,cardMax, CPPropagStrength.Weak)
         nSol1 = a
         bkt1 = b
         nNode1 = c
       }
-      val t2 = oscar.util.time {
+      {
         val (a, b, c) = nbSol(domVars, min to max, cardMin,cardMax, CPPropagStrength.Medium)
         nSol2 = a
         bkt2 = b
         nNode2 = c
       }
-      val t3 = oscar.util.time {
+      {
         val (a, b, c) = nbSol(domVars, min to max, cardMin,cardMax, CPPropagStrength.Strong)
         nSol3 = a
         bkt3 = b
         nNode3 = c
       }
 
-      //println(nSol1)
       nSol1 should equal(nSol2)
       nSol1 should equal(nSol3)
 

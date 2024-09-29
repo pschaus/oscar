@@ -14,11 +14,11 @@
  ******************************************************************************/
 package oscar.algo.reversible.test
 
-cp.src.test.scala.oscar.algo.reversible.test
 
+import org.scalatest.funsuite.AnyFunSuite
 import oscar.algo.reversible.{ReversibleBoolean, ReversibleContext}
 
-class ReversibleBoolTest extends FunSuite {
+class ReversibleBoolTest extends AnyFunSuite {
 
   test("test reversibility bool") {
 

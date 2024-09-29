@@ -15,7 +15,6 @@
 
 package oscar.cp.test
 
-import org.scalatest.FunSuite
 import oscar.cp.testUtils.TestSuite
 import oscar.cp.core.CPStore
 import oscar.cp._

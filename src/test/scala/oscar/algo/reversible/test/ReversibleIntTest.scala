@@ -14,11 +14,11 @@
  ******************************************************************************/
 package oscar.algo.reversible.test
 
-cp.src.test.scala.oscar.algo.reversible.test
 
+import org.scalatest.funsuite.AnyFunSuite
 import oscar.algo.reversible._
 
-class ReversibleIntTest extends FunSuite {
+class ReversibleIntTest extends AnyFunSuite {
 
   test("test reversibility") {
     val r = new ReversibleContextImpl()

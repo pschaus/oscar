@@ -1,13 +1,14 @@
 package oscar.cp.test
 
-import org.scalatest.{FunSuite, Matchers}
+
 import oscar.algo.reversible.{BitSetOp, ReversibleSparseBitSet}
+import oscar.algo.testUtils.TestSuite
 import oscar.cp._
 
 /**
  * Created by helene on 1/08/17.
  */
-class TestReversibleSparseBitSet extends FunSuite with Matchers {
+class TestReversibleSparseBitSet extends TestSuite {
 
   test("Test BitSetOp 1 : bitLength") {
     for {

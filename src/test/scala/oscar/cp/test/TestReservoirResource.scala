@@ -14,9 +14,9 @@
  ******************************************************************************/
 package oscar.cp.test
 
-import org.scalatest.FunSuite
-import org.scalatest.Matchers
+
 import oscar.algo.Inconsistency
+import oscar.algo.testUtils.TestSuite
 import oscar.cp._
 import oscar.util.RandomGenerator
 
@@ -24,7 +24,7 @@ import oscar.util.RandomGenerator
  * Created on 04/06/15.
  * @author Cyrille Dejemeppe (cyrille.dejemeppe@gmail.com)
  */
-class TestReservoirResource extends FunSuite with Matchers {
+class TestReservoirResource extends TestSuite {
 
   // Decomp checker on solutions
   def checkSolOk(starts: Array[Int], durations: Array[Int], ends: Array[Int], prods: Array[Int], cons: Array[Int], minCapa: Int, maxCapa: Int, initialAmount: Int): Boolean = {

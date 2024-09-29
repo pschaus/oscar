@@ -14,7 +14,6 @@
  ******************************************************************************/
 package oscar.cp.test
 
-import org.scalatest.FunSuite
 import oscar.cp.testUtils.TestSuite
 import oscar.cp.constraints._
 import oscar.cp._
@@ -104,19 +103,19 @@ class TestGCCFixedBounds extends TestSuite {
       
       
       
-      val t1 = oscar.util.time {
+      {
         val (a, b, c) = nbSol(domVars, min to max, cardMin,cardMax, CPPropagStrength.Weak)
         nSol1 = a
         bkt1 = b
         nNode1 = c
       }
-      val t2 = oscar.util.time {
+      {
         val (a, b, c) = nbSol(domVars, min to max, cardMin,cardMax, CPPropagStrength.Medium)
         nSol2 = a
         bkt2 = b
         nNode2 = c
       }
-      val t3 = oscar.util.time {
+      {
         val (a, b, c) = nbSol(domVars, min to max, cardMin,cardMax, CPPropagStrength.Strong)
         nSol3 = a
         bkt3 = b

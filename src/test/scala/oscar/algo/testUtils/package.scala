@@ -1,6 +1,5 @@
 package oscar.algo
 
-cp.src.test.scala.oscar.algo
 
 /**
  * The `testUtils` package provides useful functionnalities to test variables 

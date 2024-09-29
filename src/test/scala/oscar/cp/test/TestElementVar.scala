@@ -15,16 +15,17 @@
 
 package oscar.cp.test
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.Assertions
 import oscar.cp._
 import oscar.cp.constraints.ElementCst2D
-import org.scalatest.Matchers
 
 /**
  * Test on Element Var Constraint
  * @author Pierre Schaus pschaus@gmail.com
  */
-class TestElementVar extends FunSuite with Matchers {
+class TestElementVar extends AnyFunSuite with Matchers {
 
   // --------- gac element var ----------
 

@@ -14,18 +14,19 @@
  ******************************************************************************/
 package oscar.cp.test
 
-import org.scalatest.FunSuite
+
 import oscar.cp._
+
 import collection.immutable.SortedSet
 import oscar.algo.reversible.ReversibleSparseSubset
-import org.scalatest.Matchers
+import oscar.algo.testUtils.TestSuite
 
 
 
 /**
  * @author Pierre Schaus pschaus@gmail.com
  */
-class TestReversibleSparseSubset extends FunSuite with Matchers  {
+class TestReversibleSparseSubset extends TestSuite  {
 
 
   

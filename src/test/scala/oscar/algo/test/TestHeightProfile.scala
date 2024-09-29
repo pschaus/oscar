@@ -1,10 +1,11 @@
 package oscar.algo.test
 
-cp.src.test.scala.oscar.algo.test
 
 import oscar.algo.HeightProfile
-
-class TestHeightProfile extends FunSuite with Matchers {
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.Assertions
+class TestHeightProfile extends AnyFunSuite with Matchers {
 
 
   

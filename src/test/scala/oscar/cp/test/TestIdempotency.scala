@@ -16,7 +16,6 @@
  */
 package oscar.cp.test
 
-import org.scalatest.FunSuite
 import oscar.cp.testUtils.TestSuite
 import oscar.cp.core.Constraint
 import oscar.algo.reversible._

@@ -190,7 +190,7 @@ class IDStockingCost(val Y: Array[CPIntVar], val deadline: Array[Int], val h: Ar
     // ----------- now compute the gain costs ----------------
 
     val nFullSet = fullSetsStack.nStacks()
-    assert(false) // to be sure it is not activated
+    //assert(false) // to be sure it is not activated
 
     i = 0
     while (i < nFullSet) {

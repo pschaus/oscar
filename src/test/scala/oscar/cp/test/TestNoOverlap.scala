@@ -1,6 +1,7 @@
 package oscar.cp.test
 
-import org.scalatest.{Assertions, FunSuite, Matchers}
+
+import oscar.algo.testUtils.TestSuite
 import oscar.cp._
 import oscar.cp.constraints.nooverlap.{NoOverlap, NoOverlapTransitionTimes, NoOverlapTransitionTimesFamilies}
 import oscar.cp.constraints.nooverlap.AlternativeResourcesTransitionTimes
@@ -14,7 +15,7 @@ import scala.collection.mutable.ArrayBuffer
   * Created by saschavancauwelaert on 17/05/16.
   */
 
-class AbstractNoOverlapTest extends FunSuite with Matchers with Assertions {
+class AbstractNoOverlapTest extends TestSuite {
 
   def unaryConstraint(startVars : Array[CPIntVar], durationVars : Array[CPIntVar], endVars : Array[CPIntVar], runOnResource : Array[CPIntVar], resourceId: Int, ttMatrix : Array[Array[Int]], familyMatrix: Array[Array[Int]], family: Array[Int]) : Option[Constraint] = None
 
@@ -295,7 +296,7 @@ class NoOverlapTransitionTimesFamilyTest extends AbstractNoOverlapTest {
   }
 }
 
-class SimpleNoOverlapTest extends FunSuite with Matchers with Assertions {
+class SimpleNoOverlapTest extends TestSuite {
   test("The domain of variable is only updated once the activity is known to be running on the resource") {
     implicit val cp = CPSolver()
     val starts = Array(CPIntVar(0 to 10), CPIntVar(0 to 10), CPIntVar(0 to 30))
@@ -318,7 +319,7 @@ class SimpleNoOverlapTest extends FunSuite with Matchers with Assertions {
   }
 }
 
-class SmallNoOverlapTransitionTimeTest extends FunSuite with Matchers with Assertions {
+class SmallNoOverlapTransitionTimeTest extends TestSuite {
   test("Small test to remove optional") {
     implicit val cp = CPSolver()
     val distances: Array[Array[Int]] = Array.tabulate(3, 3)((i,j) => if(i == j) 0 else 30)
@@ -349,7 +350,7 @@ class SmallNoOverlapTransitionTimeTest extends FunSuite with Matchers with Asser
   }
 }
 
-class SmallAlternativeResourcesTransitionTimeTest extends FunSuite with Matchers with Assertions {
+class SmallAlternativeResourcesTransitionTimeTest extends TestSuite {
   test("Small test for alternative resources interface") {
     implicit val cp = CPSolver()
     val distances: Array[Array[Int]] = Array.tabulate(4, 4)((i,j) => if(i == j) 0 else 30)

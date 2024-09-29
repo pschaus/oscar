@@ -14,7 +14,7 @@
  ******************************************************************************/
 package oscar.cp.test
 
-import org.scalatest.FunSuite
+
 import oscar.cp.testUtils.TestSuite
 import oscar.cp._
 import oscar.cp.constraints.AllDiffBC

@@ -14,14 +14,14 @@
  ******************************************************************************/
 package oscar.algo.reversible.test
 
-cp.src.test.scala.oscar.algo.reversible.test
 
+import org.scalatest.funsuite.AnyFunSuite
 import oscar.algo.reversible._
 
 /*
  * @author Pierre Schaus pschaus@gmail.com
  */
-class ReversibleSetSparsetSetJavaTest extends FunSuite {
+class ReversibleSetSparsetSetJavaTest extends AnyFunSuite {
 
   test("test reversible set 1") {
 

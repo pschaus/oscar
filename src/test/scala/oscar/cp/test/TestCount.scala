@@ -14,7 +14,9 @@
  ******************************************************************************/
 package oscar.cp.test
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.Assertions
 import oscar.cp.testUtils.TestSuite
 
 import oscar.cp.constraints._

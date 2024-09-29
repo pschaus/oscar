@@ -1,12 +1,14 @@
 package oscar.cp.testUtils
 
-import org.scalatest.FunSuite
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.Assertions
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.Assertions
 import oscar.cp.{CPStore, Constraint, isInconsistent}
 
 /** @author Renaud Hartert ren.hartert@gmail.com */
-abstract class TestSuite extends FunSuite with Matchers with Assertions {
+abstract class TestSuite extends AnyFunSuite with Matchers with Assertions {
   
   /** Perform the test only if the condition is true. */
   protected def test(testCondition: Boolean, testName: String)(testFun: => Unit): Unit = {

@@ -1,13 +1,15 @@
 package oscar.cp.scheduling.precedencegraph
 
-import org.scalatest.{Assertions, FunSuite, Matchers}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.Assertions
 import oscar.cp.core.CPSolver
 import oscar.cp.scheduling.precedencegraph.datastructures.ReversibleSetOfActivities
 
 /**
   * Created by saschavancauwelaert on 13/09/2017.
   */
-class ReversibleSetOfActivitiesTest extends FunSuite with Matchers with Assertions {
+class ReversibleSetOfActivitiesTest extends AnyFunSuite with Matchers with Assertions {
 
   test("Test 1") {
 

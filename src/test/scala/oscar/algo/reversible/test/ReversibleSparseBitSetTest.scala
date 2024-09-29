@@ -14,14 +14,14 @@
  ******************************************************************************/
 package oscar.algo.reversible.test
 
-cp.src.test.scala.oscar.algo.reversible.test
 
+import org.scalatest.funsuite.AnyFunSuite
 import oscar.algo.reversible._
 
 /**
  * @author Pierre Schaus pschaus@gmail.com
  */
-class ReversibleSparseBitSetTest extends FunSuite {
+class ReversibleSparseBitSetTest extends AnyFunSuite {
 
   test("test reversible sparse bitset 1") {
 

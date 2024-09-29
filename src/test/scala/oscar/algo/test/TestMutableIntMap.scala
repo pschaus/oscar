@@ -14,12 +14,13 @@
   ******************************************************************************/
 package oscar.algo.test
 
-cp.src.test.scala.oscar.algo.test
 
 import oscar.algo.MutableIntMap
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.Assertions
 
-
-class TestMutableIntMap extends FunSuite {
+class TestMutableIntMap extends AnyFunSuite {
 
   def generateBaseMap = {
     val mutableIntMap = new MutableIntMap[Integer]()

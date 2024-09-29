@@ -14,10 +14,10 @@
  ******************************************************************************/
 package oscar.algo.search.test
 
-cp.src.test.scala.oscar.algo.search.test
 
 import oscar.algo.reversible._
 import oscar.algo.search._
+import oscar.algo.testUtils.TestSuite
 
 
 class SearchTest extends TestSuite {

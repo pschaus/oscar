@@ -1,12 +1,14 @@
 package oscar.algo.test
 
-cp.src.test.scala.oscar.algo.test
 
 import oscar.algo.BinPacking
 
 import scala.collection.mutable.ArrayBuffer
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.Assertions
 
-class TestBinPacking extends FunSuite with Matchers {
+class TestBinPacking extends AnyFunSuite with Matchers {
   
   
   def generateInstance1(c: Int, n: Int) = {

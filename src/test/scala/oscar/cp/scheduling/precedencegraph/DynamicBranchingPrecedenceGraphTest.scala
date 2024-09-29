@@ -1,7 +1,7 @@
 package oscar.cp.scheduling.precedencegraph
 
-import org.scalatest.{Assertions, FunSuite, Matchers}
 import oscar.algo.search.DFSearch
+import oscar.algo.testUtils.TestSuite
 import oscar.cp._
 import oscar.cp.scheduling.precedencegraph.branching._
 import oscar.cp.scheduling.precedencegraph.nogoods.NoGoodRecorder
@@ -13,7 +13,7 @@ import scala.collection.mutable.ArrayBuffer
 /**
   * Created by saschavancauwelaert on 17/05/16.
   */
-class DynamicBranchingPrecedenceGraphTest extends FunSuite with Matchers with Assertions {
+class DynamicBranchingPrecedenceGraphTest extends TestSuite {
 
   test("Test 3 activities") {
     val nTests = 100
