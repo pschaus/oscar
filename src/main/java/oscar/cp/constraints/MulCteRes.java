@@ -120,7 +120,6 @@ public class MulCteRes extends Constraint {
 		int b = w.getMax();
 		
 		assert (c != 0);
-		assert(a < b);
 		
 		if (a > 0 || b < 0) {
 			// [a,b] > 0 or [a,b] < 0

@@ -13,6 +13,7 @@ import scala.collection.SortedSet
  */
 object Cubes extends CPModel with App {
 
+
   val numCubes = 4
   val numFaces = 6
 
