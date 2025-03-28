@@ -166,7 +166,7 @@ public class MulVar extends Constraint {
 								 NumberUtils.minCeilDiv(z.getMax(), w.getMin(), w.getMax(), before0, after0));
 			 u.updateMin(umin);
 			 int umax = Math.max(NumberUtils.maxFloorDiv(z.getMin(), w.getMin(), w.getMax(), before0, after0),
-								 NumberUtils.minCeilDiv(z.getMax(), w.getMin(), w.getMax(), before0, after0));
+								 NumberUtils.maxFloorDiv(z.getMax(), w.getMin(), w.getMax(), before0, after0));
 			 u.updateMax(umax);
 		 }
 	  }
