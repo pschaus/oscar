@@ -23,7 +23,6 @@ class CPSol(xs: Set[CPIntVar]) {
   assert(xs forall { x => x.min == x.max })
 	val dict = xs.map(y => (y,y.min)).toMap
 	def apply(y: CPIntVar): Int = {
-	  assert(y.min == y.max)
 	  dict(y)
 	}
 }

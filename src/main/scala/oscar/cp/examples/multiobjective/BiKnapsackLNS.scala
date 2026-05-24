@@ -46,7 +46,7 @@ object BiKnapsackLNS extends App {
   // Model
   // -----
   implicit val cp = CPSolver()
-  cp.silent = true
+  // cp.silent = true
 
   val x: Array[CPBoolVar] = Array.fill(nItems)(CPBoolVar()(cp))
   val capaVar1 = CPIntVar(0 to capa1)(cp)
@@ -58,7 +58,7 @@ object BiKnapsackLNS extends App {
   val knapsack2 = binaryKnapsack(x, items2.map(_._2), items2.map(_._1), profitVar2, capaVar2)
 
   cp.addDecisionVariables(x)
-  cp.addDecisionVariables(Array(capaVar1, capaVar2))
+  cp.addDecisionVariables(Array(capaVar1, capaVar2, profitVar1, profitVar2))
 
   var obj = 0
   cp.paretoMaximize(profitVar1, profitVar2) 
@@ -81,7 +81,7 @@ object BiKnapsackLNS extends App {
   val maxRestarts = 1000000 // number of restarts
   val maxFailures = 200 // max number of failures at each restart
   val relaxSize = 5 // number of relaxed variables at each restart
-  val probaIntensify = 30 // probability (%) of intensification 
+  val probaIntensify = 30 // probability (%) of intensification
   // MO LNS FRAMEWORK
   for (restart <- 1 to maxRestarts) {
     // next solution to restart from
@@ -96,5 +96,6 @@ object BiKnapsackLNS extends App {
       relaxRandomly(x, sol, relaxSize)
     }
   }
+
 
 }

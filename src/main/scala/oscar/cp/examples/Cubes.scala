@@ -22,6 +22,14 @@ object Cubes extends CPModel with App {
   val numLetters = letters.size
   def letterToInt(letter: Char): Int = letters.indexOf(letter) // Letter from letter index
 
+  for (i <- 0 until numLetters) {
+    println(s"Letter ${letters(i)}  index ${i+1}")
+  }
+
+  for (w <- words) {
+    println((letterToInt(w(0))+1) + ", " + (letterToInt(w(1))+1) + ", " + (letterToInt(w(2))+1) + ", " + (letterToInt(w(3))+1) + ", %" + w)
+  }
+
   val placement = Array.fill(numLetters)(CPIntVar(0 until numCubes)) // The cube (0 to 3) on which each letter is placed
 
   onSolution {

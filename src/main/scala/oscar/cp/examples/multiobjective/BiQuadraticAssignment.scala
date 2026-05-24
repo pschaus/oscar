@@ -52,7 +52,7 @@ object BiQuadraticAssignment extends App {
   // Model
   // -----
   implicit val cp = CPSolver()
-  cp.silent = true
+  // cp.silent = true
 
   val x: Array[CPIntVar] = Array.fill(n)(CPIntVar(N)(cp))
   val dist = Array.tabulate(n, n) { case (i, j) => d(x(i))(x(j)) }

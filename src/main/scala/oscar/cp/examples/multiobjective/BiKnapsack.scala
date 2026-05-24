@@ -46,7 +46,7 @@ object BiKnapsack extends App {
   // Model
   // -----
   implicit val cp = CPSolver()
-  cp.silent = true
+  // cp.silent = true
 
   val x: Array[CPBoolVar] = Array.fill(nItems)(CPBoolVar()(cp))
   val capaVar1 = CPIntVar(0 to capa1)(cp)
