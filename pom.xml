@@ -43,6 +43,13 @@
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
                 <version>4.9.2</version>
+                <configuration>
+                    <args>
+                        <arg>-source</arg>
+                        <arg>3.0-migration</arg>
+                        <arg>-no-indent</arg>
+                    </args>
+                </configuration>
                 <executions>
                     <execution>
                         <id>scala-compile</id>

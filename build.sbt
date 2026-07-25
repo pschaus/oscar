@@ -6,7 +6,7 @@ scalaVersion := "3.3.8"
 
 // Compiler settings
 javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
-scalacOptions ++= Seq("-source", "3.0-migration", "-rewrite")
+scalacOptions ++= Seq("-source", "3.0-migration", "-no-indent")
 
 // Dependencies
 libraryDependencies ++= Seq(
