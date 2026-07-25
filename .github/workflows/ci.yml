@@ -1,36 +1,147 @@
-name: CI & Code Coverage
+name: Test and Coverage
 
 on:
   push:
-    branches: [ main, master, dev ]
-  pull_request:
-    branches: [ main, master, dev ]
+    branches:
+      - main
 
 jobs:
-  build:
-    name: Build, Test & Coverage
+  test:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        maven: ['3.8.5']
+        java: ['21']
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Java (JDK 17)
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
-          cache: 'sbt'
+          java-version: ${{ matrix.java }}
 
-      - name: Setup sbt
-        uses: sbt/setup-sbt@v1
-
-      - name: Run Tests and Generate Coverage Report
-        run: sbt clean coverage test coverageReport
-
-      - name: Upload Coverage to Codecov
-        uses: codecov/codecov-action@v4
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
         with:
-          files: target/scala-3.3.8/scoverage-report/scoverage.xml
-          fail_ci_if_error: false
-          token: ${{ secrets.CODECOV_TOKEN }}
+          path: ~/.m2/repository
+          key: maven-${{ runner.os }}-${{ matrix.java }}-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            maven-${{ runner.os }}-${{ matrix.java }}-
+
+      - name: Setup Maven
+        uses: s4u/setup-maven-action@v1.18.0
+        with:
+          java-version: ${{ matrix.java }}
+          maven-version: ${{ matrix.maven }}
+
+      - name: Extract branch name
+        id: extract_branch
+        run: echo "branch=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+
+      - name: Generate test coverage
+        id: coverage
+        run: |
+          echo "compiling"
+          mvn compile
+          echo "testing"
+          mvn test
+          echo "jacoco reporting"
+          mvn jacoco:report
+          echo "extract coverage value"
+          
+          # Ensure the JaCoCo report file exists before processing
+          if [ -f target/site/jacoco/index.html ]; then
+            COVERAGE=$(sed -nE 's/.*<td>Total<\/td><td class="bar">[^<]+<\/td><td class="ctr2">([0-9]+)%<\/td>.*/\1/p' target/site/jacoco/index.html)
+            echo "display=$COVERAGE%" >> $GITHUB_ENV    # with "%"
+            echo "coverage=$COVERAGE" >> $GITHUB_ENV    # without "%"
+          else
+            echo "Jacoco report not found, setting coverage to 0"
+            echo "display=0%" >> $GITHUB_ENV
+            echo "coverage=0" >> $GITHUB_ENV
+          fi
+
+      - name: Save coverage report to tmp
+        run: |
+          if [ -d target/site/jacoco ]; then
+            cp -r target/site/jacoco /tmp/coverage
+          else
+            mkdir -p /tmp/coverage
+            echo "<html><body>No coverage report generated.</body></html>" > /tmp/coverage/index.html
+          fi
+
+      - name: Generate the badge SVG using Shields.io
+        run: |
+          # Ensure COVERAGE is extracted and is a valid number
+          COVERAGE="${{ env.coverage }}"
+          
+          # Debugging: Print coverage value
+          echo "Extracted Coverage: $COVERAGE"
+          
+          # Validate that COVERAGE is a number
+          if [[ ! "$COVERAGE" =~ ^[0-9]+$ ]]; then
+            echo "Error: COVERAGE is not a valid number ('$COVERAGE'). Defaulting to 0."
+            COVERAGE="0"
+          fi
+          
+          # Assign color based on coverage percentage
+          if [ "$COVERAGE" -gt 90 ]; then COLOR="green"
+          elif [ "$COVERAGE" -gt 80 ]; then COLOR="yellowgreen"
+          elif [ "$COVERAGE" -gt 70 ]; then COLOR="yellow"
+          elif [ "$COVERAGE" -gt 60 ]; then COLOR="orange"
+          else COLOR="red"
+          fi
+          
+          # Debugging: Print the final values
+          echo "Final Coverage: $COVERAGE%"
+          echo "Badge Color: $COLOR"
+          
+          # Download and save the badge
+          curl -o coverbadge.svg \
+            "https://img.shields.io/badge/Test%20Coverage-$COVERAGE%25-$COLOR.svg"
+          
+          mv coverbadge.svg /tmp/.
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: Commit and Push Badge and Coverage Report
+        run: |
+          if [ ! -d "badges" ]; then
+            mkdir badges
+            echo "badges created."
+          else
+            echo "badges already exists."
+          fi
+          
+          mv /tmp/coverbadge.svg badges/.
+          
+          # Copy the coverage HTML report
+          rm -rf coverage
+          cp -r /tmp/coverage .
+          
+          ls -lah badges/  # Debugging step to confirm files exist
+          ls -lah coverage/ # Debugging step to confirm coverage files exist
+          
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          git add badges/coverbadge.svg
+          git add coverage/
+          git commit -m "Add/Update badge and coverage report" || echo "No changes to commit"
+          
+          # Try to push, if failed, fetch, rebase and push again
+          for i in {1..5}; do
+            git pull --rebase origin gh-pages || true
+            if git push origin gh-pages; then
+              echo "Push successful"
+              exit 0
+            fi
+            echo "Push failed, retrying..."
+            sleep $((RANDOM % 10 + 5))
+          done
+          echo "Failed to push to gh-pages after multiple attempts."
+          exit 1

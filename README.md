@@ -2,7 +2,7 @@
 
 > **Important Note:** OscaR is maintained by Pierre Schaus, but its development is no longer active. Pierre Schaus is currently actively working on **[MaxiCP](https://github.com/aia-uclouvain/maxicp)**. If you find that any OscaR-CP feature you need is missing, please feel free to contact Pierre Schaus to request or discuss developing it in MaxiCP.
 [![CI & Code Coverage](https://github.com/pschaus/oscar/actions/workflows/ci.yml/badge.svg)](https://github.com/pschaus/oscar/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/pschaus/oscar/graph/badge.svg?token=)](https://codecov.io/gh/pschaus/oscar)
+[![Test Coverage](https://raw.githubusercontent.com/pschaus/oscar/gh-pages/badges/coverbadge.svg)](https://pschaus.github.io/oscar/coverage/)
 
 **OscaR** (Operations Research in Scala) is a Constraint Programming (CP) solver written in Scala 3.
 It provides a rich set of global constraints, powerful search mechanisms, and Large Neighborhood Search (LNS) support.
