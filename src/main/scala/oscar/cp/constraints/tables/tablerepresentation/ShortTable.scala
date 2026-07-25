@@ -31,7 +31,7 @@ import scala.collection.mutable.ArrayBuffer
 class ShortTable(table: Array[Array[Int]], star: Int, isSorted: Boolean = false) extends Table {
 
   // ordering
-  private val shortTableOrdering = new Ordering[Array[Int]] {
+  private object shortTableOrdering extends Ordering[Array[Int]] {
     def compare(x: Array[Int], y: Array[Int]): Int = {
       var i = 0
       while (i < x.length) {

@@ -81,7 +81,8 @@ object RunTreeANDOR {
 
 }
 
-object solveDecisionTree extends App {
+object solveDecisionTree {
+  def main(args: Array[String]): Unit = {
 
 
   val file ="./data/file.txt" // TODO CHANGE HERE
@@ -99,4 +100,5 @@ object solveDecisionTree extends App {
   println(treeANDOR)
 
 
+}
 }

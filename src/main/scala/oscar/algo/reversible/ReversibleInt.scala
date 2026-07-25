@@ -34,7 +34,7 @@ class ReversibleInt(context: ReversibleContext, initValue: Int, initSize: Int) e
   // Id of the last context
   private[this] var lastMagic: Long = -1L
   
-  @inline private def trail(): Unit = {
+  @inline private def saveToTrail(): Unit = {
     val contextMagic = context.magic
     if (lastMagic != contextMagic) {
       lastMagic = contextMagic
@@ -52,35 +52,35 @@ class ReversibleInt(context: ReversibleContext, initValue: Int, initSize: Int) e
   
   /** Increments the reversible integer by one */
   @inline final def incr(): Int = {
-    trail()
+    saveToTrail()
     pointer += 1
     pointer
   }
 
   /** Decrements the reversible integer by one */
   @inline final def decr(): Int = {
-    trail()
+    saveToTrail()
     pointer -= 1
     pointer
   }
 
   /** Increments the reversible integer by i */
   @inline final def +=(i: Int): Int = {
-    trail()
+    saveToTrail()
     pointer += i
     pointer
   }
 
   /** Decrements the reversible integer by i */
   @inline final def -=(i: Int): Int = {
-    trail()
+    saveToTrail()
     pointer -= i
     pointer
   }
   
   @inline final def setValue(value: Int): Unit = {
     if (value != pointer) {
-      trail()
+      saveToTrail()
       pointer = value
     }
   }

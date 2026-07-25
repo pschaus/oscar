@@ -161,12 +161,12 @@ class CPGraphVar(val s: CPStore, val nNodes: Int, inputEdges: List[(Int,Int)], v
   /**
    * @return Return a list with the index of all required nodes
    */
-  def requiredNodes() : List[Int] = N.requiredSet.toList
+  def requiredNodes() : List[Int] = N.requiredSet().toList
   
   /**
    * @return Return a list with the index of all possible nodes
    */
-  def possibleNodes() : List[Int] = N.possibleSet.toList
+  def possibleNodes() : List[Int] = N.possibleSet().toList
   
   /**
    * @return the edge corresponding to index idx

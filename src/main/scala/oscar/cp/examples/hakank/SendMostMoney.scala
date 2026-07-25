@@ -36,7 +36,7 @@ object SendMostMoney extends CPModel with App {
 
   def send_most_money(money: Int): Int = {
 
-    implicit val solver = CPSolver()
+    implicit val solver: CPSolver = CPSolver()
     // variables
     val S = CPIntVar(0 to 9)
     val E = CPIntVar(0 to 9)

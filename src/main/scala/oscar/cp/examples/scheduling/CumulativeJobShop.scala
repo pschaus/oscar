@@ -24,7 +24,7 @@ object CumulativeJobShop extends CPModel with App {
   // Parsing		
   // -------
 
-  val lines = Source.fromFile("data/cJobShop.txt").getLines.filter(!_.isEmpty).toList
+  val lines = Source.fromFile("data/cJobShop.txt").getLines().filter(!_.isEmpty).toList
   val firstLine = lines.head.trim.split(" ")
   val nJobs = firstLine(0).toInt
   val nTasksPerJob = firstLine(1).toInt

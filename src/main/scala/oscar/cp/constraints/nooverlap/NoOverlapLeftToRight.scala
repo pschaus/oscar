@@ -44,10 +44,10 @@ class NoOverlapLeftToRight(starts: Array[CPIntVar], durations: Array[CPIntVar], 
   }
 
   override def propagate(): Unit = {
-    do {
+    while ({ {
       updateCaches()
     }
-    while(overloadChecking() || detectablePrecedence() || notLast() || edgeFinding())
+    ;overloadChecking() || detectablePrecedence() || notLast() || edgeFinding()}) ()
   }
 
 

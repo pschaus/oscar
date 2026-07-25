@@ -33,8 +33,8 @@ class ConflictOrderingSearchPhase(bra: NogoodBranching, resetProbability: Double
     if (Random.nextFloat() < resetProbability) lastDecisions = List[Decision]()
     else { // remove phase only
       lastDecisions = lastDecisions.map { dec =>
-             if (dec.isInstanceOf[LowerEq]) new LowerEq(dec.variable, Int.MinValue)
-        else if (dec.isInstanceOf[Assign])  new Assign(dec.variable, Int.MinValue)
+             if (dec.isInstanceOf[LowerEq]) new LowerEq(dec.variable(), Int.MinValue)
+        else if (dec.isInstanceOf[Assign])  new Assign(dec.variable(), Int.MinValue)
         else dec
       }
     }
@@ -44,13 +44,13 @@ class ConflictOrderingSearchPhase(bra: NogoodBranching, resetProbability: Double
   
 
   def nextDecision(): Decision = {
-    val d = depth.incr
+    val d = depth.incr()
     
     // Step 1: if last conflicting variable is new, add in head position.
 //    if (lastDecision.forall(!_.isEntailed)) lastDecision foreach { dec =>
     if (d <= lastDepth) lastDecision foreach { dec =>
       // move x to head if it is in lastDecisions
-      lastDecisions = lastDecisions filter (_.variable != dec.variable)      
+      lastDecisions = lastDecisions filter (_.variable() != dec.variable())      
       lastDecisions = dec +: lastDecisions
       
       lastDecision = None
@@ -60,7 +60,7 @@ class ConflictOrderingSearchPhase(bra: NogoodBranching, resetProbability: Double
     
     // Step 2: if some last decision
     lastDecisions.foreach { dec =>
-      val x = dec.variable  // if heuristic returns Failure, boom here 
+      val x = dec.variable()  // if heuristic returns Failure, boom here 
         
       if (!x.isBound) {
         if (dec.isTrue || dec.opposite.isTrue)

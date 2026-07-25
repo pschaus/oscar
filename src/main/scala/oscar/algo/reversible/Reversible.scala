@@ -24,7 +24,7 @@ abstract class Reversible {
   
   private[this] var lastMagic: Long = -1L
   
-  @inline final protected def trail(): Unit = {
+  @inline final protected def saveToTrail(): Unit = {
     val contextMagic = context.magic
     if (lastMagic != contextMagic) {
       lastMagic = contextMagic

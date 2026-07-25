@@ -27,8 +27,8 @@ class GlobalNode() extends Ordered[GlobalNode]{
   def getId() : Long = this.id
 
   override def compare(that: GlobalNode): Int = {
-    if(this.id < that.getId) -1
-    else if(this.id > that.getId) 1
+    if(this.id < that.getId()) -1
+    else if(this.id > that.getId()) 1
     else 0
   }
 
@@ -49,7 +49,7 @@ class StaticMddNode(val layer : Int) extends GlobalNode{
       val value = outValues.next()
       buf.append(value)
       buf.append('#')
-      buf.append(outEdges.get(value).bottomNode.getId)
+      buf.append(outEdges.get(value).bottomNode.getId())
       buf.append('#')
     }
     buf.toString
@@ -90,7 +90,7 @@ class StaticMddNode(val layer : Int) extends GlobalNode{
     * Pre : The node added and this node have the same destination.
     */
   def merge(addedNode : StaticMddNode) : Unit = {
-    if(this.getId != addedNode.getId) {
+    if(this.getId() != addedNode.getId()) {
       /** Change the link of top edges **/
       while (addedNode.getInSize() > 0) {
         val inEdge = addedNode.pollFirstInEdge()

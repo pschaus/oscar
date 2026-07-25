@@ -40,8 +40,8 @@ class GraphStronglyConnected(val g : CPGraphVar) extends Constraint(g.s, "Strong
 	  //	   remove all but the connected component containing required D(G). 
 	  // #2 Then all cutnodes and bridges on a path between two nodes of required D(G) are included in required D(G)
 
-	  val reqNodes : List[Int] = g.requiredNodes
-	  val possNodes : List[Int] = g.possibleNodes
+	  val reqNodes : List[Int] = g.requiredNodes()
+	  val possNodes : List[Int] = g.possibleNodes()
 	  if (!reqNodes.isEmpty){
 	    // we have to compute connected components
 	    val connectedComponents : Array[List[Int]] = stronglyConnectedComponents(possNodes).toArray
@@ -60,7 +60,7 @@ class GraphStronglyConnected(val g : CPGraphVar) extends Constraint(g.s, "Strong
 	    
 	    // #2
 	  	// add in required D(G) all cutnodes and bridges on a path between two nodes of required D(G)
-	    val newPossNodes = g.possibleNodes
+	    val newPossNodes = g.possibleNodes()
 	    val possNotReqNodes : List[Int] = newPossNodes.filter(!reqNodes.contains(_))
 	    var cutnodes : List[Int] = List()
 	  	for (n1 <- reqNodes; n2 <- reqNodes; if n1!=n2) {
@@ -74,7 +74,7 @@ class GraphStronglyConnected(val g : CPGraphVar) extends Constraint(g.s, "Strong
 	  	}
 	    // check for bridge : if an edge removal would disconnect two required nodes, its a bridge
 	    val possEdges = newPossNodes.flatMap(g.possibleOutEdges(_)).map(g.edge(_))
-	    val newReqNodes : List[Int] = g.requiredNodes
+	    val newReqNodes : List[Int] = g.requiredNodes()
 	    var added : List[(Int,Int)] = List()
 	    for (n1 <- newReqNodes; n2 <- newReqNodes; if n1!=n2){
 	      val edgesToCheck = possEdges.filter(!added.contains(_))
@@ -95,7 +95,7 @@ class GraphStronglyConnected(val g : CPGraphVar) extends Constraint(g.s, "Strong
      *   both edges between the two nodes (in both direction) should be available
      */
     private def stronglyConnectedNeighbors(nodeId : Int) : List[Int] =
-      g.possibleNodes.filter(n => (nodeId != n) && 
+      g.possibleNodes().filter(n => (nodeId != n) && 
         !g.possibleEdges(nodeId).map(idx => g.edge(idx)).filter(e => e._2 == n).isEmpty && 
         !g.possibleEdges(n).map(idx => g.edge(idx)).filter(e => e._2 == nodeId).isEmpty)
         
@@ -107,7 +107,7 @@ class GraphStronglyConnected(val g : CPGraphVar) extends Constraint(g.s, "Strong
       def possibleConnectedComponents(nodesToCheck : List[Int]) : List[List[Int]] = {
         var visitedNodes : List[Int] = List()
         var componentsList : List[List[Int]] = Nil
-        for (n <- nodesToCheck; if g.possibleNodes.contains(n)) {
+        for (n <- nodesToCheck; if g.possibleNodes().contains(n)) {
           if (!visitedNodes.contains(n)) {
             val connectedNodes : List[Int] = connectedNodesList(List(n),List())
             visitedNodes = visitedNodes ++ connectedNodes

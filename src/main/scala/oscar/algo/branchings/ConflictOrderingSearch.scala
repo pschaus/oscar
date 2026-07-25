@@ -66,7 +66,7 @@ class ConflictOrderingSearch[T](variables: Array[IntVarLike], varHeuristic: (Int
 
     timestamp += 1
 
-    val d = depth.incr
+    val d = depth.incr()
 
     // Step 1: if last conflicting variable is new, set it with highest priority
     if (d <= lastDepth) {

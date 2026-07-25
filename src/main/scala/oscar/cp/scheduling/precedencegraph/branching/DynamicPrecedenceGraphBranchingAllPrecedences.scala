@@ -9,7 +9,7 @@ import oscar.cp.{Alternative, noAlternative}
 class DynamicPrecedenceGraphBranchingAllPrecedences(precGraph: PrecedenceGraph, machineName: String, varHeuristic: (Int,Int) => Int, isPrecOrderPreferable: (Int,Int) => Boolean) extends Branching {
 
   private[this] val nTasks = precGraph.nTasks
-  implicit private[this] val cp = precGraph.store
+  implicit private[this] val cp: oscar.cp.core.CPStore = precGraph.store
   private[this] val nFixedPrec = new ReversibleInt(cp,0)
 
   private[this] val decisionPrecs : Array[(Int,Int)] = Array.tabulate(nTasks,nTasks)((i,j) => (i,j)).flatten.filter(t => t._1 < t._2) //TODO:use array os size 2 instead of tuples

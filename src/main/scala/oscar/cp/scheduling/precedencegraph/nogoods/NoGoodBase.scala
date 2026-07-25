@@ -53,20 +53,20 @@ class NoGoodBase(nMachine: Int, nActivityByMachine: Int, pgs: Array[PrecedenceGr
   }
 
   override def toString() : String = {
-    var s = ""
+    val s = new StringBuilder()
      (0 until nMachine).foreach(m => {
       (0 until nActivityByMachine).foreach(t1 => {
         (0 until nActivityByMachine).foreach(t2 => {
           val w = watchers(m)(t1)(t2)
           if(w.watchedList.size > 0) {
-            s += s"$w watches : \n"
-            w.watchedList.foreach(ng => s += (ng + " %%% "))
-            s += "\n"
+            s.append(s"$w watches : \n")
+            w.watchedList.foreach(ng => s.append(s"$ng %%% "))
+            s.append("\n")
           }
         })
       })
     })
-    s
+    s.toString
   }
 
   def size : Int = {

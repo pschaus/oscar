@@ -243,7 +243,7 @@ class ReversibleSparseBitSet2(val context: ReversibleContext, val n: Int, val in
   }
 
 
-  private[this] def trail(): Unit = {
+  private[this] def saveToTrail(): Unit = {
     while (nTrailEntries + nNonZero > innerTrailSize) growInnerTrail()
     var i: Int = nNonZero
     while (i > 0) {
@@ -296,7 +296,7 @@ class ReversibleSparseBitSet2(val context: ReversibleContext, val n: Int, val in
 
   def intersectWith(set: BitSet): Boolean = {
     if (context.magic != timeStamp) {
-      trail()
+      saveToTrail()
       timeStamp = context.magic
     }
 
@@ -333,7 +333,7 @@ class ReversibleSparseBitSet2(val context: ReversibleContext, val n: Int, val in
    */
   def intersectCollected(): Boolean = {
     if (context.magic != timeStamp) {
-      trail()
+      saveToTrail()
       timeStamp = context.magic
     }
     var changed = false

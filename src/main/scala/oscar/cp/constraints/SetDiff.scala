@@ -80,13 +80,13 @@ class SetDiff(val a: CPSetVar, val b: CPSetVar, val c: CPSetVar) extends Constra
   //                         if this value is required in c, it is not possible in b
   //                         if this value is possible but not required in c, nothing to do in b  
   def filtera(d: DeltaSetVar): Unit = {
-    if (d.possibleChanged) {
-      for (v <- d.deltaPossible) {
+    if (d.possibleChanged()) {
+      for (v <- d.deltaPossible()) {
         c.excludes(v)
       }
     }
-    if (d.requiredChanged) {
-      for (v <- d.deltaRequired) {
+    if (d.requiredChanged()) {
+      for (v <- d.deltaRequired()) {
         if (b.isRequired(v)) {
           c.excludes(v)
         }
@@ -103,8 +103,8 @@ class SetDiff(val a: CPSetVar, val b: CPSetVar, val c: CPSetVar) extends Constra
 
   // if value required in b, it is removed from c  
   def filterb(d: DeltaSetVar): Unit = {
-    if (d.possibleChanged) {
-      for (v <- d.deltaPossible) {
+    if (d.possibleChanged()) {
+      for (v <- d.deltaPossible()) {
         if (a.isRequired(v)) {
           c.requires(v)
         }
@@ -113,8 +113,8 @@ class SetDiff(val a: CPSetVar, val b: CPSetVar, val c: CPSetVar) extends Constra
         }
       }
     }
-    if (d.requiredChanged) {
-      for (v <- d.deltaRequired) {
+    if (d.requiredChanged()) {
+      for (v <- d.deltaRequired()) {
         c.excludes(v)
       }
     }
@@ -125,8 +125,8 @@ class SetDiff(val a: CPSetVar, val b: CPSetVar, val c: CPSetVar) extends Constra
 
   // if value required in c, it becomes required in a and impossible in b  
   def filterc(d: DeltaSetVar): Unit = {
-    if (d.possibleChanged) {
-      for (v <- d.deltaPossible) {
+    if (d.possibleChanged()) {
+      for (v <- d.deltaPossible()) {
         if(!a.isPossible(v))
           a.excludes(v)
 
@@ -135,8 +135,8 @@ class SetDiff(val a: CPSetVar, val b: CPSetVar, val c: CPSetVar) extends Constra
         }
       }
     }
-    if (d.requiredChanged) {
-      for (v <- d.deltaRequired) {
+    if (d.requiredChanged()) {
+      for (v <- d.deltaRequired()) {
         a.requires(v)
         b.excludes(v)
       }

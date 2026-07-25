@@ -22,7 +22,7 @@ object BiRCPSP extends CPModel with App {
 
   // Parse
   // -----
-  val lines = Source.fromFile("data/biRCPSP.txt").getLines.drop(2).toArray
+  val lines = Source.fromFile("data/biRCPSP.txt").getLines().drop(2).toArray
   val data = for (line <- lines.tail) yield { line.split("[ \t]") }
   val nTasks = data.head(0).toInt
   val nPrecedences = data.head(1).toInt

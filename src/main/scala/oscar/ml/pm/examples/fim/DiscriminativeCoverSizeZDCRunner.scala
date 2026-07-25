@@ -13,7 +13,8 @@ import oscar.cp._
 import oscar.ml.pm.Constraints.fim.{CoverSize, ZDC}
 import oscar.ml.pm.utils.{Dataset, TdbWithLabelFormat, ZDCScaled}
 
-object DiscriminativeCoverSizeZDCRunner extends App {
+object DiscriminativeCoverSizeZDCRunner {
+  def main(args: Array[String]): Unit = {
 
   case class Config(
                      //"oscar-ml/src/main/scala/oscar/ml/pm/data/fim/test.txt",
@@ -22,8 +23,7 @@ object DiscriminativeCoverSizeZDCRunner extends App {
                      timeLimit: Int = -1
                    )
 
-  printHead()
-
+  
   val config = Config()
   val db = Dataset(config.filename, TdbWithLabelFormat)
   val vTdb = db.intoVertical()
@@ -34,7 +34,7 @@ object DiscriminativeCoverSizeZDCRunner extends App {
 
   println(nTrans + " " + nItems)
   // Initializing the solver
-  implicit val cp = CPSolver()
+  implicit val cp: CPSolver = CPSolver()
 
   // Declaring variables I , P, N, Minsup
   val I = Array.fill(nItems)(CPBoolVar()(cp))
@@ -66,6 +66,7 @@ object DiscriminativeCoverSizeZDCRunner extends App {
 
 
   //Misc
+  printHead()
   def printHead(): Unit = {
     System.err.println(
       """
@@ -75,4 +76,5 @@ object DiscriminativeCoverSizeZDCRunner extends App {
       """)
   }
 
+}
 }

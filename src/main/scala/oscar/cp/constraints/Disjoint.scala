@@ -30,13 +30,13 @@ class Disjoint(val x: CPSetVar, val y: CPSetVar) extends Constraint(x.store, "Di
   override def setup(l: CPPropagStrength): Unit = {
     
     def filterY(d: DeltaSetVar): Unit = {
-      for (v <- d.deltaRequired) {
+      for (v <- d.deltaRequired()) {
         y.excludes(v)
       }
     }
     
     def filterX(d: DeltaSetVar): Unit = {
-      for (v <- d.deltaRequired) {
+      for (v <- d.deltaRequired()) {
         x.excludes(v)
       }
     }

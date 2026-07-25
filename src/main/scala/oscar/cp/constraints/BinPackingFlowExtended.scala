@@ -47,7 +47,7 @@ class BinPackingFlowExtended(val x: Array[CPIntVar], val sizes: Array[Int], val 
       if (xt.isBound) {
         val j = xt.min
         l_t(j).setValue(l_t(j).value + sizes(i))
-        c_t(j).incr
+        c_t(j).incr()
       } else {
         xt.callValBindIdxWhenBind(this, i);
         xt.callPropagateWhenBind(this);
@@ -59,7 +59,7 @@ class BinPackingFlowExtended(val x: Array[CPIntVar], val sizes: Array[Int], val 
     }
     for ((variable,index) <- x.zipWithIndex; if (!variable.isBound)) {
       for (bin <- variable) {
-        candidates_t(bin).incr
+        candidates_t(bin).incr()
       }
     }
     propagate()
@@ -143,8 +143,8 @@ class BinPackingFlowExtended(val x: Array[CPIntVar], val sizes: Array[Int], val 
    */
   def getCard(bin: Int, sortedItems: Array[Int], continueLoad: (Int, Int) => Boolean): (Int, Int) = {
 
-    var binCompCard = c_t(bin).getValue // the current value of the computation of the cardinality
-    var binLoad = l_t(bin).getValue
+    var binCompCard = c_t(bin).getValue() // the current value of the computation of the cardinality
+    var binLoad = l_t(bin).getValue()
 
     for (i<- bestCandidatesForBin(bin,sortedItems) if continueLoad(binLoad, sizes(i))) {
       binLoad += sizes(i)
@@ -169,7 +169,7 @@ class BinPackingFlowExtended(val x: Array[CPIntVar], val sizes: Array[Int], val 
   {
     var itemsListHead = -1; //the last index of sorted item tried in sortedItems
     for (b <- 0 until c_t.size) {
-      candidatesAvailableForBin(b) = if (b == bin) 0 else candidates_t(b).value - (c(b).getMin.intValue - c_t(b).getValue)
+      candidatesAvailableForBin(b) = if (b == bin) 0 else candidates_t(b).value - (c(b).getMin.intValue - c_t(b).getValue())
 
     }
 
@@ -186,15 +186,15 @@ class BinPackingFlowExtended(val x: Array[CPIntVar], val sizes: Array[Int], val 
             {
               candidatesAvailableForBin(b) -= 1
             }
-            i #:: nextAcceptableItem
-          } else nextAcceptableItem
+            i #:: nextAcceptableItem()
+          } else nextAcceptableItem()
 
         } else
-          nextAcceptableItem
+          nextAcceptableItem()
       }
     }
 
-    nextAcceptableItem
+    nextAcceptableItem()
 
   }
 

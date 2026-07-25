@@ -157,14 +157,14 @@ class IDStockingCost(val Y: Array[CPIntVar], val deadline: Array[Int], val h: Ar
     while (k < nU) {
       var t = Xmax(unBoundIdx(k))
       var availableCapacity = capa(t).value
-      do {
+      while ({ {
         while (k < nU && Xmax(unBoundIdx(k)) == t) {
           val i = unBoundIdx(k)
           ordersToSchedule.enqueue(-h(i), i)
           k += 1
         }
         if (availableCapacity > 0) {
-          val currentInd = ordersToSchedule.dequeue
+          val currentInd = ordersToSchedule.dequeue()
           optimalSlotTab(currentInd) = t
           optimalItemTab(t).push(currentInd)
           availableCapacity = availableCapacity - 1
@@ -176,7 +176,7 @@ class IDStockingCost(val Y: Array[CPIntVar], val deadline: Array[Int], val h: Ar
           while (capa(t).value == 0) t = t - 1
           availableCapacity = capa(t).value
         }
-      } while (ordersToSchedule.size > 0)
+      } ; ordersToSchedule.size > 0}) ()
       fullSetsStack.push(t)
       fullSetsStack.pushStack()
     }
@@ -196,15 +196,15 @@ class IDStockingCost(val Y: Array[CPIntVar], val deadline: Array[Int], val h: Ar
     while (i < nFullSet) {
       /* size of current full set */
       val fullSetSize = fullSetsStack.sizeTopStack()
-      candidateTojump.clear
+      candidateTojump.clear()
       var j = 0
       while (j < fullSetSize) {
         // set t to the next time slot of the current fullSet
-        val t = fullSetsStack.pop
+        val t = fullSetsStack.pop()
         // filter out candidate top candidate items that can not be placed in t
         // such that the one that remains on top is the most costly one that can jump
         while (!candidateTojump.isEmpty && Xmax((candidateTojump.top)) < t) {
-          candidateTojump.pop
+          candidateTojump.pop()
         }
         if (candidateTojump.isEmpty) {
           gainCostTab(t) = 0
@@ -217,7 +217,7 @@ class IDStockingCost(val Y: Array[CPIntVar], val deadline: Array[Int], val h: Ar
         // add the items placed in t in the candidateTojump
         k = 0
         while (k < s) {
-          candidateTojump.push(optimalItemTab(t).pop)
+          candidateTojump.push(optimalItemTab(t).pop())
           k += 1
         }
         j += 1

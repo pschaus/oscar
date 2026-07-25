@@ -25,7 +25,7 @@ import oscar.algo._
  */
 object BACP extends CPModel with App {
 
-  val lines = Source.fromFile("data/bacp/instancecsplib/instance12.txt").getLines.reduceLeft(_ + " " + _)
+  val lines = Source.fromFile("data/bacp/instancecsplib/instance12.txt").getLines().reduceLeft(_ + " " + _)
   val vals = lines.split("[ ,\t]").toList.filterNot(_ == "").map(_.toInt)
   var index = 0
   def next() = {

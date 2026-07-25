@@ -8,7 +8,7 @@ class TestReplaySearch extends TestSuite {
 
   test("replay queens") {
 
-    implicit val cp = CPSolver()
+    implicit val cp: CPSolver = CPSolver()
     val nQueens = 10
     // Number of queens
     val Queens = 0 until nQueens

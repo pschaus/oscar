@@ -26,7 +26,7 @@ class TestSparseSet extends AnyFunSuite {
     val tmp = Array.ofDim[Int](200)
 
     assert(set.isEmpty)
-    assert(set.getSize == 0)
+    assert(set.getSize() == 0)
     var s = set.fillArray(tmp)
     assert(s == 0)
     set.insert(6)
@@ -38,7 +38,7 @@ class TestSparseSet extends AnyFunSuite {
     assert(tmp.take(s).toSet == Set(6,10))
     assert(s == 2)
 
-    set.empty()
+    set.clear()
     assert(set.getSize() == 0)
 
   }

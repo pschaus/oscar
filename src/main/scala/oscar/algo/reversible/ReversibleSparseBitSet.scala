@@ -59,7 +59,7 @@ object BitSetOp {
    */
   def setBit(bitSet: Array[ReversibleLong], pos: Int): Unit = {
     val offset = bitOffset(pos)
-    bitSet(offset).setValue(bitSet(offset).getValue | oneBitLong(pos))
+    bitSet(offset).setValue(bitSet(offset).getValue() | oneBitLong(pos))
   }
 }
 
@@ -239,7 +239,7 @@ class ReversibleSparseBitSet(val context: ReversibleContext, val n: Int, val ini
   /**
    * Save current state of structure
    */
-  protected[this] def trail(): Unit = {
+  protected[this] def saveToTrail(): Unit = {
     while (nTrailEntries + nNonZero > innerTrailSize) growInnerTrail()
     var i: Int = nNonZero
     while (i > 0) {
@@ -333,7 +333,7 @@ class ReversibleSparseBitSet(val context: ReversibleContext, val n: Int, val ini
    */
   def intersectCollected(): Boolean = {
     if (context.magic != timeStamp) {
-      trail()
+      saveToTrail()
       timeStamp = context.magic
     }
 

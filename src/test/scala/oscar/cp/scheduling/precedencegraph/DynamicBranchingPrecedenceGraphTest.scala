@@ -109,7 +109,7 @@ class DynamicBranchingPrecedenceGraphTest extends TestSuite {
     val endMaxs = Array.fill(nActivities)(horizon)
     val (families, familyTT) = Utils.getFamilies(ttMatrix)
 
-    implicit val solver = CPSolver()
+    implicit val solver: CPSolver = CPSolver()
     solver.silent = true
 
     /** *******************************************************************
@@ -187,7 +187,7 @@ class DynamicBranchingPrecedenceGraphTest extends TestSuite {
 
     val resourceID = 0
 
-    implicit val solver = CPSolver()
+    implicit val solver: CPSolver = CPSolver()
     solver.silent = true
 
     /** *******************************************************************
@@ -248,7 +248,7 @@ class DynamicBranchingPrecedenceGraphTest extends TestSuite {
     precGraphs(0).machineId=0
 
     def stopConditionNoGood(nBacks: Int) : DFSearch => Boolean = {
-      search : DFSearch => {
+      (search : DFSearch) => {
         if(nBacks <= search.nBacktracks) { // will stop
           val reversedLastBranch = ArrayBuffer[PrecGraphDecisionForNoGood]()
           val stack = heuristic.asInstanceOf[HebrardHeuristic].decisionStackForNoGood

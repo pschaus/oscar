@@ -35,7 +35,7 @@ object RCPSP extends CPModel with App {
   val Tasks = 0 until nTasks
 
   val horizon = durationsData.sum
-  implicit val cp = CPSolver()
+  implicit val cp: CPSolver = CPSolver()
 
   val durations = Array.tabulate(nTasks)(t => CPIntVar(durationsData(t)))
   val starts = Array.tabulate(nTasks)(t => CPIntVar(0 to horizon - durations(t).min))

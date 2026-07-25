@@ -65,7 +65,7 @@ final class ReversibleSparseSetManual(context: ReversibleContext, n: Int) extend
     pos < _size
   }
 
-  def trail(): Unit = {
+  def saveToTrail(): Unit = {
     val contextMagic = context.magic
     if (lastMagic != contextMagic) {
       lastMagic = contextMagic

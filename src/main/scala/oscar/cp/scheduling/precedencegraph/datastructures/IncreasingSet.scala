@@ -10,7 +10,7 @@ class IncreasingSet(maxSize: Int) {
 
   def size = _size
 
-  def this(initialValue: Int, maxSize: Int) {
+  def this(initialValue: Int, maxSize: Int) = {
     this(maxSize)
     add(initialValue)
   }

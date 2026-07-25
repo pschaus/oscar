@@ -38,10 +38,10 @@ class GraphUndirected(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constrain
 	
 	override def propagate(): Unit = {
 	  // we have to check that nodes sets are the same
-	  val g1PossNodes = g1.possibleNodes
-	  val g1ReqNodes = g1.requiredNodes
-	  val g2PossNodes = g2.possibleNodes
-	  val g2ReqNodes = g2.requiredNodes
+	  val g1PossNodes = g1.possibleNodes()
+	  val g1ReqNodes = g1.requiredNodes()
+	  val g2PossNodes = g2.possibleNodes()
+	  val g2ReqNodes = g2.requiredNodes()
 	  for (n <- g1PossNodes; if !g2PossNodes.contains(n))
 	      g1.removeNodeFromGraph(n)
 	  for (n <- g2PossNodes; if !g1PossNodes.contains(n))
@@ -53,7 +53,7 @@ class GraphUndirected(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constrain
 	  
 	  // Prune G1
 	  //	remove from the possible edges of G all edges that are not possible in G2
-	  val newG1PossNodes = g1.possibleNodes
+	  val newG1PossNodes = g1.possibleNodes()
 	  for (n <- newG1PossNodes){
 	    for (e <- g1.possibleEdges(n)){
 	      val (src,dest) = g1.edge(e)
@@ -62,7 +62,7 @@ class GraphUndirected(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constrain
 	    }
 	  }
 	  // 	include in the required set of G if there is a corresponding edge in G2
-	  val newG2ReqNodes = g2.requiredNodes
+	  val newG2ReqNodes = g2.requiredNodes()
 	  for (n <- newG2ReqNodes){
 	    for (e <- g2.requiredEdges(n)){
 	      val (src,dest) = g2.edge(e)
@@ -74,7 +74,7 @@ class GraphUndirected(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constrain
 	      
 	  // Prune G2
 	  // 	include in the required set of G2 every required edge of G1 and its reverse edge
-	  val newG1ReqNodes = g1.requiredNodes
+	  val newG1ReqNodes = g1.requiredNodes()
 	  for (n <- newG1ReqNodes){
 	    for (e <- g1.requiredEdges(n)){
 	      val (src,dest) = g1.edge(e)
@@ -83,7 +83,7 @@ class GraphUndirected(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constrain
 	    }
 	  }
 	  //    remove from the possible edges of G2 every edge which is not possible in G1 nor the reverse of it
-	  val newG2PossNodes = g2.possibleNodes
+	  val newG2PossNodes = g2.possibleNodes()
 	  for (n <- newG2PossNodes){
 	    for (e <- g2.possibleEdges(n); if !g2.requiredEdges(n).contains(e)){
 	      val (src,dest) = g2.edge(e)

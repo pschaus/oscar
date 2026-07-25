@@ -66,7 +66,7 @@ object SurvoPuzzle extends CPModel with App  {
     // read problem instance from file
     if (args.length > 0) {
       println("\nReading from file: " + args(0))
-      val lines = fromFile(args(0)).getLines.filter(!_.startsWith("#")).toList
+      val lines = fromFile(args(0)).getLines().filter(!_.startsWith("#")).toList
       r = lines(0).toInt
       c = lines(1).toInt
       rowsums = lines(2).split(",").toList.map(i=>i.toInt)

@@ -75,7 +75,7 @@ object Alphametic {
   //
   def solve(problem_in: String = "SEND+MORE=MONEY", base: Int = 10, start: Int = 0): Unit = {
 
-    implicit val cp = CPSolver()
+    implicit val cp: CPSolver = CPSolver()
 
     //
     // data

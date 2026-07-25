@@ -10,9 +10,9 @@ import oscar.algo.selectMin
  */
 object ATSP extends CPModel with App {
 
-	//var lines = Source.fromFile("data/ATSP/ftv64.atsp").getLines.toArray
-    var lines = Source.fromFile("data/ATSP/ftv64.atsp").getLines.toArray//
-    //var lines = Source.fromFile("data/ATSP/ftv33.atsp").getLines.toArray//
+	//var lines = Source.fromFile("data/ATSP/ftv64.atsp").getLines().toArray
+    var lines = Source.fromFile("data/ATSP/ftv64.atsp").getLines().toArray//
+    //var lines = Source.fromFile("data/ATSP/ftv33.atsp").getLines().toArray//
 
 
     lines = lines.take(lines.size-1) // drop EOF

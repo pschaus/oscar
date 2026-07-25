@@ -43,8 +43,8 @@ class SubGraph(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constraint(g1.s,
 	override def propagate(): Unit = {
 	  // test for entailment	  
 	  // test if g1.possible values are included in g2.required values => entailment, success
-	  val g1PossNodes = g1.possibleNodes
-	  val g2ReqNodes = g2.requiredNodes  
+	  val g1PossNodes = g1.possibleNodes()
+	  val g2ReqNodes = g2.requiredNodes()  
 	  if (g1PossNodes.length <= g2ReqNodes.length) {
 	    val g1PossEdges : List[Int] = g1PossNodes.flatMap(g1.possibleOutEdges(_))
 	    val g2ReqEdgesMap : List[(Int,Int)] = g2ReqNodes.flatMap(g2.requiredOutEdges(_)).map(g2.edge(_))
@@ -60,7 +60,7 @@ class SubGraph(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constraint(g1.s,
 	  // pruning
 	  
 	  // for all required values in g1 and not required in g2, should be required in g2
-	  val g1ReqNodes = g1.requiredNodes
+	  val g1ReqNodes = g1.requiredNodes()
 	  for (n <- g1ReqNodes){
 	    if (!g2ReqNodes.contains(n))
 				g2.addNodeToGraph(n)
@@ -75,7 +75,7 @@ class SubGraph(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constraint(g1.s,
 	  
 	  // for all possible values in g1 and not possible in g2, should be removed from g1
 	  for (n <- g1PossNodes){
-	    if (!g2.possibleNodes.contains(n))
+	    if (!g2.possibleNodes().contains(n))
 	      g1.removeNodeFromGraph(n)
 	     for (e <- g1.possibleEdges(n)){
 	        val (src, dest) = g1.edge(e)
@@ -88,8 +88,8 @@ class SubGraph(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constraint(g1.s,
 	
 	private def inconsistent : Boolean = {
 	  // test if g1.required values are not included in g2.possible values => no solution, inconsistency
-	  val g1ReqNodes = g1.requiredNodes
-	  val g2PossNodes = g2.possibleNodes
+	  val g1ReqNodes = g1.requiredNodes()
+	  val g2PossNodes = g2.possibleNodes()
 	  val g1ReqEdges : List[Int] = g1ReqNodes.flatMap(g1.requiredOutEdges(_))
 	  val g2PossEdgesMap : List[(Int,Int)] = g2PossNodes.flatMap(g2.possibleOutEdges(_)).map(g2.edge(_))  
 	  if (g1ReqNodes.length > g2PossNodes.length) return true

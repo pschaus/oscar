@@ -34,7 +34,7 @@ object AudreyProblem extends CPModel with App {
         val s = x(i+j).value.toString
         if (s.size == 1) print(" " + s + " ") else print(s + " ")
       }
-      println
+      println()
     }
   }
 

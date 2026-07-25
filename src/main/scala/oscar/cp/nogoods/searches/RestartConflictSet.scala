@@ -34,7 +34,7 @@ class RestartConflictSet(variables: Array[CPIntVar], varHeuristic: Int => Int, v
   final override def nextDecision: Decision = {
     timestamp += 1
     updateAssigned()
-    if (computeAllAssigned == nVariables) null
+    if (computeAllAssigned() == nVariables) null
     else {   
       
       // Trail the number of assigned variables

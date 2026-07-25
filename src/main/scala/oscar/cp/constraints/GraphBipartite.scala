@@ -43,7 +43,7 @@ class GraphBipartite(val g : CPGraphVar) extends Constraint(g.s, "Bipartite") {
 	  //         which would create an odd-length cycle
 	  
 	  // compute required components list to prune each component independently
-	  val reqNodes : List[Int] = g.requiredNodes
+	  val reqNodes : List[Int] = g.requiredNodes()
 	  val requiredComponents : List[List[Int]] = requiredConnectedComponents(reqNodes)
 	  
 	  // #1 If required domain of G is not bipartite, the constraint fails
@@ -87,7 +87,7 @@ class GraphBipartite(val g : CPGraphVar) extends Constraint(g.s, "Bipartite") {
 	  // #2 If possible domain of G is bipartite, the constraint is entailed
 	  // we will add all nodes having possible edges into two sets 
 	  //    if sets are bipartite -> constraints is entailed
-	  val possibleEdges : List[Int]= g.possibleNodes.flatMap(g.possibleOutEdges(_))
+	  val possibleEdges : List[Int]= g.possibleNodes().flatMap(g.possibleOutEdges(_))
 	  var possibleColor1 : List[Int] = List()
 	  var possibleCcolor2 : List[Int] = List()
 	  for(e <- possibleEdges){

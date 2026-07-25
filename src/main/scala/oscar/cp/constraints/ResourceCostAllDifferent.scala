@@ -34,7 +34,7 @@ class ResourceCostAllDifferent(vars: Array[CPIntVar], val consumptions: Array[In
   val (orderedCosts, orderedAssignments) : (Array[Int], Array[Int]) = orderedCostsWithAssignment.unzip
 
   /*** Reversibles ***/
-  private[this] implicit val context = s
+  private[this] implicit val context: oscar.algo.reversible.ReversibleContext = s
   private[this] val assignedCost = ReversibleInt(0) // used to maintain the exact total cost due to assigned variables
   private[this] val unboundVarIndices = new ReversibleDoublyLinkedList(orderedVarIndices)
   private[this] val unmappedAssignmentsIndices = new ReversibleDoublyLinkedList(orderedAssignments)

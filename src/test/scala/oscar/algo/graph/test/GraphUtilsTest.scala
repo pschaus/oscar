@@ -68,9 +68,9 @@ class GraphUtilsTest extends TestSuite {
     val shortestPaths = GraphUtils.dijkstra(4, edgeCosts)
     shortestPaths(0)._1 shouldBe Array(4, 0)
     shortestPaths(0)._2 shouldBe 0.55
-    shortestPaths(1)._1 shouldBe Array()
+    shortestPaths(1)._1 shouldBe Array.empty[Int]
     shortestPaths(1)._2 shouldBe Double.MaxValue
-    shortestPaths(2)._1 shouldBe Array()
+    shortestPaths(2)._1 shouldBe Array.empty[Int]
     shortestPaths(2)._2 shouldBe Double.MaxValue
     shortestPaths(3)._1 shouldBe Array(4, 5, 3)
     shortestPaths(3)._2 shouldBe 1.45
@@ -123,9 +123,9 @@ class GraphUtilsTest extends TestSuite {
     val shortestPaths = GraphUtils.bellmanFordMoore(4, edgeCosts)
     shortestPaths(0)._1 shouldBe Array(4, 0)
     shortestPaths(0)._2 shouldBe 0.55
-    shortestPaths(1)._1 shouldBe Array()
+    shortestPaths(1)._1 shouldBe Array.empty[Int]
     shortestPaths(1)._2 shouldBe Double.MaxValue
-    shortestPaths(2)._1 shouldBe Array()
+    shortestPaths(2)._1 shouldBe Array.empty[Int]
     shortestPaths(2)._2 shouldBe Double.MaxValue
     shortestPaths(3)._1 shouldBe Array(4, 5, 3)
     shortestPaths(3)._2 shouldBe 1.45
@@ -162,13 +162,13 @@ class GraphUtilsTest extends TestSuite {
 
     val shortestPaths2 = GraphUtils.bellmanFordMoore(4, edgeCosts)
 
-    shortestPaths2(0)._1 shouldBe Array()
+    shortestPaths2(0)._1 shouldBe Array.empty[Int]
     shortestPaths2(0)._2 shouldBe Int.MaxValue
-    shortestPaths2(1)._1 shouldBe Array()
+    shortestPaths2(1)._1 shouldBe Array.empty[Int]
     shortestPaths2(1)._2 shouldBe Int.MaxValue
-    shortestPaths2(2)._1 shouldBe Array()
+    shortestPaths2(2)._1 shouldBe Array.empty[Int]
     shortestPaths2(2)._2 shouldBe Int.MaxValue
-    shortestPaths2(3)._1 shouldBe Array()
+    shortestPaths2(3)._1 shouldBe Array.empty[Int]
     shortestPaths2(3)._2 shouldBe Int.MaxValue
     shortestPaths2(4)._1 shouldBe Array(4)
     shortestPaths2(4)._2 shouldBe 0
@@ -203,13 +203,13 @@ class GraphUtilsTest extends TestSuite {
 
     val shortestPaths2 = GraphUtils.bellmanFordMoore(4, edgeCosts)
 
-    shortestPaths2(0)._1 shouldBe Array()
+    shortestPaths2(0)._1 shouldBe Array.empty[Int]
     shortestPaths2(0)._2 shouldBe Double.MaxValue
-    shortestPaths2(1)._1 shouldBe Array()
+    shortestPaths2(1)._1 shouldBe Array.empty[Int]
     shortestPaths2(1)._2 shouldBe Double.MaxValue
-    shortestPaths2(2)._1 shouldBe Array()
+    shortestPaths2(2)._1 shouldBe Array.empty[Int]
     shortestPaths2(2)._2 shouldBe Double.MaxValue
-    shortestPaths2(3)._1 shouldBe Array()
+    shortestPaths2(3)._1 shouldBe Array.empty[Int]
     shortestPaths2(3)._2 shouldBe Double.MaxValue
     shortestPaths2(4)._1 shouldBe Array(4)
     shortestPaths2(4)._2 shouldBe 0.0

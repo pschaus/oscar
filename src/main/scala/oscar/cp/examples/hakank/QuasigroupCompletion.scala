@@ -51,7 +51,7 @@ object QuasigroupCompletion extends CPModel with App  {
   // read problem instance from file
   if (args.length > 0) {
     println("\nReading from file: " + args(0))
-    val lines = fromFile(args(0)).getLines.filter(!_.startsWith("#")).toList
+    val lines = fromFile(args(0)).getLines().filter(!_.startsWith("#")).toList
     n = lines(0).toInt
     println("n:" + n)
     problem = lines.tail.map(_.split(" ").toList.map(i=>if (i == ".") X else i.toInt))

@@ -18,11 +18,12 @@ import scala.io.Source
  *
  * @author Pierre Schaus pschaus@gmail.com
  */
-object Nurses extends App {
+object Nurses {
+  def main(args: Array[String]): Unit = {
 
   // --- reading the data ---
 
-  val lines = Source.fromFile("data/nurses/6zones.txt").getLines.reduceLeft(_ + " " + _)
+  val lines = Source.fromFile("data/nurses/6zones.txt").getLines().reduceLeft(_ + " " + _)
   val vals = lines.split("[ ,\t]").toList.filterNot(_ == "").map(_.toInt)
   var index = 0
   def next() = {
@@ -100,7 +101,7 @@ object Nurses extends App {
 
 
     // actual cp model solving zone i
-    implicit val cp = CPSolver()
+    implicit val cp: CPSolver = CPSolver()
     cp.silent = true
     val spreadAcuity = CPIntVar(0 to 10e6.toInt)
     val nurseOfPatient = Array.fill(nbPatientsInZone(i))(CPIntVar(0 until nbNursesInZone(i)))
@@ -141,4 +142,5 @@ object Nurses extends App {
   println("---------------------------")
   println("tot spread:" + totSpread + " ?>=? " + lb2 + "optimal:?" + (totSpread < lb2))
   println("lower bound:" + lb)
+}
 }

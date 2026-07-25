@@ -28,7 +28,7 @@ class DisjointSets[A](min: Int, max: Int) {
   def reset(): Unit = {
     var i = 0
     while (i < all.size) {
-      all(i).reset
+      all(i).reset()
       i += 1
     }
   }
@@ -39,7 +39,7 @@ class DisjointSets[A](min: Int, max: Int) {
   def resetAndSetData(data: Int => A): Unit = {
     var i = 0
     while (i < all.size) {
-      all(i).reset
+      all(i).reset()
       all(i).data = Some(data(i + min))
       i += 1
     }

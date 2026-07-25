@@ -61,7 +61,7 @@ object Sudoku2 extends CPModel with App {
   if (args.length > 0) {
     val fileName = args(0)
     println("\nReading from file: " + fileName)
-    val lines = fromFile(fileName).getLines.filter(!_.startsWith("#")).toArray
+    val lines = fromFile(fileName).getLines().filter(!_.startsWith("#")).toArray
     n = lines(0).toInt
     reg = sqrt(n).toInt
     println("Size:" + n)

@@ -48,7 +48,7 @@ class ReversibleSparseBitSet2(val context: ReversibleContext, val n: Int, val in
 
   class BitSet(sharedWords: Array[Long]) {
 
-    def this(values: Iterable[Int]) {
+    def this(values: Iterable[Int]) = {
       this(Array.fill(nWords)(0L))
       assert(values.forall(v => v < n && v >= 0))
       values.foreach(v => setBit(this.words, v))
@@ -140,7 +140,7 @@ class ReversibleSparseBitSet2(val context: ReversibleContext, val n: Int, val in
   }
 
 
-  private[this] def trail(): Unit = {
+  private[this] def saveToTrail(): Unit = {
     while (nTrailEntries + nNonZero > innerTrailSize) growInnerTrail()
     var i: Int = nNonZero
     while (i > 0) {
@@ -208,7 +208,7 @@ class ReversibleSparseBitSet2(val context: ReversibleContext, val n: Int, val in
     */
   def intersectCollectedWithoutFeedback(): Unit = {
     if (context.magic != timeStamp) {
-      trail()
+      saveToTrail()
       timeStamp = context.magic
     }
     //    var changed = false

@@ -8,7 +8,7 @@ object QAPReader {
   def read(dataFile: String, n: Int) = {
     val N = 0 until n
     // Read the data
-    var lines = Source.fromFile(dataFile).getLines.toList.filter(_ != "")
+    var lines = Source.fromFile(dataFile).getLines().toList.filter(_ != "")
     lines = lines.drop(1)
     var w1: Array[Array[Int]] = Array() //weight matrix 1
     var w2: Array[Array[Int]] = Array() //weight matrix 2
@@ -29,7 +29,7 @@ object QAPReader {
   }
 
   def readSolutions(solFile: String, n: Int) = {
-    var lines = Source.fromFile(solFile).getLines.toList.filter(_ != "")
+    var lines = Source.fromFile(solFile).getLines().toList.filter(_ != "")
     for (l <- lines) yield {
       val ar = l.split("[ ,\t]+").filter(_ != "").map(_ toInt).toArray
       (ar.take(n), ar.drop(n))
@@ -37,7 +37,7 @@ object QAPReader {
   }
 
   def readSolutions2(solFile: String, n: Int) = {
-    var lines = Source.fromFile(solFile).getLines.toList.filter(_ != "")
+    var lines = Source.fromFile(solFile).getLines().toList.filter(_ != "")
     for (l <- lines) yield {
       val ar = l.split("[ ,\t]+").filter(_ != "").map(_ toInt).toArray
       (ar.drop(2), ar.take(2))

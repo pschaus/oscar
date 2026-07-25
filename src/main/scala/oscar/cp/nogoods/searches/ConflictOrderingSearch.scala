@@ -34,7 +34,7 @@ class ConflictOrderingSearch(bra: NogoodBranching, doReset: Boolean = false)(imp
   }
 
   def nextDecision(): Decision = {
-    val d = depth.incr
+    val d = depth.incr()
     
     // Step 1: if last conflicting variable is new, add in head position.
     if (d <= lastDepth) lastVariable foreach { x =>
@@ -64,7 +64,7 @@ class ConflictOrderingSearch(bra: NogoodBranching, doReset: Boolean = false)(imp
       null
     }
     else {
-      lastVariable = Some(dec.variable)
+      lastVariable = Some(dec.variable())
       dec
     }
   }

@@ -18,7 +18,7 @@ class WatcherListL2(store: CPStore) {
     val watcher = new WatcherL2Garded(constraint, cond)
     if (index == watchers.length) growStack()
     watchers(index) = watcher
-    trail()
+    saveToTrail()
     index += 1
   }
 
@@ -26,19 +26,19 @@ class WatcherListL2(store: CPStore) {
     val watcher = new WatcherL2(constraint)
     if (index == watchers.length) growStack()
     watchers(index) = watcher
-    trail()
+    saveToTrail()
     index += 1
   }
   
   final def register(watcher: Watcher): Unit = {
     if (index == watchers.length) growStack()
     watchers(index) = watcher
-    trail()
+    saveToTrail()
     index += 1
   }
   
   @inline final def clear(): Unit = {
-    trail()
+    saveToTrail()
     index = 0
   }
   
@@ -50,7 +50,7 @@ class WatcherListL2(store: CPStore) {
     }
   }  
   
-  @inline private def trail(): Unit = {
+  @inline private def saveToTrail(): Unit = {
     val contextMagic = store.magic
     if (lastMagic != contextMagic) {
       lastMagic = contextMagic

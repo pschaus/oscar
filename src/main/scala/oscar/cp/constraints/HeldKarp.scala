@@ -215,7 +215,7 @@ class HeldKarp(edges: CPSetVar, edgeData: Array[(Int,Int,Int)], cost: CPIntVar) 
         
         // update the weights
         val denom: Double = (for (i <- 0 until n) yield ((2 - incident(i)) * (2 - incident(i)))).sum
-        var target = if (cost.max - oneTreeLB < 0) oneTreeLB+0.1 else cost.max
+        var target: Double = if (cost.max - oneTreeLB < 0) oneTreeLB+0.1 else cost.max.toDouble
         if (denom == 0) stepSize = 0
         else stepSize = alpha * (target - oneTreeLB) / denom
         for (i <- 0 until n) {

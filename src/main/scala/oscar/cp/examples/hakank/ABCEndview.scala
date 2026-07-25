@@ -48,7 +48,8 @@ import oscar.cp._
  * http://www.hakank.org/oscar/
  *
  */
-object ABCEndview extends App {
+object ABCEndview {
+  def main(args: Array[String]): Unit = {
 
   class Problem(in_n: Int,
                 in_max_letter: Int,
@@ -278,7 +279,7 @@ object ABCEndview extends App {
 
   def solve(problem: Problem): Unit = {
 
-    implicit val cp = CPSolver()
+    implicit val cp: CPSolver = CPSolver()
 
     //
     // data
@@ -389,4 +390,5 @@ object ABCEndview extends App {
     println(cp.start())
 
   }
+}
 }

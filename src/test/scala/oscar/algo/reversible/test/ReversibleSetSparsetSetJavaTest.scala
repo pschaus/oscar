@@ -35,7 +35,7 @@ class ReversibleSetSparsetSetJavaTest extends AnyFunSuite {
     s.insert(2)
     s.insert(5)
 
-    assert(s.getSize == 2)
+    assert(s.getSize() == 2)
 
     assert(s.toArray.toSet == s.getValues.toSet)
 

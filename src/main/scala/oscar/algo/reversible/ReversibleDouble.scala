@@ -30,14 +30,14 @@ class ReversibleDouble(node: ReversibleContext, value: Double) extends Reversibl
   
   /** Increments the reversible integer by i */
   def +=(v: Double): Double = {
-    trail()
+    saveToTrail()
     pointer += v
     pointer
   }
 
   /** Decrements the reversible integer by i */
   def -=(v: Double): Double = {
-    trail()
+    saveToTrail()
     pointer -= v
     pointer
   }

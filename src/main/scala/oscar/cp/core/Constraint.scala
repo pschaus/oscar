@@ -28,7 +28,7 @@ import oscar.algo.reversible.TrailEntry
  */
 abstract class Constraint(store: CPStore, val name: String = "cons") extends TrailEntry {
 
-  implicit val thisConstraint = this
+  implicit val thisConstraint: Constraint = this
 
   private[this] var active: Boolean = true
   private[this] var inQueue: Boolean = false
@@ -156,7 +156,7 @@ abstract class Constraint(store: CPStore, val name: String = "cons") extends Tra
    */
   def deactivate(): Unit = {
     if (active) {
-      trail()
+      saveToTrail()
       active = false
     }
   }
@@ -166,12 +166,12 @@ abstract class Constraint(store: CPStore, val name: String = "cons") extends Tra
    */
   def activate(): Unit = {
     if (!active) {
-      trail()
+      saveToTrail()
       active = true
     }
   }
 
-  @inline private def trail(): Unit = {
+  @inline private def saveToTrail(): Unit = {
     val contextMagic = store.magic
     if (lastMagicActive != contextMagic) {
       lastMagicActive = contextMagic

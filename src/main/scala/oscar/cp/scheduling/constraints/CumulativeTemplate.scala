@@ -74,17 +74,17 @@ extends Constraint(capacity.store, name) {
   private[this] val requiredTasks = new Array[Boolean](n)
   private[this] val possibleTasks = new Array[Boolean](n)
   
-  implicit val store = capacity.store
-  private[this] val rToUpdate = new OpenSparseSet(n)
+  implicit val store: oscar.cp.core.CPStore = capacity.store
+  private[this] val rToUpdate = new OpenSparseSet(n)(store)
   private[this] val rByStatus = rToUpdate.sortedByStatus
   
-  private[this] val hToUpdate = new OpenSparseSet(n)
+  private[this] val hToUpdate = new OpenSparseSet(n)(store)
   private[this] val hByStatus = hToUpdate.sortedByStatus
   
-  private[this] val dToUpdate = new OpenSparseSet(n)  // durations decoupled from s/e
+  private[this] val dToUpdate = new OpenSparseSet(n)(store)  // durations decoupled from s/e
   private[this] val dByStatus = dToUpdate.sortedByStatus
   
-  private[this] val tToUpdate = new OpenSparseSet(n)  // time variables: s/e coupled since constant durations are common
+  private[this] val tToUpdate = new OpenSparseSet(n)(store)  // time variables: s/e coupled since constant durations are common
   private[this] val tByStatus = tToUpdate.sortedByStatus
   
   final class OpenSparseSetMod(n: Int) extends OpenSparseSet(n: Int) {

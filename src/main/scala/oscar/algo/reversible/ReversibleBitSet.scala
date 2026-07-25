@@ -119,7 +119,7 @@ class ReversibleBitSet(val context: ReversibleContext, val n: Int, val initialVa
     while (i > 0) {
       i -= 1
       val offset = set.nonZeroIdx(i)
-      if ((words(offset).getValue & set.words(offset)) != 0L) {
+      if ((words(offset).getValue() & set.words(offset)) != 0L) {
         /* We found a support and we store the index of the Long where the support is */
         set.nNonZero.setValue(i+1)
         return true

@@ -11,7 +11,8 @@ import oscar.cp._
 import oscar.ml.pm.Constraints.fim.FIM
 import oscar.ml.pm.utils.Dataset
 
-object globalFimRunner extends App {
+object globalFimRunner {
+  def main(args: Array[String]): Unit = {
 
   case class Config(
                      filename: String = "oscar-ml/src/main/scala/oscar/ml/pm/data/fim/mushroom.txt",
@@ -20,8 +21,7 @@ object globalFimRunner extends App {
                      timeLimit: Int = 1000
                    )
 
-  printHead()
-
+  
   val config = Config()
   val db = Dataset(config.filename)
   val tdbVertical = db.intoVertical()
@@ -32,7 +32,7 @@ object globalFimRunner extends App {
   if (config.minsup > 0 && config.minsup < 1) frequency = (config.minsup * nTrans).ceil.toInt //floor is another way around for the support
 
   // Initializing the solver
-  implicit val cp = CPSolver()
+  implicit val cp: CPSolver = CPSolver()
 
   // Declaring variables
   val I = Array.fill(nItems)(CPBoolVar()(cp))
@@ -70,6 +70,7 @@ object globalFimRunner extends App {
   }
 
   //Misc
+  printHead()
   def printHead(): Unit = {
     System.err.println(
       """
@@ -78,4 +79,5 @@ object globalFimRunner extends App {
     */
       """)
   }
+}
 }

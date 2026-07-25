@@ -77,7 +77,7 @@ final class CPIntVarAdaptable( final override val store: CPStore, minValue: Int,
   // Used to trail changes in the domain
   private[this] var lastMagic: Long = -1L
 
-  @inline private def trail(): Unit = {
+  @inline private def saveToTrail(): Unit = {
     val contextMagic = store.magic
     if (lastMagic != contextMagic) {
       lastMagic = contextMagic
@@ -191,7 +191,7 @@ final class CPIntVarAdaptable( final override val store: CPStore, minValue: Int,
 
   @inline private def assignContinuous(value: Int): Unit = {
     // Trail before changes
-    trail()
+    saveToTrail()
     // Update the domain
     val oldMin = _min
     val oldMax = _max
@@ -236,7 +236,7 @@ final class CPIntVarAdaptable( final override val store: CPStore, minValue: Int,
     values(0) = value
     positions(v - offset) = position
     values(position) = v
-    trail() // trail before changes 
+    saveToTrail() // trail before changes 
     _min = value
     _max = value
     _size = 1    
@@ -284,7 +284,7 @@ final class CPIntVarAdaptable( final override val store: CPStore, minValue: Int,
     val pos1 = positions(id1)
     if (pos1 < _size) {
       // Trail before changes 
-      trail()
+      saveToTrail()
       // Update the domain
       _size -= 1
       val v = values(_size)
@@ -346,7 +346,7 @@ final class CPIntVarAdaptable( final override val store: CPStore, minValue: Int,
     if (value == _max) assignContinuous(value)
     else {
       // Trail before changes 
-      trail()
+      saveToTrail()
       // Update domain
       val oldMin = _min
       _size -= (value - _min)
@@ -370,7 +370,7 @@ final class CPIntVarAdaptable( final override val store: CPStore, minValue: Int,
   @inline private def updateMinSparse(value: Int): Unit = {
     if (value == _max) assignSparse(value)
     else {
-      trail() // trail before changes  
+      saveToTrail() // trail before changes  
       // Remove values
       val valueId = value - offset
       var i = _min - offset
@@ -426,7 +426,7 @@ final class CPIntVarAdaptable( final override val store: CPStore, minValue: Int,
     if (value == _min) assignContinuous(value)
     else {
       // Trail before changes 
-      trail()
+      saveToTrail()
       // Update domain
       val oldMax = _max
       _size -= (_max - value)
@@ -450,7 +450,7 @@ final class CPIntVarAdaptable( final override val store: CPStore, minValue: Int,
   @inline private def updateMaxSparse(value: Int): Unit = {
     if (value == _min) assignSparse(value)
     else {
-      trail() // trail before changes  
+      saveToTrail() // trail before changes  
       // Remove values
       val valueId = value - offset
       var i = _max - offset
@@ -672,7 +672,7 @@ final class CPIntVarAdaptable( final override val store: CPStore, minValue: Int,
 
     // Restrict the domain
     if (_continuous) buildSparse()
-    trail()
+    saveToTrail()
     val oldSize = _size
     _size = 0
     var i = newSize

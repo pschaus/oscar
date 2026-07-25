@@ -47,7 +47,7 @@ extends Cache {
   
   
   def removeActivity(a: Int) = {
-    possibleActivities.decr
+    possibleActivities.decr()
     val ib = possibleActivities.value
     val ia = resourceStatus(a)
     
@@ -105,7 +105,7 @@ extends Cache {
   }
   
   def removeActivity(a: Int) = {
-    updatableActivities.decr
+    updatableActivities.decr()
     val ib = updatableActivities.value
     val ia = updatableStatus(a)
     
@@ -151,7 +151,7 @@ class OpenSparseSet(n: Int)(implicit store: CPStore) {
   def exclude(a: Int) = {
     val ia = status(a)
     if (ia < limit.value) {
-      limit.decr
+      limit.decr()
       val ib = limit.value
     
       val b = sortedByStatus(ib)

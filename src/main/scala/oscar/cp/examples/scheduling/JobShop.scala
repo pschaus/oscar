@@ -36,7 +36,8 @@ import scala.collection.mutable.ArrayBuffer
  *  @author Renaud Hartert ren.hartert@gmail.com
  *  @author Cyrille Dejemeppe cyrille.dejemeppe@gmail.com
  */
-object JobShop extends App {
+object JobShop {
+  def main(args: Array[String]): Unit = {
 
   // Parsing    
   // -----------------------------------------------------------------------
@@ -73,7 +74,7 @@ object JobShop extends App {
   // Modeling 
   // -----------------------------------------------------------------------
 
-  implicit val cp = CPSolver()
+  implicit val cp: CPSolver = CPSolver()
   val horizon = durations.sum
 
   // Activities & Resources
@@ -129,5 +130,4 @@ object JobShop extends App {
     }
   }
 }
-
-
+}

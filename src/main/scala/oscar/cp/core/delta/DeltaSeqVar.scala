@@ -39,7 +39,7 @@ abstract class DeltaSeqVar(seq: CPSeqVar, idx: Int) extends Delta {
 
   def oldSizePossible: Int
 
-  protected def trail(): Unit
+  protected def saveToTrail(): Unit
 
   def restore(oldSizeAppended: Int, oldSizePossible: Int, oldSizeRequired: Int): Unit
 
@@ -70,7 +70,7 @@ class DeltaSetBasedSeqVar(seq: CPSeqVar, val deltaSet: DeltaSetVar, idx: Int) ex
 
   def oldSizePossible: Int = deltaSet.oldSizePossible
 
-  final def trail(): Unit = {
+  final def saveToTrail(): Unit = {
     val contextMagic = store.magic
     if (lastMagic != contextMagic) {
       lastMagic = contextMagic
@@ -86,7 +86,7 @@ class DeltaSetBasedSeqVar(seq: CPSeqVar, val deltaSet: DeltaSetVar, idx: Int) ex
 
   final override def update(): Unit = {
     val seqvs = seq.length
-    if (seqvs != _oldSizeAppended) trail()
+    if (seqvs != _oldSizeAppended) saveToTrail()
     _oldSizeAppended = seq.length
     deltaSet.update()
   }

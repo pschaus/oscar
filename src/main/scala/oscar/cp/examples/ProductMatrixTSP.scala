@@ -6,10 +6,10 @@ import oscar.cp.constraints._
 /**
   * @author Sascha Van Cauwelaert
   */
-object ProductMatrixTSP extends App {
-
+object ProductMatrixTSP {
   val NO_EDGE = 400
   val FAKE_WEIGHT = 100
+  def main(args: Array[String]): Unit = {
 
   val fileURI = "data/atsp-200-0.tsp"
 
@@ -19,7 +19,7 @@ object ProductMatrixTSP extends App {
   val nVar = matrix.length
   val maxAssignment = nVar
 
-  implicit val solver = CPSolver()
+  implicit val solver: CPSolver = CPSolver()
   solver.silent = false
 
   val x = Array.tabulate(nVar)(v => CPIntVar(0 to maxAssignment))
@@ -55,6 +55,8 @@ object ProductMatrixTSP extends App {
 
   println(stats)
 
+
+}
 
   def readInstanceForCP(fileURI: String): (Array[Array[Int]], Array[Int], Array[Int]) = {
     val lines: Array[String] = scala.io.Source.fromFile(fileURI).getLines().toArray

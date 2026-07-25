@@ -24,7 +24,7 @@ object ElectricityMarket extends CPModel with App {
     def bound = selected.isBound
   }
 
-  val firstLine :: restLines = Source.fromFile("data/electricityMarket.txt").getLines.toList
+  val firstLine :: restLines = Source.fromFile("data/electricityMarket.txt").getLines().toList
   val n = firstLine.toInt
 
   val orders = restLines.map(_.split(" ").map(_.toInt)).map(new Order(_)).toArray

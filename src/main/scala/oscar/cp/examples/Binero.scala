@@ -36,7 +36,7 @@ import oscar.cp.core.variables.CPVar
  */
 object Binero extends CPModel with App {
 
-  val firstLine :: restLines = Source.fromFile("data/binero2.txt").getLines.toList
+  val firstLine :: restLines = Source.fromFile("data/binero2.txt").getLines().toList
   val n = firstLine.toInt // The grid's half size
 
   val range = 0 until 2 * n
@@ -59,7 +59,7 @@ object Binero extends CPModel with App {
   onSolution {
     // Printing the solution
     for (i <- range) println(grid.slice(2 * n * i, 2 * n * (i + 1)).mkString(" "))
-    println
+    println()
   }
 
   // The solution must contain the elements of the input grid

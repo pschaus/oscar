@@ -5,7 +5,7 @@ import oscar.cp.core.variables.CPIntVar
 
 class OptionalIntervalDomain(start: CPIntVar, duration: CPIntVar, end: CPIntVar, runOnResource: CPIntVar, resourceID: Int) {
 
-  implicit val solver = start.store
+  implicit val solver: oscar.cp.core.CPStore = start.store
   val minStart = ReversibleInt(start.min)
   val maxStart = ReversibleInt(start.max)
   val minDuration = ReversibleInt(duration.min)

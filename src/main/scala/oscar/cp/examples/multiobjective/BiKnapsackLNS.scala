@@ -25,7 +25,8 @@ import oscar.cp.multiobjective.SolSelect._
  * @author Pierre Schaus  pschaus@gmail.com
  * @author Renaud Hartert ren.hartert@gmail.com
  */
-object BiKnapsackLNS extends App {
+object BiKnapsackLNS {
+  def main(args: Array[String]): Unit = {
 
   val dataFile = "data/mo-knapsack/2KP100A.txt"
   val solutionFile = "data/mo-knapsack/solution/2KP100A.txt"
@@ -45,7 +46,7 @@ object BiKnapsackLNS extends App {
 
   // Model
   // -----
-  implicit val cp = CPSolver()
+  implicit val cp: CPSolver = CPSolver()
   // cp.silent = true
 
   val x: Array[CPBoolVar] = Array.fill(nItems)(CPBoolVar()(cp))
@@ -98,4 +99,5 @@ object BiKnapsackLNS extends App {
   }
 
 
+}
 }

@@ -43,7 +43,7 @@ extends CumulativeTemplate(starts, durations, ends, heights, resources, capacity
   private[this] var hasChanged = true
   
   // Profile
-  private[this] val profile = new ProfileStructure(sMin, sMax, dMin, eMin, eMax, hMin, requiredTasks, possibleTasks)
+  private[this] val profile = new ProfileStructure(sMin, sMax, dMin, eMin, eMax, hMin, requiredTasks, possibleTasks)(store)
 
   override def associatedVars(): Iterable[CPVar] = starts ++ durations ++ ends ++ heights ++ resources ++ Array(capacity)
 
@@ -51,11 +51,11 @@ extends CumulativeTemplate(starts, durations, ends, heights, resources, capacity
     updateCache()
     C = capacity.max
 
-    do {
+    while ({ {
       hasChanged = false
       if (oneSweep())
         throw Inconsistency
-    } while (hasChanged)
+    } ; hasChanged}) ()
     
     if (C == capacity.min) removeExtremal()
     else removeImpossible()

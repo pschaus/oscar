@@ -95,14 +95,14 @@ package object cp extends Constraints with Branchings with ElementBuilder with C
   import TightenType._
 
   // TODO Dangerous implicits
-  implicit def convert2(vals: IndexedSeq[Int]) = vals.toArray[Int]
-  implicit def indexed2Array(x: IndexedSeq[CPIntVar]) = x.toArray[CPIntVar]
-  implicit def args2Array(x: CPIntVar*) = x.toArray[CPIntVar]
-  implicit def indexed2ArrayBool(x: IndexedSeq[CPBoolVar]) = x.toArray[CPBoolVar]
-  implicit def args2ArrayBool(x: CPBoolVar*) = x.toArray[CPBoolVar]
+  implicit def convert2(vals: IndexedSeq[Int]): Array[Int] = vals.toArray[Int]
+  implicit def indexed2Array(x: IndexedSeq[CPIntVar]): Array[CPIntVar] = x.toArray[CPIntVar]
+  implicit def args2Array(x: CPIntVar*): Array[CPIntVar] = x.toArray[CPIntVar]
+  implicit def indexed2ArrayBool(x: IndexedSeq[CPBoolVar]): Array[CPBoolVar] = x.toArray[CPBoolVar]
+  implicit def args2ArrayBool(x: CPBoolVar*): Array[CPBoolVar] = x.toArray[CPBoolVar]
 
   // TODO Should move to oscar.cp.util
-  implicit def arrayVar2IterableVarOps(s: Array[CPIntVar]) = new IterableVarOps(s)
+  implicit def arrayVar2IterableVarOps(s: Array[CPIntVar]): IterableVarOps = new IterableVarOps(s)
   implicit class IterableVarOps(val seq: Iterable[CPIntVar]) extends AnyVal {
 
     /** @return true is all the variables are bound */
@@ -219,7 +219,7 @@ package object cp extends Constraints with Branchings with ElementBuilder with C
     /**
      * -x
      */
-    def unary_-() = new CPIntVarViewMinus(x)
+    def unary_- = new CPIntVarViewMinus(x)
     /**
      * x+y
      */
@@ -416,7 +416,7 @@ package object cp extends Constraints with Branchings with ElementBuilder with C
     }
 
     /** !b */
-    def unary_!(): CPBoolVar = variable.not
+    def unary_! : CPBoolVar = variable.not
 
     /** x | y */
     def |(y: CPBoolVar) = or(y)

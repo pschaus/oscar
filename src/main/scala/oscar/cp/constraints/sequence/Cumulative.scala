@@ -149,7 +149,7 @@ class CumulativeInsert(
     minCurrentLoad = 0
     maxCurrentLoad = 0
     var current = -1
-    do {
+    while ({ {
       //Starting active activities if possible:
       for(active <- activeActs.toSeq.sortBy(loads(_).max).reverse){
         if(sequence.isInsertableAfter(starts(active), current)){
@@ -170,7 +170,7 @@ class CumulativeInsert(
       }
 
       current = sequence.predMember(current)
-    } while(current != -1)
+    } ;current != -1}) ()
 
     //Activities not ended => Failure:
     if(activeActs.nonEmpty) throw Inconsistency
@@ -227,7 +227,7 @@ class CumulativeInsert(
 
       var current = -1
       var canClose = false
-      do {
+      while ({ {
         if (sequence.isInsertableAfter(start, current)){
           currentStarts += current
           canClose = true
@@ -245,7 +245,7 @@ class CumulativeInsert(
         }
 
         current = sequence.nextMember(current)
-      } while(current != -1 && startInsertions.nonEmpty && endInsertions.nonEmpty)
+      } ;current != -1 && startInsertions.nonEmpty && endInsertions.nonEmpty}) ()
 
       for(i <- startInsertions) sequence.removeInsertion(start, i)
       for(i <- endInsertions) sequence.removeInsertion(end, i)

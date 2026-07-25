@@ -88,7 +88,7 @@ object SortUtils {
 	    var rSize = 1
 	    var rP = 0
 	    
-	    do {
+	    while ({ {
 	      // invariant: there must be a nonempty increasing run: find its size and stack it in runs
 	      el += 1
 	      while(el < topExcluded && keys(elements(el-1)) <= keys(elements(el))) {
@@ -98,7 +98,7 @@ object SortUtils {
 	      runs(rP) = rSize
 	      rSize = 1
 	      rP += 1
-	    } while(el < topExcluded)
+	    } ;el < topExcluded}) ()
 	    runs(rP) = 0
 	      
       if (rP > 1) {  // array is not sorted

@@ -3,7 +3,8 @@
  *
  * @author John Aoga johnaoga@gmail.com
  *
- */
+ }
+*/
 
 package oscar.ml.pm.examples.fim
 
@@ -12,7 +13,8 @@ import oscar.cp.constraints.OrReif
 import oscar.ml.pm.utils.Dataset
 
 
-object pureFimRunner extends App {
+object pureFimRunner {
+  def main(args: Array[String]): Unit = {
 
   case class Config(
                      //"oscar-ml/src/main/scala/oscar/ml/pm/data/mushroom.txt",
@@ -22,8 +24,7 @@ object pureFimRunner extends App {
                      timeLimit: Int = -1
                    )
 
-  printHead()
-
+  
   val config = Config()
   val db = Dataset(config.filename)
   val tdbVertical = db.intoVertical()
@@ -37,7 +38,7 @@ object pureFimRunner extends App {
   println(db.benchmarkName)
 
   // Initializing the solver
-  implicit val cp = CPSolver()
+  implicit val cp: CPSolver = CPSolver()
 
   // Declaring variables
   val I = Array.fill(nItems)(CPBoolVar()(cp))
@@ -52,7 +53,7 @@ object pureFimRunner extends App {
   /// Cover constraint
   for (t <- 0 until nTrans) {
     val tNotItems = (0 until nItems).filter(i => !tdbVertical(i).contains(t))
-    cp.post(new OrReif(tNotItems.map(I(_)), !T(t)))
+    cp.post(new OrReif(tNotItems.map(I(_)), T(t).not))
   }
 
   // Searching for solutions
@@ -88,15 +89,18 @@ object pureFimRunner extends App {
 
 
   //Misc
+  printHead()
   def printHead(): Unit = {
     System.err.println(
       """
     /**  FIM with pure CP (OscaR Solver) - decomposition approach v1.0
     Bugs reports : johnaoga@gmail.com , pschaus@gmail.com
-    */
+    }
+*/
       """)
   }
 
+}
 }
 
 

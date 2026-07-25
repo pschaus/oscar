@@ -8,9 +8,10 @@ import scala.io.Source
 /**
  * @author Pierre Schaus pschaus@gmail.com
  */
-object MLA extends App {
+object MLA {
+  def main(args: Array[String]): Unit = {
 
-  var lines = Source.fromFile("data/mla/gd95c.rmf").getLines.toArray
+  var lines = Source.fromFile("data/mla/gd95c.rmf").getLines().toArray
 
   val vv = new ArrayBuffer[Int]()
   val ev = new ArrayBuffer[(Int,Int)]()
@@ -38,7 +39,7 @@ object MLA extends App {
   }
 
 
-	implicit val cp = CPSolver()
+	implicit val cp: CPSolver = CPSolver()
 	val x = Array.tabulate(n)(i => CPIntVar(0 until n))
 
 	add(allDifferent(x),Strong)
@@ -90,4 +91,5 @@ object MLA extends App {
 	}
 
 
+}
 }

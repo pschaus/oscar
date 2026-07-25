@@ -90,7 +90,7 @@ class DFSearch(node: DFSearchNode) {
   final def clearOnFailure(): Unit = failureActions = Nil
 
   @inline private def expand(branching: Branching): Boolean = {
-    val alternatives = branching.alternatives
+    val alternatives = branching.alternatives()
     if (alternatives.isEmpty) false
     else {
       alternativesStack.push(alternatives.iterator)

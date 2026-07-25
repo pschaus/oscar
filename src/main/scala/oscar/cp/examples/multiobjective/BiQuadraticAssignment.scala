@@ -31,7 +31,8 @@ import oscar.cp.examples.util.reader.QAPReader._
  * @author Pierre Schaus  pschaus@gmail.com
  * @author Renaud Hartert ren.hartert@gmail.com
  */
-object BiQuadraticAssignment extends App {
+object BiQuadraticAssignment {
+  def main(args: Array[String]): Unit = {
 
   val seed = 0
   val n = 10
@@ -51,7 +52,7 @@ object BiQuadraticAssignment extends App {
 
   // Model
   // -----
-  implicit val cp = CPSolver()
+  implicit val cp: CPSolver = CPSolver()
   // cp.silent = true
 
   val x: Array[CPIntVar] = Array.fill(n)(CPIntVar(N)(cp))
@@ -76,7 +77,7 @@ object BiQuadraticAssignment extends App {
   search {
     if (allBounds(x)) noAlternative
     else {
-      val (i, v) = heuristic(if (rand.nextBoolean) w1 else w2)
+      val (i, v) = heuristic(if (rand.nextBoolean()) w1 else w2)
       branch(cp.add(x(i) === v))(cp.add(x(i) !== v))
     }
   }
@@ -84,4 +85,5 @@ object BiQuadraticAssignment extends App {
   println("search...")
   println(cp.start())
   println("size of archive" + cp.nonDominatedSolutions.size)
+}
 }

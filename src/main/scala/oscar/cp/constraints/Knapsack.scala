@@ -52,7 +52,7 @@ class Knapsack(val X: Array[CPBoolVar], val profit: Array[Int], val weight: Arra
   override def setup(l: CPPropagStrength): Unit = {
     s.post(new BinaryKnapsack(X, profit, P))
     s.post(new BinaryKnapsack(X,weight,W))
-    if (!pre) {
+    if (!pre()) {
      println("Knapasack Constraint Not Posted, weights must be > 0 and profit >= 0")
      return
     }
@@ -100,9 +100,9 @@ class Knapsack(val X: Array[CPBoolVar], val profit: Array[Int], val weight: Arra
     var profit: Double = packedProfit.value.toDouble
     var weight = packedWeight.value
         
-    val ite = unbound.iterator()
+    val ite = unbound.iterator
     var s = -1 // critical item index
-    while (ite.hasNext() && s < 0) {
+    while (ite.hasNext && s < 0) {
       val i = ite.next()
       if (weight + w(i) <= W.max) {
         weight += w(i)

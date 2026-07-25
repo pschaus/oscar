@@ -58,17 +58,17 @@ class StaticMddImpl(val arity: Int) extends StaticMdd {
   private[this] val constraints = new util.ArrayList[StaticMddConstraint]()
   private[this] var splittedHeuristic = scala.collection.mutable.ArrayBuffer[(Int, (StaticMddSplittedNode, StaticMddSplittedNode) => Int)]()
   // Add basic heuristic : -10000 uses the ID (very poor), 0 used the number of outEdges (less outEdges first), and you can add your own heuristic
-  splittedHeuristic += (-10000,(a : StaticMddSplittedNode, b: StaticMddSplittedNode) => {
-    if(a.getId < b.getId) 1
-    else if(a.getId == b.getId) 0
+  splittedHeuristic += ((-10000,(a : StaticMddSplittedNode, b: StaticMddSplittedNode) => {
+    if(a.getId() < b.getId()) 1
+    else if(a.getId() == b.getId()) 0
     else -1
-  })
+  }))
 
-  splittedHeuristic += (0, (a:StaticMddSplittedNode, b: StaticMddSplittedNode) =>{
+  splittedHeuristic += ((0, (a:StaticMddSplittedNode, b: StaticMddSplittedNode) =>{
     if(a.getOutEdges().size < b.getOutEdges().size) -1
     else if(a.getOutEdges().size == b.getOutEdges().size) 0
     else 1
-  })
+  }))
 
   /**
     * During the refinement process, we split the nodes. In fact, we extract one in-edge from a node. This is done
@@ -306,7 +306,7 @@ class StaticMddImpl(val arity: Int) extends StaticMdd {
         stillNeedToPrune = true
         val toDelete = edgesToDelete.pop()
         toDelete.unlink()
-        if (toDelete.bottomNode.getInSize == 0 && toDelete.bottomNode.getOutSize() != 0) {
+        if (toDelete.bottomNode.getInSize() == 0 && toDelete.bottomNode.getOutSize() != 0) {
           nodeWithoutInEdge.add(toDelete.bottomNode)
         }
         if (toDelete.topNode.getOutSize() == 0 && toDelete.topNode.getInSize() != 0) {
@@ -656,7 +656,7 @@ class StaticMddImpl(val arity: Int) extends StaticMdd {
       }
       layer += 1
     }
-    nodes.foreach(_.createReversibleStructures)
+    nodes.foreach(_.createReversibleStructures())
     map
   }
 

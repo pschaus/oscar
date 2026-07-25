@@ -13,7 +13,7 @@ object LongestPath extends CPModel with App {
 
   // --- reading the data ---
 
-  val lines = Source.fromFile("data/longestpath/planar-n50.ins1.txt_com10_ins1").getLines.reduceLeft(_ + " " + _)
+  val lines = Source.fromFile("data/longestpath/planar-n50.ins1.txt_com10_ins1").getLines().reduceLeft(_ + " " + _)
 
   val vals = lines.split("[ ,\t]").toList.filterNot(_ == "")
   var index = 0

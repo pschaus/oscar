@@ -61,9 +61,9 @@ class SetDomain(s: CPStore, min: Int, max: Int) {
    def possibleSet = values.possibleSet
    def requiredSet = values.requiredSet
    
-   def possibleNotRequiredValues: Iterator[Int] = values.possibleNotRequiredValues
+   def possibleNotRequiredValues: Iterator[Int] = values.possibleNotRequiredValues()
    
-   def requiredValues: Iterator[Int] = values.requiredValues
+   def requiredValues: Iterator[Int] = values.requiredValues()
    
    def arbitraryPossibleNotRequired: Int = values.arbitraryPossibleNotRequired
   

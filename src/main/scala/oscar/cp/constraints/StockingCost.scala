@@ -102,7 +102,7 @@ class StockingCost(val Y: Array[CPIntVar], val deadline: Array[Int], val H: CPIn
   def sortIncremental(): Unit = {
     var nn = X.size
     var i = 0
-    do {
+    while ({ {
       var newn = 0
       i = 1
       while (i < nn) {
@@ -115,7 +115,7 @@ class StockingCost(val Y: Array[CPIntVar], val deadline: Array[Int], val H: CPIn
         i += 1
       }
       nn = newn
-    } while (nn > 0);
+    } ; nn > 0}) ();
     k = 0;
     while (k < n) {
       X(k) = Y(sortX(k))

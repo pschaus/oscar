@@ -43,7 +43,7 @@ class TableSTR3(vars: Array[CPIntVar], table: Array[Array[Int]]) extends Constra
   private[this] val deps: Array[ArrayMap] = Array.fill(table.length)(new ArrayMap(arity, true))
 
   override def setup(l: CPPropagStrength): Unit = {
-    invalidTuples.trail() // save state
+    invalidTuples.saveToTrail() // save state
 
     val tempSupport = Array.tabulate(arity)(i => {
       Array.fill(vars(i).max - initMins(i) + 1)(new ArrayBuffer[Int]())
@@ -84,7 +84,7 @@ class TableSTR3(vars: Array[CPIntVar], table: Array[Array[Int]]) extends Constra
   }
 
   private def valuesRemoved(delta: DeltaIntVar): Boolean = {
-    invalidTuples.trail() // save state
+    invalidTuples.saveToTrail() // save state
     val varId = delta.id
     var i = delta.fillArray(tmpArray)
     while (i > 0) {

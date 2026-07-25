@@ -39,10 +39,10 @@ class GraphComplement(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constrain
 	override def propagate(): Unit = {
 	  // We can do all the propagation symmetrically pruning on the two graphs
 	  
-	  val g1PossNodes : List[Int] = g1.possibleNodes
-	  val g1ReqNodes : List[Int] = g1.requiredNodes
-	  val g2PossNodes : List[Int] = g2.possibleNodes
-	  val g2ReqNodes : List[Int] = g2.requiredNodes
+	  val g1PossNodes : List[Int] = g1.possibleNodes()
+	  val g1ReqNodes : List[Int] = g1.requiredNodes()
+	  val g2PossNodes : List[Int] = g2.possibleNodes()
+	  val g2ReqNodes : List[Int] = g2.requiredNodes()
 	  // should have equal node set :
 	  // 	nodes set upper bound should be the intersection
 	  for (n <- g1PossNodes; if !g2PossNodes.contains(n)){
@@ -59,10 +59,10 @@ class GraphComplement(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constrain
 	      g1.addNodeToGraph(n)
 	  }
 	  
-	  val newG1PossNodes : List[Int] = g1.possibleNodes
-	  val newG1ReqNodes : List[Int] = g1.requiredNodes
-	  val newG2PossNodes : List[Int] = g2.possibleNodes
-	  val newG2ReqNodes : List[Int] = g2.requiredNodes
+	  val newG1PossNodes : List[Int] = g1.possibleNodes()
+	  val newG1ReqNodes : List[Int] = g1.requiredNodes()
+	  val newG2PossNodes : List[Int] = g2.possibleNodes()
+	  val newG2ReqNodes : List[Int] = g2.requiredNodes()
 	  
 	  // if an edge is required in one of the graphs, it should no longer be possible in the other
 	  for (n <- newG1ReqNodes){

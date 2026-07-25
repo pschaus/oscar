@@ -40,7 +40,7 @@ final class DeltaSetVar(x: CPSetVar, idx: Int) extends Delta {
   @inline final def oldSizePossible: Int = _oldSizePossible
   @inline final def oldSizeRequired: Int = _oldSizeRequired
 
-  @inline private def trail(): Unit = {
+  @inline private def saveToTrail(): Unit = {
     val contextMagic = store.magic
     if (lastMagic != contextMagic) {
       lastMagic = contextMagic
@@ -57,7 +57,7 @@ final class DeltaSetVar(x: CPSetVar, idx: Int) extends Delta {
   final override def update(): Unit = {
     val xps = x.possibleSize
     val xrs = x.requiredSize
-    if (xps != _oldSizePossible || xrs != _oldSizeRequired) trail()
+    if (xps != _oldSizePossible || xrs != _oldSizeRequired) saveToTrail()
     _oldSizePossible = x.possibleSize
     _oldSizeRequired = x.requiredSize
   }

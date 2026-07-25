@@ -217,7 +217,7 @@ class TableMDD4R (val X: Array[CPIntVar], table: Array[Array[Int]]) extends Cons
           i += 1
         }
         
-        vars(lvlUp).removeUnsupportedValues
+        vars(lvlUp).removeUnsupportedValues()
       }
     }
     
@@ -266,7 +266,7 @@ class TableMDD4R (val X: Array[CPIntVar], table: Array[Array[Int]]) extends Cons
           i += 1
         }
         
-        vars(lvlDown).removeUnsupportedValues
+        vars(lvlDown).removeUnsupportedValues()
       }
       lvlDown += 1
     }

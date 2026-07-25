@@ -29,9 +29,9 @@ import scala.math._
   Stars: 1
   A tiny nation in the South Pacific contains four islands connected by bridges
   as shown (see below). Each of the four islands (Pwana, Quero, Rayou, and Skern)
-  boasts a different primary export (alabaster, bananas, coconuts, and durian
+  boasts a different primary exports (alabaster, bananas, coconuts, and durian
   fruit) and a different tourist attraction (hotel, ice skating rink, jai alai 
-  stadium, and koala preserve). Can you find the name, export, and tourist 
+  stadium, and koala preserve). Can you find the name, exports, and tourist 
   attraction of each island on the map?
     N
   W   E     *compass directions
@@ -68,8 +68,8 @@ object FourIslands extends CPModel with App {
   val island = Array.fill(n)(CPIntVar(0 to n - 1))
   val Array(pwana, quero, rayou, skern) = island
   val islandStr = Array("Pwana", "Quero", "Rayou", "Skern")
-  val export = Array.fill(n)(CPIntVar(0 to n - 1))
-  val Array(alabaster, bananas, coconuts, durian_fruit) = export
+  val exports = Array.fill(n)(CPIntVar(0 to n - 1))
+  val Array(alabaster, bananas, coconuts, durian_fruit) = exports
   val exportStr = Array("alabaster", "bananas", "coconuts", "durian fruit")
   val attraction = Array.fill(n)(CPIntVar(0 to n - 1))
   val Array(resort_hotel, ice_skating_rink, jai_alai_stadium, koala_preserve) = attraction
@@ -81,7 +81,7 @@ object FourIslands extends CPModel with App {
   //
 
   add(allDifferent(island), Strong)
-  add(allDifferent(export), Strong)
+  add(allDifferent(exports), Strong)
   add(allDifferent(attraction), Strong)
   //  1. The island noted for its koala preserve is due south of Pwana.
   add(
@@ -129,14 +129,14 @@ object FourIslands extends CPModel with App {
       onSolution {
       println("\nSolution:")
       println("island    : " + island.mkString(""))
-      println("export    : " + export.mkString(""))
+      println("exports    : " + exports.mkString(""))
       println("attraction: " + attraction.mkString(""))
       println()
       // Nicer output
       val f = "%-" + (max_len + 1) + "s"
       println(Array("A", "B", "C", "D").map(i => f.format(i)).mkString(" "))
       println(island.map(i => f.format(islandStr(i.value))).mkString(" "))
-      println(export.map(e => f.format(exportStr(e.value))).mkString(" "))
+      println(exports.map(e => f.format(exportStr(e.value))).mkString(" "))
       println(attraction.map(a => f.format(attractionStr(a.value))).mkString(" "))
       println()
     }

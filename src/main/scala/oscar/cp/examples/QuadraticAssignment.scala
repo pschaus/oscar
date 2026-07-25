@@ -19,7 +19,7 @@ import scala.io.Source
 object QuadraticAssignment extends CPModel with App {
 
   // Read the data
-  var lines = Source.fromFile("data/qap.txt").getLines.toList.filter(_ != "")
+  var lines = Source.fromFile("data/qap.txt").getLines().toList.filter(_ != "")
   val n = lines.head.toInt
   val N = 0 until n
   lines = lines.drop(1)

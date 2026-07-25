@@ -11,7 +11,8 @@ import oscar.cp._
 import oscar.ml.pm.Constraints.spm.{PPIC, PPICt}
 import oscar.ml.pm.utils.{DatasetUtils, SpmfWithTimeFormat, TimeOption}
 
-object SPMtimeRunner extends App {
+object SPMtimeRunner {
+  def main(args: Array[String]): Unit = {
 
   case class Config(
                      filename: String = "oscar-ml/src/main/scala/oscar/ml/pm/data/spm/test/input/test.time.spmf",
@@ -21,18 +22,17 @@ object SPMtimeRunner extends App {
                      timeOption: TimeOption = TimeOption(minspan = 0, maxspan = 10, mingap = 3, maxgap = 7)
                    )
 
-  printHead()
-
+  
   val config = Config()
   val epsilon: Int = 0
   val (db, frequency, nTrans, nItems, lenSeqMax, freqentItems, maxtime) =  DatasetUtils.prepareForSPMTime(config.filename, config.minsup, SpmfWithTimeFormat)
   val domS = epsilon +: freqentItems
 
-  System.err.println(config + s"\nSup: $frequency\nnItems: $nItems\nnTrans: $nTrans")
+  System.err.println(s"$config\nSup: $frequency\nnItems: $nItems\nnTrans: $nTrans")
 
   if (lenSeqMax > 0 && nTrans >= frequency) {
     // Initializing the solver
-    implicit val cp = CPSolver()
+    implicit val cp: CPSolver = CPSolver()
 
     // Declaring variables
     val P = Array.fill(lenSeqMax)(CPIntVar.sparse(domS)(cp))
@@ -63,6 +63,7 @@ object SPMtimeRunner extends App {
   } else System.err.println("No solution")
 
   //Misc
+  printHead()
   def printHead(): Unit = {
     System.err.println(
       """
@@ -70,6 +71,7 @@ object SPMtimeRunner extends App {
     Bugs reports : johnaoga@gmail.com , pschaus@gmail.com
     */
       """)
+  }
   }
 }
 

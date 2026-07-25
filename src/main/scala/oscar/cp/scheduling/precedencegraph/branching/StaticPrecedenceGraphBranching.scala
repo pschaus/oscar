@@ -14,7 +14,7 @@ import oscar.cp.scheduling.precedencegraph.branching.decisions.PrecedenceDecisio
 class StaticPrecedenceGraphBranching(starts:Array[CPIntVar], ends: Array[CPIntVar], val precedenceGraph : Option[PrecedenceGraph], machineName: String = "") extends Branching {
 
   private[this] val nTasks = starts.length
-  implicit private[this] val cp = starts(0).store
+  implicit private[this] val cp: CPStore = starts(0).store
 
   private[this] val precGraph = precedenceGraph.getOrElse(null)
 

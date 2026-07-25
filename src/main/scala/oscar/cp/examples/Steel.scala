@@ -24,7 +24,7 @@ import scala.language.postfixOps
 object Steel extends CPModel with App {
 
   def readData(): (Array[Int], Array[Int], Array[Int]) = {
-    val lines = Source.fromFile("data/steelMillSlab.txt").getLines.reduceLeft(_ + " " + _)
+    val lines = Source.fromFile("data/steelMillSlab.txt").getLines().reduceLeft(_ + " " + _)
     var vals = lines.split("[ ,\t]").toList.filterNot(_ == "").map(_.toInt)
     val nbCapa = vals.head
     vals = vals.drop(1)

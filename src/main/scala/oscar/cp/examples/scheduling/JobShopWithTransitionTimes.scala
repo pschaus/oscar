@@ -37,7 +37,7 @@ object JobShopWithTransitionTimes extends CPModel with App {
 
   // ----------------    DATA     ----------------------
   val instanceURI = "data/jobshoptransitiontimes/taillard-jobshop-20_15-1_300_50_150-1"
-  val lines = Source.fromFile(instanceURI).getLines.toArray
+  val lines = Source.fromFile(instanceURI).getLines().toArray
   val nbProblems = lines(0).replaceAll(" ","").toInt
   val nJobs = lines(1).split(" ")(0) toInt
   val nJobsWithSourceJob = nJobs + 1 //there is one fake activity in a fake job

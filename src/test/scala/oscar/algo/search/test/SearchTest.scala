@@ -28,7 +28,7 @@ class SearchTest extends TestSuite {
     val i = new ReversibleInt(node, 0)
     node.search {
       if (i > 2) noAlternative
-      else branch { i += 1} { if (i.value == 1) node.fail else i += 1}
+      else branch { i += 1} { if (i.value == 1) node.fail() else i += 1}
     } 
     
     val stat = node.start()
@@ -289,7 +289,7 @@ class SearchTest extends TestSuite {
     val i = new ReversibleInt(node, 0)
     node.search {
       if (i > 2) noAlternative
-      else branchAll(1 to 3) {v => if (v == 1) node.fail else  i += 1}
+      else branchAll(1 to 3) {v => if (v == 1) node.fail() else  i += 1}
     } 
     val stat2 = node.start()
     stat2.nSols should be(8)
@@ -303,15 +303,15 @@ class SearchTest extends TestSuite {
     
     a.value = 3
     b.value = 5
-    node.pushState
+    node.pushState()
     
     a.value = 4
     b.value = 4
-    node.pushState
+    node.pushState()
     
     a.value = 5
     b.value = 3
-    node.pushState
+    node.pushState()
     
     node.search {
       if (a > 8 || b > 8) noAlternative

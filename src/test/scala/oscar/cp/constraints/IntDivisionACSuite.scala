@@ -9,7 +9,7 @@ import oscar.cp.core.variables.CPIntVar
 class IntDivisionACSuite extends TestSuite {
   
   test("an IllegalArgumentException should be thrown if c <= 0") {
-    implicit val solver = CPSolver()
+    implicit val solver: CPSolver = CPSolver()
     val a = CPIntVar(1 to 10)
     val b = CPIntVar(1 to 10)
     intercept[IllegalArgumentException] {
@@ -21,7 +21,7 @@ class IntDivisionACSuite extends TestSuite {
   }
   
   test("values of a that have initially no support in b should be removed") {
-    implicit val solver = CPSolver()
+    implicit val solver: CPSolver = CPSolver()
     val values = (1 to 10)
     val a = CPIntVar(values)
     val b = CPIntVar(Set(2, 10, 11, 13, 15, 17, 34))
@@ -38,7 +38,7 @@ class IntDivisionACSuite extends TestSuite {
   }
   
   test("values of b that have initially no support in a should be removed") {
-    implicit val solver = CPSolver()
+    implicit val solver: CPSolver = CPSolver()
     val values = (0 to 20)
     val a = CPIntVar(Set(1, 4, 5, 9))
     val b = CPIntVar(values)
@@ -55,7 +55,7 @@ class IntDivisionACSuite extends TestSuite {
   }
   
   test("a should be equal to b if c equals 1") {
-    implicit val solver = CPSolver()
+    implicit val solver: CPSolver = CPSolver()
     val a = CPIntVar(-10 to 10)
     val b = CPIntVar(-5 to 15)
     solver.post(new IntDivisionAC(a, b, 1)) 
@@ -69,7 +69,7 @@ class IntDivisionACSuite extends TestSuite {
   }
   
   test("b should be reduced to [-c+1; c-1] if a is initially equal to 0") {
-    implicit val solver = CPSolver()
+    implicit val solver: CPSolver = CPSolver()
     val values = -10 to 10
     val a = CPIntVar(0)
     val b = CPIntVar(values)
@@ -87,14 +87,14 @@ class IntDivisionACSuite extends TestSuite {
   }
   
   test("the constraint should fail if a has no support in b") {
-    implicit val solver = CPSolver()
+    implicit val solver: CPSolver = CPSolver()
     val a = CPIntVar(Set(1, 4, 5, 9))
     val b = CPIntVar(Set(2, 6, 7, 11, 18))
     postAndCheckFailure(solver, new IntDivisionAC(a, b, 3))
   }
   
   test("values in [v*c; v*c+c[ should be removed from b when v is removed from a") {
-    implicit val solver = CPSolver()
+    implicit val solver: CPSolver = CPSolver()
     val values = -15 to 15
     val a = CPIntVar(-5 to 5)
     val b = CPIntVar(values)
@@ -113,7 +113,7 @@ class IntDivisionACSuite extends TestSuite {
   } 
   
   test("v/c should be removed from a when v is removed from b and v is the only support of v/c") {
-    implicit val solver = CPSolver()
+    implicit val solver: CPSolver = CPSolver()
     val a = CPIntVar(1 to 5)
     val b = CPIntVar(Set(1, 13, 20))
     val c = 5
@@ -124,7 +124,7 @@ class IntDivisionACSuite extends TestSuite {
   } 
   
   test("removing v from b should not remove v/4 from a if v/4 has still some supports in b") {
-    implicit val solver = CPSolver()
+    implicit val solver: CPSolver = CPSolver()
     val a = CPIntVar(1 to 5)
     val b = CPIntVar(1 to 15)
     val c = 5

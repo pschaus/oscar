@@ -52,7 +52,7 @@ extends CumulativeTemplate(starts, durations, ends, heights, resources, capacity
   private[this] var dminFmax = 0
   private[this] var hminmax = 0
 
-  private[this] val profile = new ProfileStructure(smin, smax, dmin, emin, emax, hmin, required, possible)
+  private[this] val profile = new ProfileStructure(smin, smax, dmin, emin, emax, hmin, required, possible)(store)
 
   override def associatedVars(): Iterable[CPVar] = starts ++ durations ++ ends ++ heights ++ resources ++ Array(capacity)
 

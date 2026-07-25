@@ -11,7 +11,7 @@ import scala.util.Random
 class DynamicPrecedenceGraphBranchingAllPrecedencesAllMachines(precGraphs: Array[_ <: PrecedenceGraph], machineNames: Array[String], varHeuristic: (Int, Int,Int) => Float, isPrecOrderPreferable: (Int, Int,Int) => Boolean) extends Branching {
 
   protected[this] val nMachines = precGraphs.length
-  implicit private[this] val cp = precGraphs(0).store
+  implicit private[this] val cp: oscar.cp.core.CPStore = precGraphs(0).store
   private[this] val nFixedPrec = new ReversibleInt(cp,0)
 
   protected[this] val decisionPrecs : Array[(Int,Int,Int)] = Array.tabulate(nMachines)(m => {

@@ -37,7 +37,7 @@ object Cubes extends CPModel with App {
       val values = placement.zipWithIndex.map{ case (v, i) => if (v.value == cube) letters(i) else "."}.mkString(" ")
       println(s"Cube $cube: $values")
     }
-    println
+    println()
   }
 
   add(gcc(placement, 0 until numCubes, numFaces, numFaces), Strong) // There must be exactly 6 letters on each cube

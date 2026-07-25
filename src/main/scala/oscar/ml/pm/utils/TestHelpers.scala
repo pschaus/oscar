@@ -33,7 +33,7 @@ object TestHelpers {
   }
 
   def readSols(filename: String): Map[String, Int] =
-    Source.fromFile(filename).getLines
+    Source.fromFile(filename).getLines()
       .map(line => line.split(" #SUP: "))
       .map { case Array(itemset, support) => itemset -> support.toInt }
       .toMap

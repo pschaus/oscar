@@ -320,7 +320,7 @@ class LayeredReversibleSparseBitSet(
   // remove the collection
   def removeCollected2(): Unit = {
     if (context.magic != timeStamp) {
-      trail()
+      saveToTrail()
       timeStamp = context.magic
     }
     var i = nNonZero

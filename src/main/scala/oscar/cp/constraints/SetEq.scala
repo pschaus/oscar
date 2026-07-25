@@ -32,19 +32,19 @@ class SetEq(val a: CPSetVar, val b: CPSetVar) extends Constraint(a.store, "SetEq
 	override def setup(l: CPPropagStrength): Unit = {
 	  
 	  def filterB(d: DeltaSetVar): Unit = {
-	    for (v <- d.deltaRequired) {
+	    for (v <- d.deltaRequired()) {
 	      b.requires(v)
 	    }
-	    for (v <- d.deltaPossible) {
+	    for (v <- d.deltaPossible()) {
 	      b.excludes(v)
 	    }
 	  }
 
 	  def filterA(d: DeltaSetVar): Unit = {
-	    for (v <- d.deltaRequired) {
+	    for (v <- d.deltaRequired()) {
 	      a.requires(v)
 	    }
-	    for (v <- d.deltaPossible) {
+	    for (v <- d.deltaPossible()) {
 	      a.excludes(v)
 	    }
 	  }

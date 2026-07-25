@@ -19,34 +19,34 @@ import scala.reflect.ClassTag
  *
  * @author Cyrille Dejemeppe (cyrille.dejemeppe@gmail.com)
  */
-object SingleReservoirShop extends App {
+object SingleReservoirShop {
+  def main(args: Array[String]): Unit = {
+    val nTasks = 8
+    val nReservoirs = 2
 
-  val nTasks = 8
-  val nReservoirs = 2
+    val durations = Array(4, 5, 10, 6, 8, 10, 7, 8)
+    val productions = Array(3, 1, 0, 0, 1, 1, 0, 3)
+    val consumptions = Array(0, 0, 1, 1, 0, 0, 4, 0)
+    val temporary = Array(false, false, false, false, true, false, false, false)
+    val minCapa = 5
+    val maxCapa = 10
+    val initialAmount = 7
 
-  val durations = Array(4, 5, 10, 6, 8, 10, 7, 8)
-  val productions = Array(3, 1, 0, 0, 1, 1, 0, 3)
-  val consumptions = Array(0, 0, 1, 1, 0, 0, 4, 0)
-  val temporary = Array(false, false, false, false, true, false, false, false)
-  val minCapa = 5
-  val maxCapa = 10
-  val initialAmount = 7
+    val horizon = durations.sum
+    implicit val cp: CPSolver = CPSolver()
 
-  val horizon = durations.sum
-  implicit val cp = CPSolver()
+    val durationVars = Array.tabulate(nTasks)(t => CPIntVar(durations(t)))
+    val startVars = Array.tabulate(nTasks)(t => CPIntVar(0 to horizon - durationVars(t).min))
+    val endVars = Array.tabulate(nTasks)(t => startVars(t) + durationVars(t))
+    val productionVars = productions.map(v => CPIntVar(v))
+    val consumptionVars = consumptions.map(v => CPIntVar(v))
 
-  val durationVars = Array.tabulate(nTasks)(t => CPIntVar(durations(t)))
-  val startVars = Array.tabulate(nTasks)(t => CPIntVar(0 to horizon - durationVars(t).min))
-  val endVars = Array.tabulate(nTasks)(t => startVars(t) + durationVars(t))
-  val productionVars = productions.map(v => CPIntVar(v))
-  val consumptionVars = consumptions.map(v => CPIntVar(v))
+    val makespan = maximum(endVars)
 
-  val makespan = maximum(endVars)
+    add(reservoirResource(startVars, durationVars, endVars, productionVars, consumptionVars, temporary, minCapa, maxCapa, initialAmount))
 
-  add(reservoirResource(startVars, durationVars, endVars, productionVars, consumptionVars, temporary, minCapa, maxCapa, initialAmount))
-
-  minimize(makespan) search {
-    binaryFirstFail(startVars)
+    minimize(makespan) search {
+      binaryFirstFail(startVars)
+    }
   }
-
 }

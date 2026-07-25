@@ -19,8 +19,8 @@ package oscar.algo
  * Bin-Packing Lower Bounds
  * @author Pierre Schaus
  */
-object BinPacking extends App {
-  
+object BinPacking {
+
     println(labbeLB(Array(4,3,2,2,1),5))
     
     
@@ -79,9 +79,9 @@ object BinPacking extends App {
 		var ind4 = 0
 		while (ind4 < ind1 && ind3 >= ind1) {
 			//we place item at index ind3 in the subsequence [ind4,ind1-1]
-			do {
+			while ({ {
 				ind4 += 1
-			} while (c-w(ind4-1) < w(ind3))
+			} ; c-w(ind4-1) < w(ind3)}) ()
 			if (ind4 <= ind1)  ind3 -= 1 // could we place the item?
 		}
 		val H = ind3 - (ind1-1)
@@ -134,4 +134,7 @@ object BinPacking extends App {
 		return L3
 	}//end of labbeLBB  
 
+  def main(args: Array[String]): Unit = {
+    println(labbeLB(Array(4,3,2,2,1),5))
+  }
 }

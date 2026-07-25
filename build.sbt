@@ -1,18 +1,16 @@
 // Basic project information
-organization := "com.yourcompany"
-name := "oscar"
+organization := "org.oscarcp"
+name := "org.oscarcp"
 version := "1.0.0-SNAPSHOT"
-scalaVersion := "2.13.11"
+scalaVersion := "3.3.8"
 
 // Compiler settings
 javacOptions ++= Seq("-source", "1.8", "-target", "1.8")
+scalacOptions ++= Seq("-source", "3.0-migration", "-rewrite")
 
 // Dependencies
 libraryDependencies ++= Seq(
-  "org.scala-lang" % "scala-library" % scalaVersion.value,
-  "junit" % "junit" % "4.12" % Test,                    // JUnit for unit testing
-  "org.scalacheck" %% "scalacheck" % "1.14.0" % Test,    // ScalaCheck for property-based testing
-  "org.scalatest" %% "scalatest" % "3.2.16" % Test        // ScalaTest for standard unit tests
+  "org.scalatest" %% "scalatest" % "3.2.19" % Test        // ScalaTest for unit testing
 )
 
 // Repository to deploy artifacts (e.g., GitHub Packages)

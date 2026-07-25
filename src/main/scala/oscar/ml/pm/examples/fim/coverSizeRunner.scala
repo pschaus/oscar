@@ -11,7 +11,8 @@ import oscar.cp._
 import oscar.ml.pm.Constraints.fim.CoverSize
 import oscar.ml.pm.utils.Dataset
 
-object coverSizeRunner extends App {
+object coverSizeRunner {
+  def main(args: Array[String]): Unit = {
 
   case class Config(
                      filename: String = "oscar-ml/src/main/scala/oscar/ml/pm/data/fim/mushroom.txt",
@@ -20,8 +21,7 @@ object coverSizeRunner extends App {
                      timeLimit: Int = 1000
                    )
 
-  printHead()
-
+  
   val config = Config()
   val db = Dataset(config.filename)
   val tdbVertical = db.intoVertical()
@@ -31,10 +31,10 @@ object coverSizeRunner extends App {
 
   if (config.minsup > 0 && config.minsup < 1) frequency = (config.minsup * nTrans).ceil.toInt //floor is another way around for the support
 
-  System.err.println(config + s"\nSup: $frequency\nnItems: $nItems\nnTrans: $nTrans")
+  System.err.println(s"$config\nSup: $frequency\nnItems: $nItems\nnTrans: $nTrans")
 
   // Initializing the solver
-  implicit val cp = CPSolver()
+  implicit val cp: CPSolver = CPSolver()
 
   // Declaring variables
   val I = Array.fill(nItems)(CPBoolVar()(cp))
@@ -74,6 +74,7 @@ object coverSizeRunner extends App {
   }
 
   //Misc
+  printHead()
   def printHead(): Unit = {
     System.err.println(
       """
@@ -82,4 +83,5 @@ object coverSizeRunner extends App {
     */
       """)
   }
+}
 }

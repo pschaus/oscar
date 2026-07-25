@@ -25,7 +25,7 @@ class DiscrepancyBranching(branching: Branching, maxDiscrepancy: Int) extends Br
   private[this] var discrepancy = 0
 
   final override def alternatives: Seq[Alternative] = {
-    val alternatives = branching.alternatives
+    val alternatives = branching.alternatives()
     if (alternatives.isEmpty) noAlternative
     else {
       val k = math.min(maxDiscrepancy - discrepancy + 1, alternatives.length)

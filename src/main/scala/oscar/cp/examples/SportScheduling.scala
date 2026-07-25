@@ -68,10 +68,10 @@ object SportScheduling extends CPModel with App {
   // use restarts to break heavy tails phenomena
   var restart = 0
 
-  do {
+  while ({ {
     start(nSols = 1, failureLimit = 5000)
     restart += 1
-  } while (!solFound)
+  } ; !solFound}) ()
 
 
   println("#restart:" + restart)

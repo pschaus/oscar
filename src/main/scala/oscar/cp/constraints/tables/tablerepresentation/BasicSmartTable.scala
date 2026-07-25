@@ -45,7 +45,7 @@ class BasicSmartTable(table: Array[Array[BasicSmartElement]], isSorted: Boolean 
     count
   }
 
-  private val basicSmartTableOrdering2 = new Ordering[Array[BasicSmartElement]] {
+  private object basicSmartTableOrdering2 extends Ordering[Array[BasicSmartElement]] {
     def compare(x: Array[BasicSmartElement], y: Array[BasicSmartElement]): Int = {
       val xt = x.map(SmartElement.getSortingTuple(_))
       val yt = y.map(SmartElement.getSortingTuple(_))
@@ -71,7 +71,7 @@ class BasicSmartTable(table: Array[Array[BasicSmartElement]], isSorted: Boolean 
     }
   }
 
-  val basicSmartTableOrdering = new Ordering[Array[BasicSmartElement]] {
+  object basicSmartTableOrdering extends Ordering[Array[BasicSmartElement]] {
     def compare(x: Array[BasicSmartElement], y: Array[BasicSmartElement]): Int = {
       var i = 0
       while (i < x.length) {
@@ -112,7 +112,7 @@ class BasicSmartTable(table: Array[Array[BasicSmartElement]], isSorted: Boolean 
     }
   }
 
-  private val compressionOrdering = new Ordering[Array[BasicSmartElement]] {
+  private object compressionOrdering extends Ordering[Array[BasicSmartElement]] {
     def compare(x: Array[BasicSmartElement], y: Array[BasicSmartElement]): Int = {
       var i = 0
       while (i < x.length) {
@@ -1009,7 +1009,7 @@ class BasicSmartTable(table: Array[Array[BasicSmartElement]], isSorted: Boolean 
         for (i <- tablePart2(0).indices) {
           val oi = offset + (arity2 - 1) - i
           transaction(oi) += ((nodes(oi), tablePart2(0)(i), nodes(oi + 1)))
-          str = tablePart2(0)(i) + str
+          str = s"${tablePart2(0)(i)}$str"
           if (i == arity2 - 1)
             hashMap2 += ((str, nodes(offset)))
           else
@@ -1026,7 +1026,7 @@ class BasicSmartTable(table: Array[Array[BasicSmartElement]], isSorted: Boolean 
               nodes(oj) += 1
               transaction(oj) += ((nodes(oj), tablePart2(i)(j), nodes(oj + 1)))
             }
-            str = tablePart2(i)(j) + str
+            str = s"${tablePart2(i)(j)}$str"
             if (j == arity2 - 1)
               hashMap2 += ((str, nodes(oj)))
             else
@@ -1213,7 +1213,7 @@ class BasicSmartTable(table: Array[Array[BasicSmartElement]], isSorted: Boolean 
       result
     }
 
-    def foreach(block: Int => Unit) {
+    def foreach(block: Int => Unit): Unit = {
       var offset = 0
       var k = 0
       var temp: Long = 0L

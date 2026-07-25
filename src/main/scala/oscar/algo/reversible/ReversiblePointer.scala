@@ -21,7 +21,7 @@ class ReversiblePointer[@specialized T](final override val context: ReversibleCo
 
   @inline final def setValue(value: T): Unit = {
     if (value != pointer) {
-      trail()
+      saveToTrail()
       this.pointer = value
     }
   }

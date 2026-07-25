@@ -71,7 +71,7 @@ class SubCircuitSuite extends TestSuite {
   }
 
   test("issue detected by Damien Mercier") {
-    implicit val cp = CPSolver()
+    implicit val cp: CPSolver = CPSolver()
     /*
       Two subcircuits :
       - (2->3->4->2)
@@ -97,10 +97,10 @@ class SubCircuitSuite extends TestSuite {
       val first = takenSuccessorsIndices.head
       var curr = first
       var c = 0
-      do {
+      while ({ {
         curr = successors(curr).value
         c += 1
-      } while (curr != first)
+      } ; curr != first}) ()
       if (c != n) {
         println(takenSuccessorsIndices.map(i => (i, successors(i).value)).mkString(","))
         println(s"Number of successors in one subcircuit:$c")
@@ -116,7 +116,7 @@ class SubCircuitSuite extends TestSuite {
   }
 
   test("multiple subcircuit issue") {
-    implicit val cp = CPSolver()
+    implicit val cp: CPSolver = CPSolver()
     val successors = Array(
       CPIntVar(Set(0)),
       CPIntVar(Set(2)),
@@ -128,7 +128,7 @@ class SubCircuitSuite extends TestSuite {
   }
 
   test("successors all different") {
-    implicit val cp = CPSolver()
+    implicit val cp: CPSolver = CPSolver()
     var successors = Array(
       CPIntVar(Set(0)),
       CPIntVar(Set(0)),
@@ -151,7 +151,7 @@ class SubCircuitSuite extends TestSuite {
 
   test("multiple subcircuit test (random)") {
     for (i <- 1 to 200) {
-      implicit val cp = CPSolver()
+      implicit val cp: CPSolver = CPSolver()
       val n = 5
       val succ: Array[Set[Int]] = Array.tabulate(n)(i => Array.fill(Random.nextInt(n - 1) + 1)(Random.nextInt(n)).distinct.toSet[Int])
       val successors: Array[CPIntVar] = Array.tabulate(n)(i => CPIntVar(succ(i)))
@@ -169,10 +169,10 @@ class SubCircuitSuite extends TestSuite {
           val first = takenSuccIdx.head
           var curr = first
           var c = 0
-          do {
+          while ({ {
             curr = successors(curr).value
             c += 1
-          } while (curr != first && c <= m)
+          } ; curr != first && c <= m}) ()
           if (c != m || curr != first) {
             println(successors.zipWithIndex.map { case (s, i) => (i, s) }.mkString(","))
             System.out.flush()

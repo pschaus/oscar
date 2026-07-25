@@ -116,10 +116,10 @@ class UnaryRank(val starts: Array[CPIntVar], val durations: Array[CPIntVar], val
     
     if (rank.value == rankedValue) {
       // do we have more ranked value consecutive  to this one
-      do {
+      while ({ {
        rankedValue += 1
        rank.value = rankedValue
-      } while (ranks.exists { x => x.isBoundTo(rankedValue) })
+      } ; ranks.exists { x => x.isBoundTo(rankedValue) }}) ()
     }
     
     

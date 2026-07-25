@@ -27,7 +27,7 @@ object Hexiom extends CPModel with App {
    * For instance neighbors(7) = {3,8,12}
    */
 
-  val lines = Source.fromFile("data/hexiom16.txt").getLines.toArray
+  val lines = Source.fromFile("data/hexiom16.txt").getLines().toArray
   val oneline = (1 until lines.size).map(lines(_)).foldLeft("")((i, j) => i + j)
   val n = lines(0).toInt // number of entries in the firt row of the hexagon
 

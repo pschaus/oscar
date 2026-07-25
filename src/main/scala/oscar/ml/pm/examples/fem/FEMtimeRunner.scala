@@ -17,7 +17,8 @@ import oscar.ml.pm.utils.{DatasetUtils, LongSequenceWithNameAndTime, TimeOption}
   * - gap[2,7] Span[1,10]
   * > Expected nSols = 22
  */
-object FEMtimeRunner extends App {
+object FEMtimeRunner {
+  def main(args: Array[String]): Unit = {
 
   case class Config(
                      filename: String = "oscar-ml/src/main/scala/oscar/ml/pm/data/fem/test/input/test.ubilog.name.time.txt",
@@ -27,8 +28,7 @@ object FEMtimeRunner extends App {
                      timeOption: TimeOption = TimeOption(minspan = 1, maxspan = 10, mingap = 2, maxgap = 7)
                    )
 
-  printHead()
-
+  
   val config = Config()
   val epsilon: Int = 0
   val (db, frequency, nTrans, nItems, lenSeqMax, freqentItems) =  DatasetUtils.prepareForFEMTime(config.filename, config.minsup, LongSequenceWithNameAndTime)
@@ -36,11 +36,11 @@ object FEMtimeRunner extends App {
 
   //println(db)
 
-  System.err.println(config + s"\nSup: $frequency\nnItems: $nItems\nnTrans: $nTrans")
+  System.err.println(s"$config\nSup: $frequency\nnItems: $nItems\nnTrans: $nTrans")
 
   if (lenSeqMax > 0) {
     // Initializing the solver
-    implicit val cp = CPSolver()
+    implicit val cp: CPSolver = CPSolver()
 
     // Declaring variables
     val P = Array.fill(lenSeqMax)(CPIntVar.sparse(domS)(cp))
@@ -72,6 +72,7 @@ object FEMtimeRunner extends App {
   } else System.err.println("No solution")
 
   //Misc
+  printHead()
   def printHead(): Unit = {
     System.err.println(
       """
@@ -79,6 +80,7 @@ object FEMtimeRunner extends App {
     Bugs reports : johnaoga@gmail.com , quentin.cappart@uclouvain.be
     */
       """)
+  }
   }
 }
 

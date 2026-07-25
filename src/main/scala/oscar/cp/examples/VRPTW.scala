@@ -118,24 +118,24 @@ class VRPTWInstance(
 object VRPTWParser {
   def parse(filepath: String, scale: Int = 100): VRPTWInstance = {
 
-    val lines = Source.fromFile(filepath).getLines
+    val lines = Source.fromFile(filepath).getLines()
 
     // Drop 4 lines
-    lines.next
-    lines.next
-    lines.next
-    lines.next
+    lines.next()
+    lines.next()
+    lines.next()
+    lines.next()
 
     // Parse nVehices and capacity
-    val line = lines.next.trim.split("[ ,\t]+")
+    val line = lines.next().trim.split("[ ,\t]+")
     val nVehicles = line(0).toInt
     val capacity = line(1).toInt
 
     // Drop 5 lines
-    lines.next
-    lines.next
-    lines.next
-    lines.next
+    lines.next()
+    lines.next()
+    lines.next()
+    lines.next()
 
     val coordinatesBf = ArrayBuffer[(Int, Int)]()
     val demandsBf = ArrayBuffer[Int]()
@@ -144,7 +144,7 @@ object VRPTWParser {
     val durationsBf = ArrayBuffer[Int]()
 
     while (lines.hasNext) {
-      val line = lines.next
+      val line = lines.next()
       if (!line.isEmpty) {
         val data = line.trim.split("[ ,\t]+")
         coordinatesBf.append((data(1).toInt, data(2).toInt))

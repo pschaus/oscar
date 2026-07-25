@@ -208,7 +208,7 @@ extends CumulativeTemplate(starts, durations, ends, heights, resources, capacity
         x -= 1
       }
       
-      do { y -= 1 } while (y > 0 && emax(activeByEMax(y)) == end)   // find next emax
+      while ({ { y -= 1 } ; y > 0 && emax(activeByEMax(y)) == end}) ()   // find next emax
     }
   }
 }

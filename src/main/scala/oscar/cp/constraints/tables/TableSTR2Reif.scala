@@ -49,7 +49,7 @@ class TableSTR2Reif(val variables: Array[CPIntVar], table: Array[Array[Int]], va
       return
     }
     
-    var limit = revLimit.getValue // save limit
+    var limit = revLimit.getValue() // save limit
 
     //--------------------------- setup SVal ------------------------------------/
 		// Reset SVal
@@ -57,7 +57,7 @@ class TableSTR2Reif(val variables: Array[CPIntVar], table: Array[Array[Int]], va
     var varId = 0
     while (varId < arity) {      
       // SVal
-      if (variables(varId).size != lastSizes(varId).getValue) {
+      if (variables(varId).size != lastSizes(varId).getValue()) {
         //add variable's index to SVal
         sValLimit += 1
         sVal(sValLimit) = varId
@@ -97,7 +97,7 @@ class TableSTR2Reif(val variables: Array[CPIntVar], table: Array[Array[Int]], va
     // variables.foreach {x => (nbValidTuples *= x.size)}
     
     // Check entailed
-    if (nbValidTuples == revLimit.getValue + 1) {
+    if (nbValidTuples == revLimit.getValue() + 1) {
       b.assign(1)
       deactivate()
       return

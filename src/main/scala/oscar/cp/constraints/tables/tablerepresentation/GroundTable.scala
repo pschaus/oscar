@@ -30,7 +30,7 @@ import scala.collection.mutable.ArrayBuffer
 class GroundTable(table: Array[Array[Int]], isSorted: Boolean = false) extends Table {
 
   // ordering between two tuples
-  private val tableOrdering = new Ordering[Array[Int]] {
+  private object tableOrdering extends Ordering[Array[Int]] {
     def compare(x: Array[Int], y: Array[Int]): Int = {
       var i = 0
       while (i < x.length) {

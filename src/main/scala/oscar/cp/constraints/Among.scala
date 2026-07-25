@@ -94,7 +94,7 @@ class Among(val N: CPIntVar, val X: Array[CPIntVar], val S: Set[Int]) extends Co
         } else {
           // X(i) lost some values values
           for (v <- d.values; if (S.contains(v))) {
-            interSize(i).decr
+            interSize(i).decr()
           }
         }
 

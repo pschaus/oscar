@@ -18,25 +18,25 @@ trait ElementBuilder {
   import ElementBuilder._
 
   /** Element on an array of Int. */
-  implicit def arrayIntToElement(array: Array[Int]) = new ArrayIntElementConstraintBuilder(array)
+  implicit def arrayIntToElement(array: Array[Int]): ArrayIntElementConstraintBuilder = new ArrayIntElementConstraintBuilder(array)
 
   /** Element on an array of CPIntVar. */
-  implicit def arrayIntVarToElement(array: Array[CPIntVar]) = new ArrayCPIntVarElementConstraintBuilder(array)
+  implicit def arrayIntVarToElement(array: Array[CPIntVar]): ArrayCPIntVarElementConstraintBuilder = new ArrayCPIntVarElementConstraintBuilder(array)
 
   /** Element on an array of CPBoolVar. */
-  implicit def arrayBooleanVarToElement(array: Array[CPBoolVar]) = new ArrayCPBoolVarElementConstraintBuilder(array)
+  implicit def arrayBooleanVarToElement(array: Array[CPBoolVar]): ArrayCPBoolVarElementConstraintBuilder = new ArrayCPBoolVarElementConstraintBuilder(array)
 
   /** Element on an indexed sequence of Int. */
-  implicit def seqIntToElement(seq: IndexedSeq[Int]) = new ArrayIntElementConstraintBuilder(seq.toArray)
+  implicit def seqIntToElement(seq: IndexedSeq[Int]): ArrayIntElementConstraintBuilder = new ArrayIntElementConstraintBuilder(seq.toArray)
 
   /** Element on an indexed sequence of CPIntVar. */
-  implicit def seqIntVarToElement(seq: IndexedSeq[CPIntVar]) = new ArrayCPIntVarElementConstraintBuilder(seq.toArray)
+  implicit def seqIntVarToElement(seq: IndexedSeq[CPIntVar]): ArrayCPIntVarElementConstraintBuilder = new ArrayCPIntVarElementConstraintBuilder(seq.toArray)
 
   /** Element on an indexed sequence of CPBoolVar. */
-  implicit def seqBooleanVarToElement(seq: IndexedSeq[CPBoolVar]) = new ArrayCPBoolVarElementConstraintBuilder(seq.toArray)
+  implicit def seqBooleanVarToElement(seq: IndexedSeq[CPBoolVar]): ArrayCPBoolVarElementConstraintBuilder = new ArrayCPBoolVarElementConstraintBuilder(seq.toArray)
 
   /** Element on an array of array of Int. */
-  implicit def matricIntToElement(matrix: Array[Array[Int]]) = new ElementIntMatrixConstraintBuilderLine(matrix)
+  implicit def matricIntToElement(matrix: Array[Array[Int]]): ElementIntMatrixConstraintBuilderLine = new ElementIntMatrixConstraintBuilderLine(matrix)
 }
 
 object ElementBuilder {

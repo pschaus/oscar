@@ -7,9 +7,10 @@ import oscar.cp._
   * @author Sascha Van Cauwelart
   * @author Pierre Schaus pschaus@gmail.com
   */
-object QueensReplay extends  App {
+object QueensReplay {
+  def main(args: Array[String]): Unit = {
 
-  implicit val cp = CPSolver()
+  implicit val cp: CPSolver = CPSolver()
 
   val nQueens = 30
   // Number of queens
@@ -45,4 +46,5 @@ object QueensReplay extends  App {
 
 
 
+}
 }

@@ -10,7 +10,7 @@ abstract class Decision {
   def opposite: Decision
   def isTrue: Boolean
   def toLiteral: CPBoolVar
-  def unary_!(): Decision = opposite
+  def unary_! : Decision = opposite
   def strengthen(): Unit = ()
   def variable(): CPIntVar
   def value(): Int

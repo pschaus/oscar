@@ -68,7 +68,7 @@ object AppointmentSchedulingSet extends CPModel with App {
                   )
     */
   val n = if (args.length > 0) args(0).toInt else 10;
-  val limit = if (args.length > 1) args(1).toFloat else 0.6;
+  val limit = if (args.length > 1) args(1).toFloat else 0.6f;
   val num_to_show = if (args.length > 2) args(2).toInt else 0;
   println("n: " + n + " limit: " + limit + " num_to_show: " + num_to_show)
   val rand = new Random(System.currentTimeMillis());

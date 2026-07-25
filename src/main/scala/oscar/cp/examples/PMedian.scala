@@ -20,7 +20,7 @@ import scala.io.Source
  */
 object PMedian extends CPModel with App {
 
-  val lines = Source.fromFile("data/pmed.txt").getLines.reduceLeft(_ + " " + _)
+  val lines = Source.fromFile("data/pmed.txt").getLines().reduceLeft(_ + " " + _)
 
   val vals = lines.split("[ ,\t]").toList.filterNot(_ == "").map(_.toInt)
   var index = 0

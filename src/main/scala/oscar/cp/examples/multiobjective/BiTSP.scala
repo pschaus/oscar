@@ -22,7 +22,8 @@ import oscar.cp.constraints.MinAssignment
 import oscar.cp.multiobjective.ListPareto
 import oscar.cp.examples.util.reader.TSPUtils
 
-object BiTSP extends App {
+object BiTSP {
+  def main(args: Array[String]): Unit = {
   
   // Parsing
   val nObjs = 2
@@ -38,7 +39,7 @@ object BiTSP extends App {
   
   // Model
   // -----
-  implicit val cp = new CPSolver()
+  implicit val cp: CPSolver = new CPSolver()
   cp.silent = true
   
   // Successors & Predecessors
@@ -65,4 +66,5 @@ object BiTSP extends App {
  
   println("Pareto Set")
   println(cp.nonDominatedSolutionsObjs.mkString("\n"))
+}
 }

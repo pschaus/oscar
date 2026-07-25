@@ -84,7 +84,7 @@ class TableSTRNe(val variables: Array[CPIntVar], table: Array[Array[Int]]) exten
       sSup(sSupLimit) = i
 
       // SVal
-      if (variables(i).size != lastSizes(i).getValue) {
+      if (variables(i).size != lastSizes(i).getValue()) {
         sValLimit += 1
         sVal(sValLimit) = i
         lastSizes(i).setValue(variables(i).size)        
@@ -265,6 +265,6 @@ class TableSTRNe(val variables: Array[CPIntVar], table: Array[Array[Int]]) exten
   
   @inline private def printArray(arrays: Array[Int]) = {
     for (a <- arrays) print(s"$a ")
-    println
+    println()
   }
 }

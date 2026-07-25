@@ -12,7 +12,7 @@ import scala.collection.mutable.ArrayBuffer
 
 class PrecedenceGraph(starts:Array[CPIntVar], durations:Array[CPIntVar], ends: Array[CPIntVar], ttMatrix: Array[Array[Int]], initialKnownPrecedences: Array[(Int,Int)] = Array()) {
 
-  implicit private[this] val _cp = starts(0).store
+  implicit private[this] val _cp: oscar.cp.core.CPStore = starts(0).store
   private[this] val _nTasks = starts.length
   private[this] val tasks = Array.tabulate(_nTasks)(t => t)
 
@@ -145,7 +145,7 @@ class PrecedenceGraph(starts:Array[CPIntVar], durations:Array[CPIntVar], ends: A
 
   private def dagPostOrderDFS(startingNode: Int): Unit = {
     stack.push(startingNode)
-    while(!stack.isEmpty) {
+    while(!stack.isEmpty()) {
       val elem = stack.peek()
       if(nodeStatus(elem) == UNSEEN) {
         val nSuccs : Int = nonDetectableSuccessorsOf(elem)
@@ -188,7 +188,7 @@ class PrecedenceGraph(starts:Array[CPIntVar], durations:Array[CPIntVar], ends: A
       v += 1
     }
     v = 0
-    while(!postOrder.isEmpty) {
+    while(!postOrder.isEmpty()) {
       postOrderArray(v) = postOrder.dequeue()
       v += 1
     }

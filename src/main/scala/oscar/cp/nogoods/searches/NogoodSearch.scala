@@ -154,7 +154,7 @@ class NogoodSearch(store: CPStore, nogoods: NogoodDB) {
       var i = decisions.length
       while (i > 0) {
         i -= 1
-        decisions(i) = branch.pop
+        decisions(i) = branch.pop()
       }
 
       import scala.collection.mutable.ArrayBuffer

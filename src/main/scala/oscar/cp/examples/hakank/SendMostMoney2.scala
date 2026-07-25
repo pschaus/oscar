@@ -28,16 +28,19 @@ import oscar.cp._
  * http://www.hakank.org/oscar/
  *
  */
-object SendMostMoney2 extends App {
+object SendMostMoney2 {
+  def main(args: Array[String]): Unit = {
 
   var money = send_most_money(0)
   println("\nGot maximum value of MONEY: " + money)
   println("Now we check for all solutions...")
   money = send_most_money(money)
 
+}
+
   def send_most_money(money: Int): Int = {
 
-    implicit val solver = CPSolver()
+    implicit val solver: CPSolver = CPSolver()
 
     // variables
     val S = CPIntVar(0 to 9)

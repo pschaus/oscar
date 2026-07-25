@@ -147,10 +147,10 @@ class TableAC5TCRecomp(val data: TableData, val x: CPIntVar*) extends Constraint
     // all the supports using a tuple with v at index i are not support any more
     // we iterate on these and try to find new support in case they were used as support
     var t = sup(i)(v).value
-    do {
+    while ({ {
       updateSupports(i, t)
       t = data.nextSupport(i, t) // get the next tuple with a value v at index i
-    } while (t >= 0)
+    } ; t >= 0}) ()
   }
 }
 

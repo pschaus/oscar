@@ -143,7 +143,7 @@ class Dataset(val benchmarkName: String, val rawDatas: Array[Transaction]) {
   }
 
   def stringInfo(separateur: String = "\t"): String =
-    benchmarkName + separateur + nbTrans + separateur + (nbItem - 1) + separateur + density
+    benchmarkName + separateur + nbTrans + separateur + (nbItem - 1) + separateur + density()
 
   def printTo(format: FileFormat): Unit =
     printTo(this.benchmarkName, format)

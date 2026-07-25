@@ -35,13 +35,13 @@ import oscar.cp.core.variables.{CPGraphVar, CPVar}
 class GraphSimplePath(val g : CPGraphVar, src : Int, dest : Int) extends Constraint(g.s, "Simple Path") {
   override def associatedVars(): Iterable[CPVar] = Array(g)
 
-  val pNodes : List[Int] = g.possibleNodes
+  val pNodes : List[Int] = g.possibleNodes()
    val n : Int = pNodes.length
     // build transitive closure of the possible values of the graph
     //   tc is composed of ReversibleBool to allow backtrack in search and still update tc
     var tc : Array[Array[ReversibleBoolean]] = buildTC(pNodes)
     // count the number of possible edges/nodes to be able to detect modification when propagate is called
-    var nbEdges : ReversibleInt = new ReversibleInt(g.s, g.nbPossibleEdges)
+    var nbEdges : ReversibleInt = new ReversibleInt(g.s, g.nbPossibleEdges())
     var nbNodes : ReversibleInt = new ReversibleInt(g.s, n)
   
     override def setup(l: CPPropagStrength): Unit = {
@@ -60,8 +60,8 @@ class GraphSimplePath(val g : CPGraphVar, src : Int, dest : Int) extends Constra
 	}
     
     override def propagate(): Unit = {
-      val possNodes : List[Int] = g.possibleNodes
-      val reqNodes  : List[Int] = g.requiredNodes
+      val possNodes : List[Int] = g.possibleNodes()
+      val reqNodes  : List[Int] = g.requiredNodes()
       
       // check if the constraint is entailed (there is a required path)
       isEntailed(possNodes,reqNodes)
@@ -69,9 +69,9 @@ class GraphSimplePath(val g : CPGraphVar, src : Int, dest : Int) extends Constra
         return
       
       // check if we need to rebuild tc before pruning
-      val newNbEdges : Int = g.nbPossibleEdges
+      val newNbEdges : Int = g.nbPossibleEdges()
       val newNbNodes : Int = possNodes.length
-      if (newNbEdges < nbEdges.getValue || newNbNodes < nbNodes.getValue) {
+      if (newNbEdges < nbEdges.getValue() || newNbNodes < nbNodes.getValue()) {
         // at least one edge/node was removed since last propagate -> rebuild TC and update nbEdges/nbNodes
         nbEdges.setValue(newNbEdges)
         nbNodes.setValue(newNbNodes)
@@ -88,16 +88,16 @@ class GraphSimplePath(val g : CPGraphVar, src : Int, dest : Int) extends Constra
       val possibleEdges : List[Int] = possNodes.flatMap(g.possibleOutEdges(_))
       for (e <- possibleEdges){
         val (u,v) = g.edge(e)
-	    if (tc(src)(u).getValue == false){
+	    if (tc(src)(u).getValue() == false){
 	      // remove e because no path from src to u in tc
 	      g.removeEdgeFromGraph(e)
-	    } else if (tc(v)(dest).getValue == false) {
+	    } else if (tc(v)(dest).getValue() == false) {
 	      // remove e because no path from v to dest in tc
 	      g.removeEdgeFromGraph(e)
 	    } else {
 	      var b : Boolean = true
 	      for (n <- reqNodes; if b){
-	        if (tc(n)(u).getValue == false && tc(v)(n).getValue == false){
+	        if (tc(n)(u).getValue() == false && tc(v)(n).getValue() == false){
 	          // remove e because no path from src to dest passing by required node n using e
 	          g.removeEdgeFromGraph(e)
 	          b = false // edge is removed, no need to look for it again
@@ -137,7 +137,7 @@ class GraphSimplePath(val g : CPGraphVar, src : Int, dest : Int) extends Constra
       }
       
       // prune lower bound : mandatory nodes
-      val possibleNotMandatoryNodes = g.possibleNodes.filter(!reqNodes.contains(_))
+      val possibleNotMandatoryNodes = g.possibleNodes().filter(!reqNodes.contains(_))
       // we have to check that, if we remove a possible node; 
       //   all mandatory nodes are still reachable from src and dest can be reachable from all mandatory nodes
       for (n <- possibleNotMandatoryNodes){
@@ -208,7 +208,7 @@ class GraphSimplePath(val g : CPGraphVar, src : Int, dest : Int) extends Constra
       // update tc
       for (n1 <- nodesToCheck){
         for (n2 <- nodesToCheck; if n1 != n2){
-          if (tc(n1)(n2).getValue != false) { // if they were already no available path, no reason to go further
+          if (tc(n1)(n2).getValue() != false) { // if they were already no available path, no reason to go further
             if (!existPath(n1, n2, possNeigh))
               tc(n1)(n2).setValue(false)
           }
@@ -252,7 +252,7 @@ class GraphSimplePath(val g : CPGraphVar, src : Int, dest : Int) extends Constra
     //   all mandatory nodes are still reachable from src
     //   and dest can be reachable from all mandatory nodes
     private def checkMandatoryNodes(s : Int, d : Int, n : Int) : Boolean = {
-      val mandatoryNodes = g.requiredNodes
+      val mandatoryNodes = g.requiredNodes()
       for (mandNode <- mandatoryNodes) { 
         if (!existPath(s, mandNode, n)){
         	// there is no path from source s to a mandatory node manNode without going through n

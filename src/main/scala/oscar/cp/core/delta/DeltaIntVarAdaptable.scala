@@ -48,7 +48,7 @@ final class DeltaIntVarAdaptable(x: CPIntVar, final override val id: Int) extend
   @inline final override def minChanged: Boolean = x.min != _oldMin
   @inline final override def maxChanged: Boolean = x.max != _oldMax
 
-  @inline private def trail(): Unit = {
+  @inline private def saveToTrail(): Unit = {
     val contextMagic = store.magic
     if (lastMagic != contextMagic) {
       lastMagic = contextMagic
@@ -64,7 +64,7 @@ final class DeltaIntVarAdaptable(x: CPIntVar, final override val id: Int) extend
   
   final override def update(): Unit = {
     val xs = x.size
-    if (xs != _oldSize) trail()
+    if (xs != _oldSize) saveToTrail()
     _oldMin = x.min
     _oldMax = x.max
     _oldSize = xs

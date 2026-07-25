@@ -70,7 +70,7 @@ object FillAPix extends CPModel with App  {
     // read problem from file
     if (args.length > 0) {
       println("Read from file: " + args(0))
-      val lines = fromFile(args(0)).getLines.filter(!_.startsWith("#")).toList
+      val lines = fromFile(args(0)).getLines().filter(!_.startsWith("#")).toList
       n = lines(0).toInt
       println("n:" + n)
       puzzle = lines.tail.map(_.split("").tail.toList.map(i=>if (i == ".") X else i.toInt))

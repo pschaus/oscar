@@ -41,7 +41,7 @@ class WatcherListL1(store: CPStore) {
     constraintStack(index) = constraint
     variablesStack(index) = variable
     indexStack(index) = id
-    trail()
+    saveToTrail()
     index += 1
   }
 
@@ -50,12 +50,12 @@ class WatcherListL1(store: CPStore) {
     constraintStack(index) = constraint
     variablesStack(index) = variable
     indexStack(index) = RESERVED_INDEX
-    trail()
+    saveToTrail()
     index += 1
   }
 
   @inline final def clear(): Unit = {
-    trail()
+    saveToTrail()
     index = 0
   }
 
@@ -102,7 +102,7 @@ class WatcherListL1(store: CPStore) {
     }
   }
 
-  @inline private def trail(): Unit = {
+  @inline private def saveToTrail(): Unit = {
     val contextMagic = store.magic
     if (lastMagic != contextMagic) {
       lastMagic = contextMagic

@@ -72,7 +72,7 @@ object Minesweeper extends CPModel with App  {
     // read from file
     if (args.length > 0) {
       println("Read from file: " + args(0))
-      val lines = fromFile(args(0)).getLines.filter(!_.startsWith("#")).toList
+      val lines = fromFile(args(0)).getLines().filter(!_.startsWith("#")).toList
       r = lines(0).toInt
       c = lines(1).toInt
       println("r:" + r)

@@ -14,28 +14,28 @@ class ReversibleLong(node: ReversibleContext, value: Long) extends ReversiblePoi
   
   /** Increments the reversible integer by one */
   def incr(): Long = {
-    trail()
+    saveToTrail()
     pointer += 1
     pointer
   }
 
   /** Decrements the reversible integer by one */
   def decr(): Long = {
-    trail()
+    saveToTrail()
     pointer -= 1
     pointer
   }
 
   /** Increments the reversible integer by i */
   def +=(i: Long): Long = {
-    trail()
+    saveToTrail()
     pointer += i
     pointer
   }
 
   /** Decrements the reversible integer by i */
   def -=(i: Long): Long = {
-    trail()
+    saveToTrail()
     pointer -= i
     pointer
   }

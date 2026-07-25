@@ -77,7 +77,7 @@ object AlphameticGenerate {
   def readWords(word_list: String): Array[String] = {
 
     println("reading from " + word_list);
-    val words = scala.io.Source.fromFile(word_list, "utf-8").getLines
+    val words = scala.io.Source.fromFile(word_list, "utf-8").getLines()
 
     val rex = "^([A-Za-z]+)$"
     var all_words = List[String]()
@@ -102,7 +102,7 @@ object AlphameticGenerate {
   //
   def solve(problem_in: String = "SEND+MORE=MONEY", base: Int = 10, start: Int = 0): Int = {
 
-    implicit val cp = CPSolver()
+    implicit val cp: CPSolver = CPSolver()
 
     //
     // data

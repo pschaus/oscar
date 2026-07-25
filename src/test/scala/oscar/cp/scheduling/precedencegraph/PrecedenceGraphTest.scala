@@ -15,7 +15,7 @@ class PrecedenceGraphTest extends AnyFunSuite with Matchers with Assertions {
   test("transitive closure DAG 3 nodes") {
     val nTasks = 3
     val horizon = 10
-    implicit val cp = CPSolver()
+    implicit val cp: CPSolver = CPSolver()
     val starts = Array.fill(nTasks)(CPIntVar(0 until horizon))
     val durations = Array.fill(nTasks)(CPIntVar(2))
     val ends = Array.fill(nTasks)(CPIntVar(0 until horizon))
@@ -37,7 +37,7 @@ class PrecedenceGraphTest extends AnyFunSuite with Matchers with Assertions {
   test("transitive closure DAG 4 nodes") {
     val nTasks = 4
     val horizon = 10
-    implicit val cp = CPSolver()
+    implicit val cp: CPSolver = CPSolver()
     val starts = Array.fill(nTasks)(CPIntVar(0 until horizon))
     val durations = Array.fill(nTasks)(CPIntVar(2))
     val ends = Array.fill(nTasks)(CPIntVar(0 until horizon))

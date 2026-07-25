@@ -37,7 +37,7 @@ object WordSquare extends CPModel with App  {
     */
   def readWords(word_list: String, word_len: Int, regex: String) : Array[String] = {
     println("reading from " + word_list + " (size: " + word_len + ")");
-    scala.io.Source.fromFile(word_list, "utf-8").getLines.
+    scala.io.Source.fromFile(word_list, "utf-8").getLines().
                     filter(_.length == word_len).
                     map(_.toLowerCase).
                     filter(w => w.matches(regex)).

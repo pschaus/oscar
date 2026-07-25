@@ -7,7 +7,7 @@ import oscar.cp.core.{CPPropagStrength, Constraint}
 class PrecedenceGraphPropagator(starts: Array[CPIntVar], durations: Array[CPIntVar], ends: Array[CPIntVar], val pg: PrecedenceGraph, ttMatrix: Array[Array[Int]]) extends Constraint(starts(0).store) {
 
   //no transition times
-  def this(starts: Array[CPIntVar], durations: Array[CPIntVar], ends: Array[CPIntVar], pg: PrecedenceGraph) {
+  def this(starts: Array[CPIntVar], durations: Array[CPIntVar], ends: Array[CPIntVar], pg: PrecedenceGraph) = {
     this(starts, durations, ends, pg, Array.fill(starts.length, starts.length)(0))
   }
 

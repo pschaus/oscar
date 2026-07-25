@@ -43,8 +43,8 @@ class InducedSubGraph(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constrain
 	  // 	we dealt with the subgraph part by posting constraint in setup()
 	  
 	  // enforce equality
-	  val g1ReqN : List[Int] = g1.requiredNodes
-	  val g2ReqN : List[Int] = g2.requiredNodes
+	  val g1ReqN : List[Int] = g1.requiredNodes()
+	  val g2ReqN : List[Int] = g2.requiredNodes()
 	  if (! g1ReqN.sameElements(g2ReqN)){
 	    for (n <- g1ReqN)
 	      if( ! g2ReqN.contains(n))
@@ -57,7 +57,7 @@ class InducedSubGraph(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constrain
 	  // for each edge incident to required nodes,
 	  // 	if the edge was required in a graph, then required in the other
 	  // 	if the edge was not possible in a graph, then not possible in the other
-	  val g1ReqNodes : List[Int] = g1.requiredNodes
+	  val g1ReqNodes : List[Int] = g1.requiredNodes()
 	  for (n <- g1ReqNodes){
 	    for (e <- g1.possibleEdges(n); if (g1ReqNodes.contains(g1.edge(e)._1) && g1ReqNodes.contains(g1.edge(e)._2)) ){
 	      if (g1.requiredEdges(n).contains(e))
@@ -66,7 +66,7 @@ class InducedSubGraph(val g1 : CPGraphVar, val g2: CPGraphVar) extends Constrain
 	        g1.removeNodeFromGraph(e)
 	    }
 	  }
-	  val g2ReqNodes : List[Int] = g2.requiredNodes
+	  val g2ReqNodes : List[Int] = g2.requiredNodes()
 	  for (n <- g2ReqNodes){
 	    for (e <- g2.possibleEdges(n); if (g2ReqNodes.contains(g2.edge(e)._1) && g2ReqNodes.contains(g2.edge(e)._2)) ){
 	      if (g2.requiredEdges(n).contains(e))

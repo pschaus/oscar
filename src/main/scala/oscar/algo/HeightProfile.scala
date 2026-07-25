@@ -22,8 +22,8 @@ import scala.collection.mutable.ArrayBuffer
 /**
  * @author Pierre Schaus pschaus@gmail.com
  */
-object HeightProfile extends App {
-  
+object HeightProfile {
+
   /**
    * @param rectangles = an array of (start,duration,height)
    * @return an array of points (start,duration,height) constituting the cumulated profile

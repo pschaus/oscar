@@ -12,7 +12,8 @@ import oscar.ml.pm.Constraints.fem.EpisodeSupport
 import oscar.ml.pm.Constraints.spm.PPIC
 import oscar.ml.pm.utils.DatasetUtils
 
-object FEMRunner extends App {
+object FEMRunner {
+  def main(args: Array[String]): Unit = {
 
   case class Config(
                      filename: String = "oscar-ml/src/main/scala/oscar/ml/pm/data/fem/test/input/test.fasta",
@@ -21,8 +22,7 @@ object FEMRunner extends App {
                      timeLimit: Int = 5
                    )
 
-  printHead()
-
+  
   val config = Config()
   val epsilon: Int = 0
   val (db, frequency, nTrans, nItems, lenSeqMax, freqentItems) =  DatasetUtils.prepareForFEM(config.filename, config.minsup)
@@ -30,11 +30,11 @@ object FEMRunner extends App {
 
   ///println(db)
 
-  System.err.println(config + s"\nSup: $frequency\nnItems: $nItems\nnTrans: $nTrans")
+  System.err.println(s"$config\nSup: $frequency\nnItems: $nItems\nnTrans: $nTrans")
 
   if (lenSeqMax > 0) {
     // Initializing the solver
-    implicit val cp = CPSolver()
+    implicit val cp: CPSolver = CPSolver()
 
     // Declaring variables
     val P = Array.fill(lenSeqMax)(CPIntVar.sparse(domS)(cp))
@@ -66,6 +66,7 @@ object FEMRunner extends App {
   } else System.err.println("No solution")
 
   //Misc
+  printHead()
   def printHead(): Unit = {
     System.err.println(
       """
@@ -73,6 +74,7 @@ object FEMRunner extends App {
     Bugs reports : johnaoga@gmail.com , quentin.cappart@uclouvain.be
     */
       """)
+  }
   }
 }
 

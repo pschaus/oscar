@@ -7,7 +7,7 @@ object KnapsackReader {
   def read(dataFile: String) = {
 
     // Read the data
-    var lines = Source.fromFile(dataFile).getLines.toList.filter(_ != "")
+    var lines = Source.fromFile(dataFile).getLines().toList.filter(_ != "")
     val n: Int = lines.head.toInt
     val N = 0 until n
     lines = lines.drop(1)
@@ -36,7 +36,7 @@ object KnapsackReader {
   def readSolution(solFile: String): Array[(Int,Int)] = {
 
     // Read the data
-    var lines = Source.fromFile(solFile).getLines.toList.filter(_ != "")
+    var lines = Source.fromFile(solFile).getLines().toList.filter(_ != "")
     (for (l <- lines) yield {
      val s = l.split("[ ,\t]+").filter(_ != "").map(_ toInt).toArray
      (s(0),s(1))

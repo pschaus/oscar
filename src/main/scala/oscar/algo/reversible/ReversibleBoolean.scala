@@ -40,7 +40,7 @@ class ReversibleBoolean(context: ReversibleContext, initialValue: Boolean) {
     }
   }
   
-  @inline private def trail(): Unit = {
+  @inline private def saveToTrail(): Unit = {
     val contextMagic = context.magic
     if (lastMagic != contextMagic) {
       lastMagic = contextMagic
@@ -53,7 +53,7 @@ class ReversibleBoolean(context: ReversibleContext, initialValue: Boolean) {
   
   @inline final def setValue(value: Boolean): Unit = {
     if (value != pointer) {
-      trail()
+      saveToTrail()
       this.pointer = value
     }
   }
@@ -61,21 +61,21 @@ class ReversibleBoolean(context: ReversibleContext, initialValue: Boolean) {
   /** @param value to assign */
   @inline final def value_= (value: Boolean): Unit = {
     if (value != pointer) {
-      trail()
+      saveToTrail()
       this.pointer = value
     }
   }
   
   @inline final def setTrue(): Unit = {
     if (!pointer) {
-      trail()
+      saveToTrail()
       this.pointer = true
     }
   }
   
   @inline final def setFalse(): Unit = {
     if (pointer) {
-      trail()
+      saveToTrail()
       this.pointer = false
     }
   }

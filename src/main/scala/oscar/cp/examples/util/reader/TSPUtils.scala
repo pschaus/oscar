@@ -7,7 +7,7 @@ import scala.io.Source
 object TSPUtils {
 
   def readSet(filepath: String): Array[Array[Int]] = {
-    val lines = Source.fromFile(filepath).getLines.toArray
+    val lines = Source.fromFile(filepath).getLines().toArray
     lines.map(l => l.trim.split("[ ,\t]").map(_.toInt))
   }
 
@@ -58,7 +58,7 @@ object TSPUtils {
   }
 
   def parseCoordinates(filepath: String): Array[(Int, Int)] = {
-    var lines = Source.fromFile(filepath).getLines.toList
+    var lines = Source.fromFile(filepath).getLines().toList
     lines = lines.drop(6)
     val l = lines.head.trim().split("[ ,\t]+").map(_.toInt).toArray
     val n = lines.size - 1

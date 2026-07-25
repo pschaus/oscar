@@ -39,7 +39,7 @@ class GraphSymmetric(val g : CPGraphVar) extends Constraint(g.s, "Symmetric") {
 	  // if an edge e is possible
 	  //  	if there is no opposite, the edge should be removed
 	  // 	if the edge is required, the opposite should be required
-	  for (n <- g.possibleNodes){ 
+	  for (n <- g.possibleNodes()){ 
 	    for (e <- g.possibleEdges(n)){
 	      val (src, dest) = g.edge(e)
 	      if (g.possibleEdges(dest).map(g.edge(_)).contains(g.edge(e))){

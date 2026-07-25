@@ -19,7 +19,8 @@ import scala.reflect.ClassTag
  *
  * @author Cyrille Dejemeppe (cyrille.dejemeppe@gmail.com)
  */
-object DoubleReservoirShop extends App {
+object DoubleReservoirShop {
+  def main(args: Array[String]): Unit = {
 
   val nTasks = 16
   val nReservoirs = 2
@@ -34,7 +35,7 @@ object DoubleReservoirShop extends App {
   val initialAmounts = Array(7, 3)
 
   val horizon = durations.sum
-  implicit val cp = CPSolver()
+  implicit val cp: CPSolver = CPSolver()
 
   val durationVars = Array.tabulate(nTasks)(t => CPIntVar(durations(t)))
   val startVars = Array.tabulate(nTasks)(t => CPIntVar(0 to horizon - durationVars(t).min))
@@ -68,4 +69,5 @@ object DoubleReservoirShop extends App {
 
 
   println(start())
+}
 }
