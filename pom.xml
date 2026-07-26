@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.pschaus</groupId>
     <artifactId>oscar-cp</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>4.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>

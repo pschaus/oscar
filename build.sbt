@@ -3,7 +3,7 @@ import xerial.sbt.Sonatype._
 // Basic project information
 organization := "io.github.pschaus"
 name := "oscar-cp"
-version := "4.0.0"
+version := "4.1.0-SNAPSHOT"
 scalaVersion := "3.3.8"
 
 // Compiler settings
