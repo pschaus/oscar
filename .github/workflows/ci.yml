@@ -102,6 +102,7 @@ jobs:
           mkdir -p gh-pages-site/badges
           mv /tmp/coverbadge.svg gh-pages-site/badges/coverbadge.svg
           cp -r /tmp/coverage gh-pages-site/coverage
+          echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=coverage/index.html"></head><body>Redirecting to <a href="coverage/index.html">Coverage Report</a></body></html>' > gh-pages-site/index.html
 
       - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
