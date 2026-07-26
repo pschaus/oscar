@@ -1,0 +1,69 @@
+<html>
+<head>
+<font size=+1>
+<TITLE>Contents of the problem data files</TITLE>
+</head>
+<body background="paper09.jpg">
+<Center><h3><u>Contents of problem files</u></h3></Center><p>
+
+Shown below is an example of the contents of a file (<i>re305</i>).<p>
+
+
+300<br>
+34 10 5<br>
+1 1 0 143 495 2<br>
+2 1 1 26 495 3<br>
+3 1 2 83 495 5<br>
+4 1 3 0 495 0<br><br>
+
+The first line of a file contains the number of problems stored in the file. Thus, the file <i>re305</i> has 300 problems in it.<p>
+ 
+The information pertaining to the individual problems is organised as follows (the first problem starts from the second line):<br>
+The first line of each problem consists of three numbers.<p>
+
+The first number (34 in this example) refers to the number of operations. The second (10) represents the number of lots, and the third (5) the number of machines.<p>
+
+The lines that follow describe the operations in detail. They consist of 6 numbers. In our example, the line directly following the problem definition is 1 1 0 143 495 2.<p>
+
+The first number represents the operation number, the second the lot on which this operation is to be carried out. The third denotes the predecessor of this operation. The fourth and fifth numbers stand for the operation time and the due date of the job respectively. The sixth number gives the machine on which the operation is to be carried out.<p>
+
+In our example, operation number 1 is to be carried out on lot 1. Its predecessor is operation 0 (which means that it has no predecessor). The operation time is 143 units and the due date for lot 1 is 495. The operation is to be carried out on machine 2.<p>
+
+The number of such lines is equal to the number of operations. In our example file, the line describing the last operation and a few following lines are shown below:<p>
+
+34 10 33 0 481 0<br>
+0 1 6<br>
+ 0 2 154<br>
+ 0 3 62<br>
+ 0 5 96<br><p>
+
+The lines which follow the operations descriptions consist of three numbers. The first and the second numbers denote operation numbers and the third denotes the setup time between them. Thus, we can see from the lines above that the setup time between operations 0 and 1 is 6 whereas the setup time to change from operation 0 to operation 2 is 154.<p>
+
+After all the setup times have been specified, we insert a marker to indicate the beginning of the next problem. This marker is the line 0 0 0. We show below the ending of the first problem in the file <i>re305</i>.<p>
+
+34 26 45<br>
+34 30 155<br>
+0 0 0<br>
+31 10 5<br>
+1 1 0 47 695 1<br>
+2 1 1 135 695 3<br>
+3 1 2 0 695 0<br>
+
+Please notice that the second problem has 31 operations, 10 lots and 5 machines.<p>
+
+<a href="FTP/">Download problem files:</a><p>
+
+<a href="solution_index.html">Download solution files:</a><br>
+
+</font>
+</body>
+</html>
+<P><HR>
+
+<ADDRESS>
+Email: <A HREF= "mailto:uzsoy@ecn.purdue.edu"> Reha Uzsoy </A>
+<P>
+Revised 25 February 1998<BR>
+URL: http://gilbreth.ecn.purdue.edu/~uzsoy2/Problems/description.html<BR>
+</ADDRESS>
+</html>

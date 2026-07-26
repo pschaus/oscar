@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# Maximum allowed file size per file: 10 MB (10,485,760 bytes)
+MAX_BYTES=10485760
+
+# Find staged files
+staged_files=$(git diff --cached --name-only --diff-filter=AM)
+
+for file in $staged_files; do
+    if [ -f "$file" ]; then
+        filesize=$(wc -c <"$file" | tr -d ' ')
+        if [ "$filesize" -gt "$MAX_BYTES" ]; then
+            mb_size=$(awk "BEGIN {printf \"%.2f\", $filesize/1048576}")
+            echo "ERROR: File '$file' is ${mb_size}MB, exceeding the 10MB limit."
+            echo "Commit rejected to prevent committing large files to the repository."
+            exit 1
+        fi
+    fi
+done
+
+exit 0

@@ -1,0 +1,107 @@
+THIS FILE CONTAINS THE SECTIONS: 
+
+	* REMARKS
+	* PASCAL CODE 
+	* VERIFICATION
+
+{##########################################################################} 
+
+REMARKS
+
+The following PASCAL CODE can be used to generate the 
+Common Due Date Problems, which are given in the 7 data-directories.
+
+The PASCAL CODE has been proposed in: 
+
+Discussion Paper No. 397, 1998,
+Faculty of Economics, University of Bielefeld, Germany.
+
+Titled: Benchmarks for scheduling on a single-machine
+against restrictive and unrestrictive common due dates; 
+
+Written by Dirk Biskup and Dr. Martin Feldmann. 
+
+The authors are gladly willing to distribute a longer and more confortable
+version of the PASCAL CODE by email:
+
+dbiskup@wiwi.uni-bielefeld.de or mfeldmann@wiwi.uni-bielefeld.de
+
+{########################################################################}
+
+PASCAL CODE
+
+Program Generator_for_Common_Due_Date_Problems;
+
+CONST   m=100000000; m1=10000; b=31415821; 
+        range_p : 20; range_a : 10; range_b : 15;
+
+
+VAR 	seed        :   LONGINT;
+      	n	    :   INTEGER;
+	k	    :   INTEGER;
+	i	    :   INTEGER;
+        problem     :   ARRAY [1..20000] of BYTE;
+
+{************************************************************************}
+
+FUNCTION Mult(p,q: LONGINT) : LONGINT;
+VAR p1,p0,q1,q0: LONGINT;
+BEGIN
+     p1:=p DIV m1; p0:=p MOD m1;
+     q1:=q DIV m1; q0:=q MOD m1;
+     mult:= (((p0*q1+p1*q0) MOD m1) * m1+p0*q0) MOD m;
+END;
+
+{*************************************************************************}
+
+FUNCTION Randomint(range:BYTE) : BYTE;
+
+BEGIN
+ seed:= (Mult (seed,b)+1) MOD m;
+ Randomint:= (((seed DIV m1) * range) DIV m1 ) + 1
+END;
+
+{*************************************************************************}
+
+PROCEDURE Generate_Problem;
+
+CONST start_seed = 3794612;
+
+BEGIN;
+WRITE ('PROBLEM SIZE: ');
+READLN (n);
+WRITE ('INSTANCE NUMBER:');
+READLN (k);
+i:=0;
+ seed := start_seed+n+k;
+ REPEAT
+   BEGIN
+   INC(i);    problem[i] := Randomint(range_p);
+   INC(i);    problem[i] := Randomint(range_a);
+   INC(i);    problem[i] := Randomint(range_b);
+   END
+ UNTIL (i=3*n);
+ END;
+
+{#########################################################################}
+
+VERIFICATION:
+
+Generating the first instance of an 8 job problem (n = 8, k = 1) should
+give the following data:
+
+Job                      1   2   3   4   5   6   7   8
+______________________________________________________
+
+Processing_Times:	 7,  1, 18,  6, 13, 14,  5,  6
+Earliness_Penalties: 	 2,  8,  4,  9,  5,  5,  7,  4
+Tardiness_Penalties:	14,  7,  8,  9,  7,  9,  5, 14
+
+In this example, the sum of Processing_Times SUM_P is: 70 
+Choosing h = 0.2, the common due date is calculated by: 
+
+round [SUM_P * h] = round [70 * 0.2]  = 14,
+
+where round[X] gives the biggest integer which is smaller then or equal to X.
+
+

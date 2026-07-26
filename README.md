@@ -34,18 +34,30 @@ It provides a rich set of global constraints, powerful search mechanisms, and La
 
 ## Getting Started
 
-OscaR is written in **Scala 3** (3.3.x) and uses [sbt](https://www.scala-sbt.org/) as its build tool.
+OscaR is written specifically for **Scala 3** (3.3.x) and is published on **[Maven Central](https://central.sonatype.com/artifact/io.github.pschaus/oscar-cp_3/overview)**.
 
 **Prerequisites:**
-- Java 11+
-- sbt 1.9+
+- Java 11+ (JDK 17/21 recommended)
+- sbt 1.9+ or Maven 3.8+
+- Scala 3
 
-**sbt Dependency Coordinates:**
+**sbt Dependency Coordinates (Scala 3):**
 ```scala
-libraryDependencies += "org.oscarcp" %% "org.oscarcp" % "1.0.0-SNAPSHOT"
+libraryDependencies += "io.github.pschaus" % "oscar-cp_3" % "4.0.0"
+// or using %% (sbt automatically appends _3 for Scala 3):
+libraryDependencies += "io.github.pschaus" %% "oscar-cp" % "4.0.0"
 ```
 
-**Clone:**
+**Maven Dependency Coordinates:**
+```xml
+<dependency>
+    <groupId>io.github.pschaus</groupId>
+    <artifactId>oscar-cp_3</artifactId>
+    <version>4.0.0</version>
+</dependency>
+```
+
+**Clone from Source:**
 ```bash
 git clone https://github.com/pschaus/oscar.git
 cd oscar
