@@ -140,7 +140,7 @@ oscar-cp,oscar.algo,SortUtils,33,0,0,0,0,0,5,0,5,0
 oscar-cp,oscar.algo,SortUtils.,580,418,17,41,31,77,15,23,4,5
 oscar-cp,oscar.algo,MutableIntMap,110,958,9,87,20,137,18,72,9,33
 oscar-cp,oscar.algo,Inconsistency.,23,14,3,1,5,2,7,1,5,1
-oscar-cp,oscar.algo,BinPacking.,39,320,1,35,2,44,3,23,2,6
+oscar-cp,oscar.algo,BinPacking.,39,320,2,34,2,44,4,22,2,6
 oscar-cp,oscar.algo,package.RandomOps.,104,0,10,0,15,0,12,0,7,0
 oscar-cp,oscar.algo,BinPacking,14,0,0,0,0,0,3,0,3,0
 oscar-cp,oscar.algo,MutableIntMap.MapEntry,63,55,9,3,8,7,9,9,4,8
