@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -73,19 +76,14 @@ jobs:
 
       - name: Generate the badge SVG using Shields.io
         run: |
-          # Ensure COVERAGE is extracted and is a valid number
           COVERAGE="${{ env.coverage }}"
-          
-          # Debugging: Print coverage value
           echo "Extracted Coverage: $COVERAGE"
           
-          # Validate that COVERAGE is a number
           if [[ ! "$COVERAGE" =~ ^[0-9]+$ ]]; then
             echo "Error: COVERAGE is not a valid number ('$COVERAGE'). Defaulting to 0."
             COVERAGE="0"
           fi
           
-          # Assign color based on coverage percentage
           if [ "$COVERAGE" -gt 90 ]; then COLOR="green"
           elif [ "$COVERAGE" -gt 80 ]; then COLOR="yellowgreen"
           elif [ "$COVERAGE" -gt 70 ]; then COLOR="yellow"
@@ -93,55 +91,20 @@ jobs:
           else COLOR="red"
           fi
           
-          # Debugging: Print the final values
           echo "Final Coverage: $COVERAGE%"
           echo "Badge Color: $COLOR"
           
-          # Download and save the badge
-          curl -o coverbadge.svg \
+          curl -o /tmp/coverbadge.svg \
             "https://img.shields.io/badge/Test%20Coverage-$COVERAGE%25-$COLOR.svg"
-          
-          mv coverbadge.svg /tmp/.
 
-      - name: Checkout gh-pages branch
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-
-      - name: Commit and Push Badge and Coverage Report
+      - name: Prepare gh-pages site
         run: |
-          if [ ! -d "badges" ]; then
-            mkdir badges
-            echo "badges created."
-          else
-            echo "badges already exists."
-          fi
-          
-          mv /tmp/coverbadge.svg badges/.
-          
-          # Copy the coverage HTML report
-          rm -rf coverage
-          cp -r /tmp/coverage .
-          
-          ls -lah badges/  # Debugging step to confirm files exist
-          ls -lah coverage/ # Debugging step to confirm coverage files exist
-          
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          
-          git add badges/coverbadge.svg
-          git add coverage/
-          git commit -m "Add/Update badge and coverage report" || echo "No changes to commit"
-          
-          # Try to push, if failed, fetch, rebase and push again
-          for i in {1..5}; do
-            git pull --rebase origin gh-pages || true
-            if git push origin gh-pages; then
-              echo "Push successful"
-              exit 0
-            fi
-            echo "Push failed, retrying..."
-            sleep $((RANDOM % 10 + 5))
-          done
-          echo "Failed to push to gh-pages after multiple attempts."
-          exit 1
+          mkdir -p gh-pages-site/badges
+          mv /tmp/coverbadge.svg gh-pages-site/badges/coverbadge.svg
+          cp -r /tmp/coverage gh-pages-site/coverage
+
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: gh-pages-site
+          branch: gh-pages
