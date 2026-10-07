@@ -319,6 +319,26 @@ class SimpleNoOverlapTest extends TestSuite {
     starts(2).min shouldBe 10
 
   }
+
+  test("An optional activity that fits after the running one stays possible on the resource") {
+    implicit val cp: CPSolver = CPSolver()
+    val starts = Array(CPIntVar(0), CPIntVar(0 to 15))
+    val durations = Array(CPIntVar(10), CPIntVar(10))
+    val ends = Array(CPIntVar(10), CPIntVar(10 to 25))
+    val runOnResource = Array(CPIntVar(0), CPIntVar(0 to 1))
+    val resourceId = 0
+
+    for(a <- 0 until starts.length)
+      post(starts(a) + durations(a) === ends(a))
+
+    post(new NoOverlap(starts, durations, ends, runOnResource, resourceId))
+
+    runOnResource(1).hasValue(resourceId) shouldBe true
+
+    post(runOnResource(1) === resourceId)
+
+    starts(1).min shouldBe 10
+  }
 }
 
 class SmallNoOverlapTransitionTimeTest extends TestSuite {
@@ -328,7 +348,8 @@ class SmallNoOverlapTransitionTimeTest extends TestSuite {
 
     val starts: Array[CPIntVar] = Array.fill(3)(CPIntVar(0 until 50))
     val durations: Array[CPIntVar] = Array.fill(3)(CPIntVar(1))
-    val ends: Array[CPIntVar] = Array.fill(3)(CPIntVar(1 to 50))
+    //the optional activity ends before the running ones, so it is in the tree when they are checked
+    val ends: Array[CPIntVar] = Array(CPIntVar(1 to 50), CPIntVar(1 to 50), CPIntVar(1 to 49))
     val resources: Array[CPIntVar] = Array.fill(3)(CPIntVar(0, 1))
 
     for(a <- 0 until 3)
