@@ -140,7 +140,7 @@ oscar-cp,oscar.algo,SortUtils,33,0,0,0,0,0,5,0,5,0
 oscar-cp,oscar.algo,SortUtils.,580,418,17,41,31,77,15,23,4,5
 oscar-cp,oscar.algo,MutableIntMap,110,958,9,87,20,137,18,72,9,33
 oscar-cp,oscar.algo,Inconsistency.,23,14,3,1,5,2,7,1,5,1
-oscar-cp,oscar.algo,BinPacking.,39,320,2,34,2,44,4,22,2,6
+oscar-cp,oscar.algo,BinPacking.,39,320,1,35,2,44,3,23,2,6
 oscar-cp,oscar.algo,package.RandomOps.,104,0,10,0,15,0,12,0,7,0
 oscar-cp,oscar.algo,BinPacking,14,0,0,0,0,0,3,0,3,0
 oscar-cp,oscar.algo,MutableIntMap.MapEntry,63,55,9,3,8,7,9,9,4,8
@@ -271,8 +271,8 @@ oscar-cp,oscar.cp.examples.hakank,YoungTableaux,39,0,0,0,0,0,12,0,12,0
 oscar-cp,oscar.cp.examples.hakank,BuildingAHouseScheduling.,10,0,0,0,1,0,2,0,2,0
 oscar-cp,oscar.cp.examples.hakank,NurseRosteringRegular.,711,0,4,0,59,0,44,0,42,0
 oscar-cp,oscar.cp.examples.hakank,ContiguityRegular.,288,0,2,0,24,0,16,0,15,0
-oscar-cp,oscar.cp.examples.hakank,SendMoreMoney,41,0,0,0,0,0,13,0,13,0
 oscar-cp,oscar.cp.examples.hakank,KenKen2.,910,0,4,0,57,0,25,0,23,0
+oscar-cp,oscar.cp.examples.hakank,SendMoreMoney,41,0,0,0,0,0,13,0,13,0
 oscar-cp,oscar.cp.examples.hakank,SendMostMoney,21,0,0,0,0,0,6,0,6,0
 oscar-cp,oscar.cp.examples.hakank,BalesOfHay.,196,0,0,0,14,0,18,0,18,0
 oscar-cp,oscar.cp.examples.hakank,NurseRosteringRegular2,88,0,0,0,0,0,28,0,28,0
@@ -334,8 +334,8 @@ oscar-cp,oscar.cp.examples.hakank,Diet2,44,0,0,0,0,0,14,0,14,0
 oscar-cp,oscar.cp.examples.hakank,Lectures.,301,0,0,0,29,0,19,0,19,0
 oscar-cp,oscar.cp.examples.hakank,Diet.,317,0,0,0,22,0,21,0,21,0
 oscar-cp,oscar.cp.examples.hakank,BalesOfHay,34,0,0,0,0,0,10,0,10,0
-oscar-cp,oscar.cp.examples.hakank,SkiAssignment,39,0,0,0,0,0,12,0,12,0
 oscar-cp,oscar.cp.examples.hakank,DeBruijn,50,0,0,0,0,0,15,0,15,0
+oscar-cp,oscar.cp.examples.hakank,SkiAssignment,39,0,0,0,0,0,12,0,12,0
 oscar-cp,oscar.cp.examples.hakank,EinavPuzzle.,1424,0,0,0,58,0,28,0,28,0
 oscar-cp,oscar.cp.examples.hakank,AppointmentSchedulingSet.,250,0,8,0,21,0,25,0,21,0
 oscar-cp,oscar.cp.examples.hakank,CrossWord.,1140,0,0,0,56,0,49,0,49,0
@@ -380,8 +380,8 @@ oscar-cp,oscar.cp.examples.hakank,WordSquare.,298,0,6,0,31,0,27,0,24,0
 oscar-cp,oscar.cp.examples.hakank,APuzzle.,1950,0,16,0,90,0,37,0,29,0
 oscar-cp,oscar.cp.examples.hakank,PlaceNumberPuzzle.,594,0,0,0,48,0,18,0,18,0
 oscar-cp,oscar.cp.examples.hakank,TrafficLights,48,0,0,0,0,0,15,0,15,0
-oscar-cp,oscar.cp.examples.hakank,SendMoreMoneyAnyBase,70,0,0,0,0,0,22,0,22,0
 oscar-cp,oscar.cp.examples.hakank,Hidato,40,0,0,0,0,0,12,0,12,0
+oscar-cp,oscar.cp.examples.hakank,SendMoreMoneyAnyBase,70,0,0,0,0,0,22,0,22,0
 oscar-cp,oscar.cp.examples.hakank,Kakuro.,1213,0,0,0,54,0,23,0,23,0
 oscar-cp,oscar.cp.examples.hakank,MapColoring.,338,0,0,0,21,0,18,0,18,0
 oscar-cp,oscar.cp.examples.hakank,StableMarriage.,1964,0,7,0,93,0,33,0,28,0
@@ -424,8 +424,8 @@ oscar-cp,oscar.cp.examples.hakank,PMedian.,359,0,0,0,31,0,25,0,25,0
 oscar-cp,oscar.cp.examples.hakank,Futoshiki.,920,0,8,0,58,0,33,0,29,0
 oscar-cp,oscar.cp.examples.hakank,WordSquare,54,0,0,0,0,0,16,0,16,0
 oscar-cp,oscar.cp.examples.hakank,BusSchedule.,216,0,0,0,19,0,17,0,17,0
-oscar-cp,oscar.cp.examples.hakank,CoinsGrid,26,0,0,0,0,0,8,0,8,0
 oscar-cp,oscar.cp.examples.hakank,Diet,41,0,0,0,0,0,13,0,13,0
+oscar-cp,oscar.cp.examples.hakank,CoinsGrid,26,0,0,0,0,0,8,0,8,0
 oscar-cp,oscar.cp.examples.hakank,Zebra2.,1061,0,20,0,46,0,60,0,50,0
 oscar-cp,oscar.cp.examples.hakank,CoveringOpl,39,0,0,0,0,0,12,0,12,0
 oscar-cp,oscar.cp.examples.hakank,SetCoveringDeployment.,579,0,0,0,40,0,22,0,22,0
@@ -483,8 +483,8 @@ oscar-cp,oscar.cp.examples,Dudeney.,192,0,0,0,12,0,16,0,16,0
 oscar-cp,oscar.cp.examples,ParcelShipment,51,0,0,0,0,0,16,0,16,0
 oscar-cp,oscar.cp.examples,PArea.,338,0,0,0,28,0,32,0,32,0
 oscar-cp,oscar.cp.examples,DiagramExample,20,0,0,0,0,0,6,0,6,0
-oscar-cp,oscar.cp.examples,ATSP,39,0,0,0,0,0,12,0,12,0
 oscar-cp,oscar.cp.examples,CookieMonster,39,0,0,0,0,0,12,0,12,0
+oscar-cp,oscar.cp.examples,ATSP,39,0,0,0,0,0,12,0,12,0
 oscar-cp,oscar.cp.examples,ExampleTable,38,0,0,0,0,0,12,0,12,0
 oscar-cp,oscar.cp.examples,QuadraticAssignment.,258,0,4,0,21,0,26,0,24,0
 oscar-cp,oscar.cp.examples,DiagramExample.,246,0,0,0,13,0,14,0,14,0
@@ -547,8 +547,8 @@ oscar-cp,oscar.cp.examples,QueensReplay.,147,0,0,0,19,0,8,0,8,0
 oscar-cp,oscar.cp.examples,LongestPath.,312,0,0,0,27,0,31,0,31,0
 oscar-cp,oscar.cp.examples,Domino.,599,0,14,0,30,0,35,0,28,0
 oscar-cp,oscar.cp.examples,Debug,34,0,0,0,0,0,10,0,10,0
-oscar-cp,oscar.cp.examples,Nurses,4,0,0,0,0,0,1,0,1,0
 oscar-cp,oscar.cp.examples,VRPTW.,459,0,0,0,45,0,41,0,41,0
+oscar-cp,oscar.cp.examples,Nurses,4,0,0,0,0,0,1,0,1,0
 oscar-cp,oscar.cp.examples,MagicModuloNumber.,105,0,0,0,7,0,13,0,13,0
 oscar-cp,oscar.cp.examples,PArea,60,0,0,0,0,0,19,0,19,0
 oscar-cp,oscar.cp.examples,FreqAssignment.,2892,0,0,0,41,0,17,0,17,0
@@ -643,8 +643,8 @@ oscar-cp,oscar.cp.constraints,Count,37,492,2,30,3,65,3,35,1,21
 oscar-cp,oscar.cp.constraints,NestedGCCDecompFWC,26,743,7,41,6,87,11,36,4,19
 oscar-cp,oscar.cp.constraints,ReversibleDoublyLinkedList,342,0,20,0,34,0,20,0,10,0
 oscar-cp,oscar.cp.constraints,UnaryResourceWithTransitionTimes,65,1857,12,100,10,239,13,70,1,26
-oscar-cp,oscar.cp.constraints,BinaryAnd,137,0,16,0,19,0,15,0,7,0
 oscar-cp,oscar.cp.constraints,GraphBipartite,16,301,1,7,2,38,2,18,1,15
+oscar-cp,oscar.cp.constraints,BinaryAnd,137,0,16,0,19,0,15,0,7,0
 oscar-cp,oscar.cp.constraints,Garded,90,0,18,0,10,0,16,0,7,0
 oscar-cp,oscar.cp.constraints,AllDiffExceptFWC,149,0,12,0,30,0,11,0,5,0
 oscar-cp,oscar.cp.constraints,GCCUpperBC,40,1117,2,62,5,172,3,48,1,18
@@ -693,8 +693,8 @@ oscar-cp,oscar.cp.constraints,Automaton,37,135,12,12,6,22,13,13,1,13
 oscar-cp,oscar.cp.constraints,WatcherKnapsack,0,49,0,4,0,6,0,4,0,2
 oscar-cp,oscar.cp.constraints,GCCVar,22,104,1,7,2,10,2,7,1,4
 oscar-cp,oscar.cp.constraints,Maximum,13,174,0,10,1,23,1,12,1,7
-oscar-cp,oscar.cp.constraints,SumLeEq,114,0,4,0,15,0,9,0,7,0
 oscar-cp,oscar.cp.constraints,AtLeastNValue,24,35,1,1,2,3,2,4,1,4
+oscar-cp,oscar.cp.constraints,SumLeEq,114,0,4,0,15,0,9,0,7,0
 oscar-cp,oscar.cp.constraints,UnaryRank,29,331,0,6,1,35,1,20,1,17
 oscar-cp,oscar.cp.constraints,Arborescence,166,0,4,0,21,0,8,0,6,0
 oscar-cp,oscar.cp.constraints,CPObjectiveUnit,75,105,10,6,7,14,16,15,10,13
@@ -791,8 +791,8 @@ oscar-cp,oscar.cp.constraints,Spread.,5,7,0,0,0,1,1,2,1,2
 oscar-cp,oscar.cp.constraints,EqualityBC,16,125,0,14,1,27,1,11,1,4
 oscar-cp,oscar.cp.constraints,IDStockingCost,67,875,6,40,1,112,11,45,5,28
 oscar-cp,oscar.cp.constraints,EqReifBC,125,0,14,0,24,0,11,0,4,0
-oscar-cp,oscar.cp.constraints,NestedGCCFWC.UnboundList,0,35,0,0,0,4,0,7,0,7
 oscar-cp,oscar.cp.constraints,Among,28,289,2,8,2,25,3,16,1,13
+oscar-cp,oscar.cp.constraints,NestedGCCFWC.UnboundList,0,35,0,0,0,4,0,7,0,7
 oscar-cp,oscar.cp.constraints,MulCte,14,140,0,6,1,15,1,9,1,6
 oscar-cp,oscar.cp.constraints,GraphSymmetric,11,26,0,0,1,4,1,4,1,4
 oscar-cp,oscar.cp.constraints,FlowType.UF.,34,8,0,0,0,1,8,2,8,2
@@ -830,8 +830,8 @@ oscar-cp,oscar.cp.constraints,ElementCst2D,40,367,6,20,1,48,9,14,3,7
 oscar-cp,oscar.cp.constraints,NestedGCCDecompFWC.SegmentStructure,7,72,1,1,0,7,2,10,1,10
 oscar-cp,oscar.cp.constraints,Stretch,14,0,0,0,0,0,2,0,2,0
 oscar-cp,oscar.cp.constraints,Knapsack,62,793,13,49,7,89,15,41,3,22
-oscar-cp,oscar.cp.constraints,Square,46,170,4,14,7,34,5,10,1,5
 oscar-cp,oscar.cp.constraints,Disjoint,16,71,0,0,1,9,1,6,1,6
+oscar-cp,oscar.cp.constraints,Square,46,170,4,14,7,34,5,10,1,5
 oscar-cp,oscar.cp.constraints,InSet,46,0,0,0,3,0,5,0,5,0
 oscar-cp,oscar.cp.constraints,Circuit,12,199,2,8,2,24,4,8,2,5
 oscar-cp,oscar.cp.constraints,OrReif2,245,46,23,1,33,5,15,4,3,4
@@ -868,8 +868,8 @@ oscar-cp,oscar.algo.reversible,ReversibleSparseBitSet,136,590,5,39,17,106,9,47,5
 oscar-cp,oscar.algo.reversible,ReversibleBoundedSet,112,246,15,17,17,39,17,9,5,5
 oscar-cp,oscar.algo.reversible,ReversibleSparseSubset.,12,41,0,0,1,5,2,2,2,2
 oscar-cp,oscar.algo.reversible,ReversibleSparseSet..anon.new IterableOnce() {...},69,0,6,0,5,0,6,0,3,0
-oscar-cp,oscar.algo.reversible,ReversiblePointer,26,55,2,4,3,10,6,12,5,10
 oscar-cp,oscar.algo.reversible,ReversiblePointer.,19,0,0,0,4,0,4,0,4,0
+oscar-cp,oscar.algo.reversible,ReversiblePointer,26,55,2,4,3,10,6,12,5,10
 oscar-cp,oscar.algo.reversible,ReversibleSharedSparseSet,9,229,6,8,1,31,6,17,1,15
 oscar-cp,oscar.algo.reversible,ReversibleArrayStack,100,97,7,7,15,18,12,10,7,8
 oscar-cp,oscar.algo.reversible,AbstractOrderedSet..anon.new IterableOnce() {...},8,50,2,6,0,7,2,5,0,3
@@ -929,8 +929,8 @@ oscar-cp,oscar.cp.examples.scheduling,OptionalTasks.,382,0,0,0,26,0,26,0,26,0
 oscar-cp,oscar.cp.examples.scheduling,DoubleReservoirShop,4,0,0,0,0,0,1,0,1,0
 oscar-cp,oscar.cp.examples.scheduling,JobShop,4,0,0,0,0,0,1,0,1,0
 oscar-cp,oscar.cp.examples.scheduling,VariableCapacity,47,0,0,0,0,0,15,0,15,0
-oscar-cp,oscar.cp.examples.scheduling,BiRCPSP,59,0,0,0,0,0,19,0,19,0
 oscar-cp,oscar.cp.examples.scheduling,CumulativeJobShop,77,0,0,0,0,0,25,0,25,0
+oscar-cp,oscar.cp.examples.scheduling,BiRCPSP,59,0,0,0,0,0,19,0,19,0
 oscar-cp,oscar.cp.examples.scheduling,OptionalTasks,56,0,0,0,0,0,18,0,18,0
 oscar-cp,oscar.cp.examples.scheduling,JobShopWithLNSAndShaving.,479,0,2,0,49,0,49,0,48,0
 oscar-cp,oscar.cp.examples.scheduling,JobShopWithTransitionTimes.,526,0,4,0,40,0,44,0,42,0
@@ -1018,8 +1018,8 @@ oscar-cp,oscar.cp.constraints.tables,TableGAC4,5,477,0,28,1,87,1,31,1,17
 oscar-cp,oscar.cp.constraints.tables,Star,45,53,2,6,2,6,13,10,11,8
 oscar-cp,oscar.cp.constraints.tables,InSet.,15,12,0,0,0,1,3,3,3,3
 oscar-cp,oscar.cp.constraints.tables,ShortTableAlgo,32,0,0,0,0,0,10,0,10,0
-oscar-cp,oscar.cp.constraints.tables,negativeTable,24,0,0,0,0,0,5,0,5,0
 oscar-cp,oscar.cp.constraints.tables,TableGAC4.VariableSupports,4,192,1,5,0,30,1,10,0,8
+oscar-cp,oscar.cp.constraints.tables,negativeTable,24,0,0,0,0,0,5,0,5,0
 oscar-cp,oscar.cp.constraints.tables,TableSTRNe,37,768,4,44,9,121,5,33,3,11
 oscar-cp,oscar.cp.constraints.tables,Star.,11,11,0,0,0,1,3,3,3,3
 oscar-cp,oscar.cp.constraints.tables,NotEqual.,15,12,0,0,0,1,3,3,3,3
@@ -1276,7 +1276,7 @@ oscar-cp,oscar.cp.core.variables,CPIntVarAdaptable..anon.new IterableOnce() {...
 oscar-cp,oscar.cp.core.variables,CPIntVarAdaptableDomainContinuous,0,25,0,0,0,2,0,2,0,2
 oscar-cp,oscar.cp.core.variables,CPIntVarViewTimes,339,214,17,17,50,28,42,25,33,17
 oscar-cp,oscar.cp.core.variables,CPHeadSeqVar.,47,0,0,0,7,0,5,0,5,0
-oscar-cp,oscar.cp.core.variables,CPIntVarSingleton,185,161,16,14,40,27,40,25,29,21
+oscar-cp,oscar.cp.core.variables,CPIntVarSingleton,176,170,14,16,38,29,39,26,28,22
 oscar-cp,oscar.cp.core.variables,CPSetVar,53,490,5,29,5,74,13,57,9,44
 oscar-cp,oscar.cp.core.variables,CPIntVarAdaptableDomainSparse,0,25,0,0,0,2,0,2,0,2
 oscar-cp,oscar.cp.core.variables,CPIntVarAdaptable,66,1863,8,184,8,364,13,164,5,76
@@ -1346,7 +1346,7 @@ oscar-cp,oscar.cp.scheduling.constraints,EnergeticChecker.,111,0,12,0,10,0,9,0,3
 oscar-cp,oscar.cp.scheduling.constraints,UnaryDPSweep,50,89,0,0,1,5,2,4,2,4
 oscar-cp,oscar.cp.scheduling.constraints,EnergeticChecker,216,0,2,0,15,0,10,0,9,0
 oscar-cp,oscar.cp.scheduling.constraints,Unary.,5,14,0,0,1,2,1,2,1,2
-oscar-cp,oscar.cp.scheduling.constraints,TTPerTask,92,596,8,64,7,91,10,38,2,10
+oscar-cp,oscar.cp.scheduling.constraints,TTPerTask,90,598,7,65,6,92,9,39,2,10
 oscar-cp,oscar.cp.scheduling.constraints,UnaryResource,49,188,1,7,1,16,3,6,2,3
 oscar-cp,oscar.cp.scheduling.constraints,BinaryDisjunctiveWithTransitionTimes,132,0,4,0,14,0,6,0,4,0
 oscar-cp,oscar.cp.scheduling.constraints,OverloadCheckerExtended.,21,0,0,0,3,0,3,0,3,0
@@ -1393,8 +1393,8 @@ oscar-cp,oscar.cp.scheduling.constraints,SweepMinCumulative,1128,0,108,0,129,0,7
 oscar-cp,oscar.cp.scheduling.constraints,SweepMinCumulative.EventType.,33,0,4,0,9,0,8,0,5,0
 oscar-cp,oscar.cp.scheduling.constraints,SweepMaxCumulative.EventType.,33,0,4,0,9,0,8,0,5,0
 oscar-cp,oscar.cp.scheduling.constraints,MaxCumulative.,7,16,0,0,2,2,2,2,2,2
-oscar-cp,oscar.cp.scheduling.constraints,SweepMinCumulative.Event,91,0,2,0,10,0,17,0,16,0
 oscar-cp,oscar.cp.scheduling.constraints,DisjunctiveWithTransitionTimesAndFamilies,109,0,6,0,8,0,6,0,3,0
+oscar-cp,oscar.cp.scheduling.constraints,SweepMinCumulative.Event,91,0,2,0,10,0,17,0,16,0
 oscar-cp,oscar.cp.scheduling.constraints,NFNLCubic,186,0,0,0,11,0,9,0,9,0
 oscar-cp,oscar.cp.scheduling.constraints,UnaryLR,58,827,2,80,2,124,4,42,2,3
 oscar-cp,oscar.util,IncrementalStatistics,13,102,1,1,4,13,2,5,1,5
