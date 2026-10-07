@@ -222,9 +222,9 @@ class NoOverlapLeftToRight(starts: Array[CPIntVar], durations: Array[CPIntVar], 
         }
         else { //if the activity is still optional for this resource, use the internal knowledge about the domains too, since this constraint does not update the domains until the activity is known to be running on the resource
           currentMinStarts(i) = math.max(starts(i).min, optionalDomains(i).minStart.value)
-          currentMaxEnds(i) = math.min(ends(i).max, optionalDomains(i).maxStart.value)
+          currentMaxEnds(i) = math.min(ends(i).max, optionalDomains(i).maxEnd.value)
           currentMinEnds(i) = math.max(ends(i).min, optionalDomains(i).minEnd.value)
-          currentMaxStarts(i) = math.min(starts(i).max, optionalDomains(i).maxEnd.value)
+          currentMaxStarts(i) = math.min(starts(i).max, optionalDomains(i).maxStart.value)
         }
         newMinStarts(i) = currentMinStarts(i)
         newMaxEnds(i) = currentMaxEnds(i)
